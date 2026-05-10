@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Seleksi Duta Pelajar Berbudaya Indonesia - DPBI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff9e8 0%, #fef3d6 100%);
+            min-height: 100vh;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container Gold Elegant */
+        .app-container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 252, 240, 0.98);
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.2);
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+            transition: all 0.3s;
+            animation: fadeSlide 0.5s ease;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background: linear-gradient(105deg, #9e7a2e 0%, #c9a03d 40%, #e9c468 100%);
+            padding: 1rem 1.8rem;
+            color: #2d2410;
+            border-bottom: 2px solid #ffe5a3;
+        }
+        .header h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-shadow: 1px 1px 0 rgba(255,235,170,0.5);
+        }
+        .main-content {
+            padding: 2rem 1.8rem 1.8rem;
+        }
+        .card {
+            background: #fffdf8;
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 0 0 1px #f3e5c2;
+            transition: transform 0.2s;
+        }
+        .greeting {
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #b8860b, #d4af37);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        label {
+            font-weight: 600;
+            color: #5a4411;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 1.2rem;
+            border: 1.5px solid #ecd68a;
+            font-size: 1rem;
+            transition: 0.2s;
+            background: #fffef7;
+        }
+        input:focus, textarea:focus {
+            border-color: #c9a03d;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.3);
+        }
+        .btn {
+            background: linear-gradient(95deg, #b8860b, #d4af37);
+            color: #2c1f0a;
+            font-weight: 700;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 3rem;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .btn:active { transform: scale(0.97); }
+        .btn:hover { background: linear-gradient(95deg, #a07010, #c9a03d); filter: brightness(1.02); }
+        .btn-secondary {
+            background: #7e6b3c;
+            color: #fef0cf;
+        }
+        .timer-read {
+            background: #fff2dc;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: #8b691b;
+        }
+        .rules-box {
+            background: #fff8e7;
+            border-left: 6px solid #e9b35f;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+        }
+        .quiz-timer {
+            background: #2a2416;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            color: #ffdf8c;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d2410;
+        }
+        .option-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin: 1rem 0;
+        }
+        .option-item {
+            background: #fefcf5;
+            border: 1px solid #ecdcaa;
+            border-radius: 1rem;
+            padding: 0.7rem 1rem;
+            transition: 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            cursor: pointer;
+        }
+        .option-item.selected, .option-item:has(input:checked) {
+            background: #fcf3da;
+            border-color: #d4af37;
+            box-shadow: 0 2px 6px rgba(212,175,55,0.2);
+        }
+        .matching-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .matching-row {
+            background: #fefcf5;
+            padding: 0.7rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+            border: 1px solid #ecdcaa;
+        }
+        .matching-term {
+            font-weight: 700;
+            background: #efebdb;
+            padding: 0.3rem 1rem;
+            border-radius: 1.5rem;
+            min-width: 120px;
+            color: #7a5f2a;
+        }
+        .matching-select {
+            flex: 1;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            border: 1px solid #e2cf8a;
+            background: white;
+        }
+        .quiz-image {
+            max-width: 100%;
+            border-radius: 1rem;
+            margin: 0.5rem 0;
+            max-height: 130px;
+            object-fit: cover;
+            border: 1px solid #e6cf84;
+        }
+        footer {
+            background: #faf1df;
+            padding: 0.7rem 1.5rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #8b6940;
+            border-top: 1px solid #ecd68a;
+        }
+        footer a {
+            color: #b8860b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .modal-overlay {
+            position: fixed;
+            top:0; left:0; right:0; bottom:0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-card {
+            background: #fffcf0;
+            max-width: 400px;
+            width: 90%;
+            border-radius: 2rem;
+            padding: 1.8rem;
+            text-align: center;
+            border: 1px solid #f3d572;
+        }
+        .checkbox-confirm {
+            background: #fef5e3;
+            padding: 0.7rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin: 1rem 0;
+        }
+        .gold-icon {
+            color: #d4af37;
+        }
+        .text-gold {
+            color: #b8860b;
+            font-weight: 600;
+        }
+        @media (max-width: 640px) {
+            .main-content { padding: 1rem; }
+            .greeting { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="app-container" id="appRoot"></div>
+<script>
+    // ====================== KONFIGURASI TELEGRAM ======================
+    const BOT_TOKEN = "8611068552:AAHCleWMDayr9Udwer2KmVVABR_X8pzgadw";
+    const CHAT_ID = "7509429091";
+    // =================================================================
+
+    // ---------- DATA SOAL LENGKAP (20 PG, 10 B/S, 5 MENJODOHKAN) ----------
+    // 1. PILIHAN GANDA (20 soal)
+    const pgData = [
+        { text: "Dalam perspektif antropologi, kebudayaan sering dipandang sebagai sistem simbol yang bermakna. Jika sebuah kelompok masyarakat mempertahankan ritual adat meskipun secara ekonomi tidak efisien, hal ini menunjukkan bahwa kebudayaan berfungsi sebagai...", options: ["Alat adaptasi teknologi terhadap lingkungan.", "Mekanisme kontrol sosial dan legitimasi kekuasaan.", "Sistem orientasi nilai yang memberikan makna pada eksistensi manusia.", "Sarana untuk mengeksklusi kelompok di luar komunitas."], correct: 2, img: null },
+        { text: "Indonesia dikenal sebagai negara yang memiliki kemajemukan (pluralitas) yang tinggi. Perbedaan mendasar antara konsep 'Masyarakat Plural' (J.S. Furnivall) dengan 'Masyarakat Multikultural' adalah...", options: ["Masyarakat plural menekankan pada integrasi nasional, sedangkan multikultural pada segregasi.", "Masyarakat plural ditandai dengan interaksi yang minim antar kelompok di pasar, sedangkan multikultural menekankan pada kesederajatan dan pengakuan budaya.", "Masyarakat multikultural hanya ada di negara maju, sedangkan plural di negara berkembang.", "Masyarakat plural tidak memiliki batasan etnis yang jelas."], correct: 1, img: null },
+        { text: "Salah satu dimensi Profil Pelajar Pancasila adalah 'Berkebinekaan Global'. Implementasi yang paling tepat dari karakter ini dalam menghadapi tantangan globalisasi adalah...", options: ["Menutup diri dari pengaruh budaya asing untuk menjaga kemurnian budaya lokal.", "Mengadopsi seluruh budaya barat agar dianggap sebagai bangsa yang modern.", "Mempertahankan budaya luhur lokal namun tetap berpikiran terbuka dalam berinteraksi dengan budaya lain.", "Menghilangkan identitas nasional demi tercapainya perdamaian dunia."], correct: 2, img: null },
+        { text: "Konsep 'Wawasan Nusantara' sebagai geopolitik Indonesia memandang wilayah Indonesia sebagai satu kesatuan. Esensi dari aspek sosial-budaya dalam Wawasan Nusantara adalah...", options: ["Penyeragaman seluruh kebudayaan daerah menjadi satu budaya nasional yang tunggal.", "Pengakuan bahwa corak ragam budaya adalah kekayaan yang menjadi modal pembangunan bangsa.", "Prioritas pengembangan budaya hanya pada daerah-daerah perbatasan.", "Dominasi budaya mayoritas sebagai identitas utama negara."], correct: 1, img: null },
+        { text: "Pendidikan karakter dalam sistem pendidikan nasional tidak hanya bertujuan mentransfer ilmu (transfer of knowledge), tetapi juga 'transfer of value'. Hal ini sejalan dengan teori taksonomi Bloom pada ranah...", options: ["Kognitif", "Psikomotorik", "Afektif", "Linguistik"], correct: 2, img: null },
+        { text: "Secara sosiologis, konflik antar-etnis di Indonesia seringkali dipicu oleh 'prasangka' (prejudice). Cara paling efektif untuk mereduksi prasangka dalam masyarakat majemuk menurut teori kontak sosial adalah...", options: ["Memisahkan tempat tinggal antar etnis agar tidak terjadi pergesekan.", "Meningkatkan kompetisi ekonomi antar kelompok etnis.", "Mendorong interaksi antar kelompok dalam kedudukan yang setara dan memiliki tujuan bersama.", "Melarang penggunaan atribut identitas etnis di ruang publik."], correct: 2, img: null },
+        { text: "Semboyan Bhinneka Tunggal Ika yang berasal dari Kitab Sutasoma awalnya merujuk pada...", options: ["Penyatuan wilayah Nusantara oleh Gajah Mada.", "Toleransi antara penganut agama Hindu Siwa dan Buddha.", "Perlawanan terhadap kolonialisme Belanda.", "Kerjasama perdagangan antar pulau."], correct: 1, img: null },
+        { text: "Unsur kebudayaan yang paling sulit untuk berubah (statis) dalam menghadapi arus modernisasi biasanya berkaitan dengan...", options: ["Sistem peralatan hidup dan teknologi.", "Sistem mata pencaharian.", "Sistem religi dan kepercayaan dasar.", "Bahasa prokem atau bahasa gaul."], correct: 2, img: null },
+        { text: "Pelajar yang memiliki kemampuan 'Bernalar Kritis' dalam konsep karakter pelajar masa kini ditunjukkan dengan...", options: ["Kemampuan menghafal seluruh materi pelajaran dengan cepat.", "Sikap skeptis yang berlebihan terhadap semua kebijakan pemerintah.", "Kemampuan mengidentifikasi, mengklarifikasi, dan mengolah informasi secara objektif sebelum mengambil keputusan.", "Kepatuhan mutlak terhadap instruksi pendidik tanpa bertanya."], correct: 2, img: null },
+        { text: "Globalisasi dapat menyebabkan 'Culture Shock' bagi masyarakat tradisional. Fenomena ini terjadi karena...", options: ["Masuknya teknologi yang mempermudah pekerjaan manusia.", "Ketidaksiapan mental masyarakat dalam menerima perubahan nilai-nilai budaya yang sangat cepat.", "Adanya bantuan modal asing yang masuk ke daerah.", "Keinginan masyarakat untuk tetap mempertahankan adat istiadat secara kaku."], correct: 1, img: null },
+        { text: "Kebudayaan nasional Indonesia menurut Ki Hajar Dewantara adalah...", options: ["Puncak-puncak kebudayaan daerah yang memiliki nilai universal bagi bangsa.", "Kebudayaan yang diadopsi sepenuhnya dari nilai-nilai kemanusiaan Barat.", "Kebudayaan Jawa yang diwajibkan untuk seluruh suku bangsa.", "Hasil asimilasi paksa dari berbagai budaya suku bangsa di Indonesia."], correct: 0, img: null },
+        { text: "Identitas nasional Indonesia bersifat 'Buatan' (constructed). Hal ini berarti identitas tersebut...", options: ["Tidak memiliki dasar sejarah yang kuat.", "Dibentuk melalui kesepakatan politik dan perjuangan bersama melampaui identitas primordial.", "Hanya rekayasa penguasa untuk mempertahankan jabatan.", "Mudah digantikan oleh identitas agama atau etnis kapan saja."], correct: 1, img: null },
+        { text: "Integrasi sosial dalam masyarakat yang heterogen dapat tercapai melalui 'Interseksi'. Contoh interseksi dalam masyarakat adalah...", options: ["Pembentukan organisasi berdasarkan kesamaan suku bangsa saja.", "Pertemuan antara dua individu berbeda etnis dalam satu hobi atau organisasi profesi yang sama.", "Larangan pernikahan beda suku dalam suatu daerah.", "Dominasi satu kelompok agama dalam struktur birokrasi."], correct: 1, img: null },
+        { text: "Dalam pembentukan karakter, nilai 'Mandiri' pada pelajar Pancasila ditekankan pada...", options: ["Kemampuan mengerjakan ujian tanpa bantuan teman sama sekali.", "Kesadaran diri atas proses dan hasil belajarnya serta tanggung jawab terhadap tugasnya.", "Sikap egois yang tidak mau mendengarkan pendapat orang lain.", "Kemampuan untuk hidup tanpa bantuan finansial dari orang tua sejak dini."], correct: 1, img: null },
+        { text: "Hegemoni budaya (Antonio Gramsci) dalam masyarakat modern dapat terlihat melalui...", options: ["Penggunaan kekuatan militer untuk memaksakan budaya tertentu.", "Dominasi nilai-nilai kelompok tertentu yang diterima sebagai kewajaran (common sense) oleh masyarakat luas melalui media dan pendidikan.", "Penghapusan seluruh tradisi lokal secara total.", "Adanya hukum adat yang masih berlaku di desa-desa terpencil."], correct: 1, img: null },
+        { text: "Prinsip 'Gotong Royong' sebagai karakter bangsa Indonesia mengalami pergeseran di perkotaan. Pergeseran ini merupakan dampak dari...", options: ["Meningkatnya solidaritas mekanik masyarakat kota.", "Berkembangnya sikap individualisme dan profesionalisme berbasis orientasi ekonomi.", "Terlalu banyaknya festival budaya yang diselenggarakan pemerintah.", "Kurangnya pendidikan seni di sekolah-sekolah perkotaan."], correct: 1, img: null },
+        { text: "Upaya dekolonisasi pemikiran dalam pendidikan karakter bangsa bertujuan untuk...", options: ["Membenci segala hal yang berasal dari negara-negara Barat.", "Menghapus sejarah penjajahan dari kurikulum sekolah.", "Membangun kepercayaan diri bangsa atas potensi dan nilai luhur sendiri tanpa merasa inferior terhadap bangsa lain.", "Mengembalikan sistem pemerintahan ke bentuk kerajaan tradisional."], correct: 2, img: null },
+        { text: "Konflik horisontal di masyarakat seringkali terjadi karena lemahnya literasi budaya. Literasi budaya adalah...", options: ["Kemampuan membaca dan menulis dalam berbagai bahasa daerah.", "Pemahaman mengenai latar belakang, nilai, dan tradisi budaya lain untuk membangun empati dan toleransi.", "Kemampuan untuk mengoleksi benda-benda antik dari berbagai daerah.", "Keahlian dalam mempraktikkan tarian tradisional di depan umum."], correct: 1, img: null },
+        { text: "Dalam kaitan dengan kebangsaan, paham 'Chauvinisme' dianggap berbahaya karena...", options: ["Terlalu menjunjung tinggi nilai-nilai kemanusiaan universal.", "Menganggap bangsanya sendiri paling unggul secara berlebihan dan merendahkan bangsa lain.", "Mengabaikan kepentingan nasional demi kepentingan pribadi.", "Mempromosikan kerjasama ekonomi antar negara tetangga."], correct: 1, img: null },
+        { text: "Revitalisasi budaya lokal sebagai strategi kebudayaan bertujuan untuk...", options: ["Menjadikan budaya lokal sebagai objek wisata komersial semata.", "Menghidupkan kembali nilai-nilai relevan dari budaya lokal untuk menjawab tantangan zaman tanpa kehilangan identitas.", "Melarang penggunaan teknologi modern di lingkungan masyarakat adat.", "Memaksa generasi muda untuk berpakaian adat setiap hari."], correct: 1, img: null }
+    ];
+    // 2. BENAR SALAH (10 soal)
+    const tfData = [
+        { text: "Kebudayaan adalah hasil cipta, rasa, dan karsa manusia yang mencakup segala aspek kehidupan, baik material maupun non-material.", correct: true, img: null },
+        { text: "Proses 'Asimilasi' menghasilkan kebudayaan baru dengan menghilangkan ciri khas budaya asli masing-masing kelompok yang bertemu.", correct: true, img: null },
+        { text: "Pendidikan karakter di sekolah hanya menjadi tanggung jawab guru Bimbingan Konseling (BK) dan Agama saja.", correct: false, img: null },
+        { text: "Etnosentrisme adalah sikap menilai kebudayaan lain berdasarkan standar nilai dan norma kebudayaan sendiri.", correct: true, img: null },
+        { text: "Dalam konsep Pelajar Pancasila, dimensi 'Kreatif' hanya terbatas pada kemampuan siswa dalam bidang seni dan desain.", correct: false, img: null },
+        { text: "Primordialisme dapat menjadi penghambat integrasi nasional jika diwujudkan dalam bentuk loyalitas berlebihan terhadap kelompok etnis atau agama sendiri secara eksklusif.", correct: true, img: null },
+        { text: "Unsur 'Bahasa' dalam tujuh unsur kebudayaan universal menurut Kluckhohn termasuk dalam kategori sistem pengetahuan.", correct: false, img: null },
+        { text: "Salah satu fungsi kearifan lokal (local wisdom) adalah sebagai alat konservasi dan pelestarian sumber daya alam.", correct: true, img: null },
+        { text: "Pendidikan karakter yang efektif dilakukan melalui metode indoktrinasi satu arah dari pengajar ke peserta didik.", correct: false, img: null },
+        { text: "Konsep kebangsaan Indonesia berdasarkan pada kesamaan ras dan pertalian darah (ius sanguinis).", correct: false, img: null }
+    ];
+    // 3. MENJODOHKAN (5 pasangan)
+    const matchingLeft = ["Proses perembesan unsur budaya dari satu masyarakat ke masyarakat lain secara damai.", "Perpaduan dua budaya atau lebih yang menghasilkan budaya baru tanpa menghilangkan unsur asli budaya tersebut.", "Perasaan menjadi bagian dari suatu bangsa yang didasarkan pada kesamaan identitas dan sejarah.", "Disposisi batin yang menetap dalam diri seseorang untuk berperilaku baik sesuai nilai moral.", "Pandangan hidup yang menempatkan kesejahteraan bangsa di atas kepentingan pribadi/golongan."];
+    const matchingRightRaw = [
+        { text: "Akulturasi", matchTo: "Perpaduan dua budaya atau lebih yang menghasilkan budaya baru tanpa menghilangkan unsur asli budaya tersebut." },
+        { text: "Difusi", matchTo: "Proses perembesan unsur budaya dari satu masyarakat ke masyarakat lain secara damai." },
+        { text: "Nasionalisme", matchTo: "Perasaan menjadi bagian dari suatu bangsa yang didasarkan pada kesamaan identitas dan sejarah." },
+        { text: "Karakter", matchTo: "Disposisi batin yang menetap dalam diri seseorang untuk berperilaku baik sesuai nilai moral." },
+        { text: "Patriotisme", matchTo: "Pandangan hidup yang menempatkan kesejahteraan bangsa di atas kepentingan pribadi/golongan." }
+    ];
+
+    // Helper acak pilihan jawaban (per soal)
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+    function preparePGShuffle(pgArr) {
+        return pgArr.map(q => {
+            const optCopy = [...q.options];
+            const correctText = optCopy[q.correct];
+            const shuffled = shuffleArray([...optCopy]);
+            const newCorrect = shuffled.indexOf(correctText);
+            return { ...q, options: shuffled, correct: newCorrect };
+        });
+    }
+    function prepareMatchingShuffle() {
+        return {
+            leftItems: [...matchingLeft],
+            rightOptions: shuffleArray([...matchingRightRaw]),
+            correctMap: Object.fromEntries(matchingRightRaw.map(r => [r.matchTo, r.text]))
+        };
+    }
+
+    function buildFixedQuestions() {
+        const shuffledPg = preparePGShuffle(pgData);
+        const shuffledTf = tfData.map(t => ({ ...t }));
+        const matchingGroup = { type: "matching", data: prepareMatchingShuffle() };
+        return [
+            ...shuffledPg.map(p => ({ type: "pg", data: p })),
+            ...shuffledTf.map(t => ({ type: "tf", data: t })),
+            matchingGroup
+        ];
+    }
+
+    // ---------- STATE ----------
+    let currentPage = "home";
+    let bioData = { nomorUrut: "", nama: "", asalSekolah: "" };
+    let questionsSeq = [];
+    let userAnswers = [];
+    let currentIndex = 0;
+    let timerInterval = null;
+    let timeLeft = 0;
+    let quizActive = false;
+    let readTimerInterval = null;
+    let finalScoreData = null;
+    let kritikSaran = "";
+
+    const root = document.getElementById("appRoot");
+
+    function getGreetingTime() { const h=new Date().getHours(); return (h>=5 && h<12)?"Pagi":(h>=12 && h<16)?"Siang":(h>=16 && h<19)?"Sore":"Malam"; }
+
+    function render() {
+        if (currentPage === "home") renderHome();
+        else if (currentPage === "confirmReg") renderConfirmReg();
+        else if (currentPage === "quiz") renderQuiz();
+        else if (currentPage === "final") renderFinal();
+    }
+
+    function renderHome() {
+        root.innerHTML = `
+            <div class="header"><h1><i class="fas fa-crown gold-icon"></i> DPBI 2026</h1></div>
+            <div class="main-content">
+                <div class="card" style="text-align:center;">
+                    <div class="greeting"><i class="fas fa-globe-asia"></i> Seleksi Duta Pelajar Berbudaya Indonesia</div>
+                    <p style="margin:1rem 0;">Isi biodata Anda untuk bergabung dalam seleksi generasi emas bangsa.</p>
+                    <div class="form-group"><label><i class="fas fa-sort-numeric-up"></i> Nomor Urut</label><input id="nomorUrut" placeholder="Contoh: DPBI001"></div>
+                    <div class="form-group"><label><i class="fas fa-user"></i> Nama Lengkap</label><input id="namaLengkap" placeholder="Nama sesuai KTP"></div>
+                    <div class="form-group"><label><i class="fas fa-school"></i> Asal Sekolah</label><input id="asalSekolah" placeholder="Nama Sekolah"></div>
+                    <button id="btnSiap" class="btn"><i class="fas fa-feather-alt"></i> Siap Mengikuti Seleksi</button>
+                </div>
+            </div>
+            <footer>© 2026 Seleksi Duta Pelajar Berbudaya | <i class="fab fa-whatsapp"></i> <a href="#">+62 812-3456-7890</a></footer>
+        `;
+        const btn = document.getElementById("btnSiap");
+        const inpNo = document.getElementById("nomorUrut"), inpNama = document.getElementById("namaLengkap"), inpSek = document.getElementById("asalSekolah");
+        function validate() { btn.disabled = !(inpNo.value.trim() && inpNama.value.trim() && inpSek.value.trim()); btn.style.opacity = btn.disabled ? "0.6" : "1"; }
+        inpNo.addEventListener("input", validate); inpNama.addEventListener("input", validate); inpSek.addEventListener("input", validate);
+        validate();
+        btn.addEventListener("click", () => {
+            bioData = { nomorUrut: inpNo.value.trim(), nama: inpNama.value.trim(), asalSekolah: inpSek.value.trim() };
+            currentPage = "confirmReg";
+            render();
+        });
+    }
+
+    function renderConfirmReg() {
+        const greeting = getGreetingTime();
+        root.innerHTML = `
+            <div class="header"><h1><i class="fas fa-hand-sparkles"></i> Konfirmasi Seleksi</h1></div>
+            <div class="main-content">
+                <div class="card">
+                    <div class="greeting">Selamat ${greeting}, ${bioData.nama} ✨</div>
+                    <p>Hallo <strong>${bioData.nama}</strong>, selamat datang di Website Seleksi Duta Pelajar Berbudaya Indonesia.</p>
+                    <div class="rules-box">
+                        <strong><i class="fas fa-gavel"></i> 📜 Peraturan Seleksi:</strong>
+                        <ol style="margin-top:8px;">
+                            <li>Total 35 butir: 20 PG, 10 Benar/Salah, 1 sesi Menjodohkan (5 pasang).</li>
+                            <li>Waktu: PG 20 detik, B/S 15 detik, Menjodohkan 50 detik per kelompok.</li>
+                            <li>Setiap memilih jawaban akan tersimpan, lalu tunggu waktu habis untuk lanjut otomatis.</li>
+                            <li>Tidak bisa kembali ke soal sebelumnya.</li>
+                            <li>Layar penuh wajib, dilarang berpindah tab.</li>
+                            <li>Jawaban tidak dipilih saat waktu habis = salah.</li>
+                            <li>Jujur dan mandiri adalah kunci sukses.</li>
+                        </ol>
+                    </div>
+                    <div class="timer-read" id="timerReadArea"><i class="fas fa-hourglass-half"></i> Baca peraturan: <span id="countdownRead">20</span> detik</div>
+                    <button id="ikutQuizBtn" class="btn" disabled><i class="fas fa-play"></i> Ikut Kuis</button>
+                </div>
+            </div>
+            <footer>© DPBI | Integritas Budaya</footer>
+        `;
+        let readSec = 20;
+        const countSpan = document.getElementById("countdownRead");
+        const btnIkut = document.getElementById("ikutQuizBtn");
+        if (readTimerInterval) clearInterval(readTimerInterval);
+        readTimerInterval = setInterval(() => {
+            if (readSec <= 1) {
+                clearInterval(readTimerInterval);
+                btnIkut.disabled = false;
+                btnIkut.style.background = "linear-gradient(95deg, #b8860b, #d4af37)";
+                btnIkut.innerHTML = '<i class="fas fa-arrow-right"></i> Ikut Kuis Sekarang';
+                document.getElementById("timerReadArea").innerHTML = '<i class="fas fa-check-circle"></i> Anda telah membaca peraturan, silakan lanjut.';
+            } else {
+                readSec--;
+                countSpan.innerText = readSec;
+            }
+        }, 1000);
+        btnIkut.addEventListener("click", () => {
+            if (btnIkut.disabled) return;
+            clearInterval(readTimerInterval);
+            questionsSeq = buildFixedQuestions();
+            userAnswers = new Array(questionsSeq.length).fill(null);
+            for (let i=0; i<questionsSeq.length; i++) {
+                if (questionsSeq[i].type === "matching") userAnswers[i] = { matches: {} };
+                else userAnswers[i] = null;
+            }
+            currentIndex = 0;
+            quizActive = true;
+            currentPage = "quiz";
+            document.documentElement.requestFullscreen().catch(e=>console.warn);
+            attachAntiCheat();
+            render();
+            startTimerForCurrent();
+        });
+    }
+
+    let fullHandler, visHandler;
+    function attachAntiCheat() {
+        const handleFull = () => { if (!document.fullscreenElement && currentPage==="quiz" && quizActive) alert("⚠️ Layar penuh diperlukan!"); };
+        const handleVis = () => { if (document.hidden && currentPage==="quiz" && quizActive) alert("⚠️ Dilarang pindah tab!"); };
+        document.addEventListener("fullscreenchange", handleFull);
+        document.addEventListener("visibilitychange", handleVis);
+        fullHandler=handleFull; visHandler=handleVis;
+    }
+    function detachAntiCheat() {
+        if(fullHandler) document.removeEventListener("fullscreenchange", fullHandler);
+        if(visHandler) document.removeEventListener("visibilitychange", visHandler);
+        if(document.fullscreenElement) document.exitFullscreen();
+    }
+
+    function startTimerForCurrent() {
+        stopTimer();
+        const q = questionsSeq[currentIndex];
+        let duration = 20;
+        if (q.type === "pg") duration = 20;
+        else if (q.type === "tf") duration = 15;
+        else if (q.type === "matching") duration = 50;
+        timeLeft = duration;
+        updateTimerDisplay();
+        timerInterval = setInterval(() => {
+            if (!quizActive || currentPage !== "quiz") return;
+            if (timeLeft <= 1) {
+                stopTimer();
+                autoSaveAnswer();
+                goToNext();
+            } else { timeLeft--; updateTimerDisplay(); }
+        }, 1000);
+    }
+    function stopTimer() { if(timerInterval) clearInterval(timerInterval); timerInterval=null; }
+    function updateTimerDisplay() { const span=document.getElementById("liveTimer"); if(span) span.innerText=`${timeLeft} detik`; }
+    function autoSaveAnswer() {
+        const q = questionsSeq[currentIndex];
+        if (q.type === "pg") {
+            const sel = document.querySelector('input[name="pgOption"]:checked');
+            userAnswers[currentIndex] = sel ? sel.value === "true" : (userAnswers[currentIndex] !== null ? userAnswers[currentIndex] : false);
+        } else if (q.type === "tf") {
+            const sel = document.querySelector('input[name="tfOption"]:checked');
+            userAnswers[currentIndex] = sel ? sel.value === "true" : false;
+        } else if (q.type === "matching") {
+            const selects = document.querySelectorAll(".matching-select");
+            if (selects.length && userAnswers[currentIndex]) {
+                const lefts = q.data.leftItems;
+                const curr = { ...userAnswers[currentIndex].matches };
+                selects.forEach((sel,i) => { if(lefts[i]) curr[lefts[i]] = sel.value; });
+                userAnswers[currentIndex] = { matches: curr };
+            }
+        }
+    }
+    function goToNext() {
+        if (!quizActive) return;
+        if (currentIndex + 1 < questionsSeq.length) {
+            currentIndex++;
+            render();
+            startTimerForCurrent();
+        } else {
+            quizActive = false;
+            stopTimer();
+            showFinalConfirmPopup();
+        }
+    }
+
+    function showFinalConfirmPopup() {
+        const modal = document.createElement("div");
+        modal.className = "modal-overlay";
+        modal.innerHTML = `
+            <div class="modal-card">
+                <i class="fas fa-clipboard-list" style="font-size:2rem;color:#d4af37;"></i>
+                <h3 style="margin:0.7rem 0;">Konfirmasi Seleksi</h3>
+                <div class="checkbox-confirm">
+                    <input type="checkbox" id="confirmChk">
+                    <label for="confirmChk">Saya menyakini bahwa seleksi ini telah selesai, dan saya siap menerima nilai yang sesuai dengan kemampuan saya.</label>
+                </div>
+                <button id="finalConfirmBtn" class="btn" disabled>Konfirmasi Seleksi</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        const chk = modal.querySelector("#confirmChk");
+        const btnConf = modal.querySelector("#finalConfirmBtn");
+        chk.addEventListener("change", (e) => { btnConf.disabled = !e.target.checked; if(e.target.checked) btnConf.style.background="linear-gradient(95deg, #b8860b, #d4af37)"; else btnConf.style.background="#7e6b3c"; });
+        btnConf.addEventListener("click", async () => {
+            if(btnConf.disabled) return;
+            const { benar, salah, nilai } = computeFinalScore();
+            finalScoreData = { benar, salah, nilai };
+            modal.remove();
+            currentPage = "final";
+            render();
+        });
+    }
+
+    function computeFinalScore() {
+        let totalBenar=0, totalSoal=0;
+        for(let idx=0; idx<questionsSeq.length; idx++) {
+            const q=questionsSeq[idx];
+            const ans=userAnswers[idx];
+            if(q.type==="pg") { totalSoal++; if(ans===true) totalBenar++; }
+            else if(q.type==="tf") { totalSoal++; if(ans===q.data.correct) totalBenar++; }
+            else if(q.type==="matching") {
+                const lefts=q.data.leftItems, saved=ans?.matches||{};
+                let pair=0;
+                lefts.forEach(term=>{ if(saved[term]===q.data.correctMap[term]) pair++; });
+                totalBenar+=pair; totalSoal+=lefts.length;
+            }
+        }
+        return { benar:totalBenar, salah:totalSoal-totalBenar, nilai:Math.round((totalBenar/totalSoal)*100) };
+    }
+
+    async function sendToTelegram(benar, salah, nilai, kritik="") {
+        const waktu = new Date().toLocaleString('id-ID');
+        let text = `📢 HASIL KUIS SELEKSI DUTA PELAJAR BERBUDAYA INDONESIA\n━━━━━━━━━━━━━━━━━━━━\n📋 DATA PESERTA\n🔢 Nomor Urut : ${bioData.nomorUrut}\n👤 Nama Lengkap : ${bioData.nama}\n🏫 Asal Sekolah : ${bioData.asalSekolah}\n━━━━━━━━━━━━━━━━━━━━\n📊 REKAP HASIL\n✅ Jumlah Benar : ${benar}\n❌ Jumlah Salah : ${salah}\n📈 Nilai Akhir : ${nilai}\n⏱ Waktu Pengiriman : ${waktu}`;
+        if(kritik.trim()) text += `\n\n💬 KRITIK & SARAN untuk DPBI:\n${kritik}`;
+        try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ chat_id:CHAT_ID, text:text }) }); } catch(e){}
+    }
+
+    function renderQuiz() {
+        const q = questionsSeq[currentIndex];
+        const total = questionsSeq.length;
+        let html = `<div class="header"><h1><i class="fas fa-pen-fancy"></i> Seleksi DPBI</h1></div><div class="main-content"><div style="display:flex;justify-content:space-between;"><span>Soal ${currentIndex+1}/${total}</span><div class="quiz-timer"><i class="far fa-hourglass"></i> <span id="liveTimer">${timeLeft} detik</span></div></div>`;
+        if (q.type === "pg") {
+            const d = q.data;
+            html += `<div class="question-text">${d.text}</div>${d.img?`<img src="${d.img}" class="quiz-image">`:''}<div class="option-list">`;
+            d.options.forEach((opt, idx) => {
+                const isChecked = (userAnswers[currentIndex] === (idx === d.correct)) ? 'checked' : '';
+                html += `<label class="option-item"><input type="radio" name="pgOption" value="${idx === d.correct}" ${isChecked}> ${opt}</label>`;
+            });
+            html += `</div><div class="text-gold" style="font-size:0.8rem;">✓ Pilih jawaban, tunggu waktu habis otomatis lanjut.</div>`;
+        } else if (q.type === "tf") {
+            const d = q.data;
+            html += `<div class="question-text">${d.text}</div><div class="option-list"><label class="option-item"><input type="radio" name="tfOption" value="true" ${userAnswers[currentIndex]===true?'checked':''}> ✅ Benar</label><label class="option-item"><input type="radio" name="tfOption" value="false" ${userAnswers[currentIndex]===false?'checked':''}> ❌ Salah</label></div>`;
+        } else {
+            const m = q.data;
+            html += `<div class="question-text">🔗 MENJODOHKAN (5 pasang)</div><div class="matching-grid">`;
+            const lefts = m.leftItems;
+            const rightList = m.rightOptions;
+            const saved = userAnswers[currentIndex]?.matches || {};
+            for (let i=0;i<lefts.length;i++) {
+                html += `<div class="matching-row"><span class="matching-term">📌 ${lefts[i]}</span><select class="matching-select" data-term="${lefts[i]}"><option value="">-- Pilih --</option>`;
+                rightList.forEach(opt => {
+                    html += `<option value="${opt.text.replace(/"/g,'&quot;')}" ${saved[lefts[i]]===opt.text ? 'selected' : ''}>${opt.text}</option>`;
+                });
+                html += `</select></div>`;
+            }
+            html += `</div><div class="text-gold">Pilih semua pasangan → simpan otomatis saat waktu habis.</div>`;
+        }
+        html += `</div><footer>© DPBI | Jaga Integritas</footer>`;
+        root.innerHTML = html;
+        if (q.type === "pg") {
+            document.querySelectorAll('input[name="pgOption"]').forEach(r => r.addEventListener("change", (e) => { userAnswers[currentIndex] = e.target.value === "true"; }));
+        } else if (q.type === "tf") {
+            document.querySelectorAll('input[name="tfOption"]').forEach(r => r.addEventListener("change", (e) => { userAnswers[currentIndex] = e.target.value === "true"; }));
+        } else if (q.type === "matching") {
+            document.querySelectorAll(".matching-select").forEach(sel => sel.addEventListener("change", () => {
+                if (!userAnswers[currentIndex]) userAnswers[currentIndex] = { matches: {} };
+                const term = sel.getAttribute("data-term");
+                userAnswers[currentIndex].matches[term] = sel.value;
+            }));
+        }
+    }
+
+    function renderFinal() {
+        const motiv = (finalScoreData?.nilai>=80)?"Hebat! Pertahankan prestasimu!":(finalScoreData?.nilai>=60)?"Kerja Bagus! Terus belajar lagi ya.":"Tetap Semangat! Jangan menyerah.";
+        root.innerHTML = `
+            <div class="header"><h1><i class="fas fa-trophy"></i> Seleksi Selesai</h1></div>
+            <div class="main-content">
+                <div class="card" style="text-align:center;">
+                    <i class="fas fa-star-of-life" style="font-size:2.5rem;color:#d4af37;"></i>
+                    <div class="greeting">Hallo ${bioData.nama}, kamu telah menyelesaikan seleksi ini!</div>
+                    <p><i class="fas fa-feather"></i> ${motiv}</p>
+                    <div style="background:#fef3db; padding:0.8rem; border-radius:1rem; margin:1rem 0;">
+                        📸 <strong>Silakan screenshot halaman ini</strong>, lalu upload story Instagram dan tag akun resmi kami <strong>@dutapelajarberbudaya</strong><br>
+                        ✍️ Tulis kesan dan pesanmu!
+                    </div>
+                    <div class="form-group"><label><i class="fas fa-comment-dots"></i> Kritik & Saran untuk DPBI</label><textarea id="kritikSaran" rows="2" placeholder="Tulis kritik/saran untuk perkembangan DPBI..."></textarea></div>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:0.5rem;">
+                        <button id="sendKritikBtn" class="btn" style="width:auto; flex:1;"><i class="fab fa-telegram"></i> Kirim & Selesai</button>
+                        <button id="backHomeBtn" class="btn btn-secondary" style="width:auto; flex:1;"><i class="fas fa-home"></i> Kembali ke Beranda</button>
+                    </div>
+                </div>
+            </div>
+            <footer>© DPBI | Terima kasih telah berpartisipasi</footer>
+        `;
+        const sendBtn = document.getElementById("sendKritikBtn");
+        const backBtn = document.getElementById("backHomeBtn");
+        sendBtn.addEventListener("click", async () => {
+            const kritik = document.getElementById("kritikSaran").value;
+            await sendToTelegram(finalScoreData.benar, finalScoreData.salah, finalScoreData.nilai, kritik);
+            alert("Terima kasih! Hasil dan saran telah terkirim ke panitia.");
+            detachAntiCheat();
+            currentPage = "home";
+            render();
+        });
+        backBtn.addEventListener("click", () => {
+            detachAntiCheat();
+            currentPage = "home";
+            render();
+        });
+    }
+
+    render();
+</script>
+</body>
+</html>
