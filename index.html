@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Seleksi Duta Pelajar Berbudaya Indonesia - DPBI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -15,96 +16,111 @@
         }
 
         body {
-            background: linear-gradient(135deg, #fff9e8 0%, #fef3d6 100%);
+            background: radial-gradient(circle at 10% 20%, #fef7e8, #faeed6);
             min-height: 100vh;
-            padding: 1rem;
+            padding: 1.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Container Gold Elegant */
         .app-container {
-            max-width: 1000px;
+            max-width: 1100px;
             width: 100%;
-            background: rgba(255, 252, 240, 0.98);
+            background: #fffef9;
             border-radius: 2.5rem;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(212,175,55,0.4);
             overflow: hidden;
-            backdrop-filter: blur(2px);
             transition: all 0.3s;
-            animation: fadeSlide 0.5s ease;
+            animation: fadeUp 0.5s ease;
         }
 
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .header {
-            background: linear-gradient(105deg, #9e7a2e 0%, #c9a03d 40%, #e9c468 100%);
-            padding: 1rem 1.8rem;
-            color: #2d2410;
-            border-bottom: 2px solid #ffe5a3;
-        }
-        .header h1 {
-            font-size: 1.3rem;
-            font-weight: 700;
+            background: linear-gradient(115deg, #9e7a2e 0%, #c9a03d 45%, #efcd7f 100%);
+            padding: 0.8rem 2rem;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            text-shadow: 1px 1px 0 rgba(255,235,170,0.5);
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            border-bottom: 2px solid #ffe5aa;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo-img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        .header h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #2d2410;
+            letter-spacing: -0.3px;
+        }
+        .badge {
+            background: #2d2410;
+            color: #ffdf8c;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
         .main-content {
-            padding: 2rem 1.8rem 1.8rem;
+            padding: 2rem 2rem 1.8rem;
         }
         .card {
-            background: #fffdf8;
-            border-radius: 1.8rem;
-            padding: 1.8rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 0 0 1px #f3e5c2;
-            transition: transform 0.2s;
+            background: #fffdf7;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -8px rgba(0,0,0,0.05), 0 0 0 1px #f5e7c8;
         }
         .greeting {
-            font-size: 1.7rem;
-            font-weight: 700;
-            background: linear-gradient(120deg, #b8860b, #d4af37);
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #b47c00, #d4af37);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             margin-bottom: 0.5rem;
         }
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
+        .form-group { margin-bottom: 1.3rem; }
         label {
             font-weight: 600;
             color: #5a4411;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             margin-bottom: 0.4rem;
         }
-        input, textarea {
+        input, textarea, select {
             width: 100%;
-            padding: 12px 16px;
-            border-radius: 1.2rem;
+            padding: 12px 18px;
+            border-radius: 1.5rem;
             border: 1.5px solid #ecd68a;
             font-size: 1rem;
-            transition: 0.2s;
             background: #fffef7;
+            transition: 0.2s;
         }
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             border-color: #c9a03d;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(201, 160, 61, 0.3);
+            box-shadow: 0 0 0 3px rgba(201,160,61,0.25);
         }
         .btn {
             background: linear-gradient(95deg, #b8860b, #d4af37);
             color: #2c1f0a;
             font-weight: 700;
             border: none;
-            padding: 12px 20px;
+            padding: 12px 24px;
             border-radius: 3rem;
             font-size: 1rem;
             cursor: pointer;
@@ -113,8 +129,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.6rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            gap: 0.7rem;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
         }
         .btn:active { transform: scale(0.97); }
         .btn:hover { background: linear-gradient(95deg, #a07010, #c9a03d); filter: brightness(1.02); }
@@ -124,11 +140,11 @@
         }
         .timer-read {
             background: #fff2dc;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 2rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             font-weight: 600;
             color: #8b691b;
         }
@@ -136,43 +152,44 @@
             background: #fff8e7;
             border-left: 6px solid #e9b35f;
             padding: 1rem 1.2rem;
-            border-radius: 1rem;
+            border-radius: 1.2rem;
             margin: 1rem 0;
         }
         .quiz-timer {
             background: #2a2416;
-            padding: 0.4rem 1rem;
+            padding: 0.4rem 1.2rem;
             border-radius: 2rem;
             color: #ffdf8c;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
+            gap: 0.6rem;
+            font-weight: 700;
         }
         .question-text {
             font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             color: #2d2410;
+            line-height: 1.4;
         }
         .option-list {
             display: flex;
             flex-direction: column;
-            gap: 0.7rem;
+            gap: 0.8rem;
             margin: 1rem 0;
         }
         .option-item {
             background: #fefcf5;
             border: 1px solid #ecdcaa;
-            border-radius: 1rem;
-            padding: 0.7rem 1rem;
-            transition: 0.1s;
+            border-radius: 1.2rem;
+            padding: 0.8rem 1.2rem;
             display: flex;
             align-items: center;
-            gap: 0.7rem;
+            gap: 0.8rem;
             cursor: pointer;
+            transition: 0.1s;
         }
-        .option-item.selected, .option-item:has(input:checked) {
+        .option-item:has(input:checked) {
             background: #fcf3da;
             border-color: #d4af37;
             box-shadow: 0 2px 6px rgba(212,175,55,0.2);
@@ -186,7 +203,7 @@
         .matching-row {
             background: #fefcf5;
             padding: 0.7rem;
-            border-radius: 1rem;
+            border-radius: 1.2rem;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -198,36 +215,43 @@
             background: #efebdb;
             padding: 0.3rem 1rem;
             border-radius: 1.5rem;
-            min-width: 120px;
+            min-width: 130px;
             color: #7a5f2a;
         }
         .matching-select {
-            flex: 1;
+            flex: 2;
             padding: 0.5rem;
             border-radius: 1rem;
             border: 1px solid #e2cf8a;
-            background: white;
-        }
-        .quiz-image {
-            max-width: 100%;
-            border-radius: 1rem;
-            margin: 0.5rem 0;
-            max-height: 130px;
-            object-fit: cover;
-            border: 1px solid #e6cf84;
         }
         footer {
             background: #faf1df;
-            padding: 0.7rem 1.5rem;
+            padding: 0.8rem 2rem;
             text-align: center;
-            font-size: 0.7rem;
-            color: #8b6940;
+            font-size: 0.75rem;
             border-top: 1px solid #ecd68a;
         }
-        footer a {
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+        .footer-links a {
             color: #b8860b;
             text-decoration: none;
             font-weight: 600;
+        }
+        .footer-links a:hover { text-decoration: underline; }
+        .copyright {
+            color: #8b6940;
+            font-size: 0.7rem;
         }
         .modal-overlay {
             position: fixed;
@@ -241,7 +265,7 @@
         }
         .modal-card {
             background: #fffcf0;
-            max-width: 400px;
+            max-width: 480px;
             width: 90%;
             border-radius: 2rem;
             padding: 1.8rem;
@@ -250,82 +274,105 @@
         }
         .checkbox-confirm {
             background: #fef5e3;
-            padding: 0.7rem;
+            padding: 0.8rem;
             border-radius: 1rem;
             display: flex;
             align-items: center;
             gap: 0.7rem;
             margin: 1rem 0;
+            text-align: left;
         }
-        .gold-icon {
-            color: #d4af37;
+        .gold-icon { color: #d4af37; }
+        .text-gold { color: #b8860b; font-weight: 600; }
+        .sponsor-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 1.2rem;
+            background: #fff9ef;
+            padding: 0.8rem;
+            border-radius: 1.5rem;
         }
-        .text-gold {
-            color: #b8860b;
-            font-weight: 600;
+        .sponsor-img {
+            max-height: 65px;
+            width: auto;
+            object-fit: contain;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+        .btn-next {
+            width: auto;
+            padding: 0.7rem 2rem;
         }
         @media (max-width: 640px) {
+            body { padding: 0.8rem; }
             .main-content { padding: 1rem; }
             .greeting { font-size: 1.3rem; }
+            .header { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 <div class="app-container" id="appRoot"></div>
 <script>
-    // ====================== KONFIGURASI TELEGRAM ======================
+    // ===================== KONFIGURASI =====================
     const BOT_TOKEN = "8611068552:AAHCleWMDayr9Udwer2KmVVABR_X8pzgadw";
     const CHAT_ID = "7509429091";
-    // =================================================================
+    const WHATSAPP_NUMBER = "6283824755644";
+    const INSTAGRAM_ACCOUNT = "dutapelajarberbudaya";
+    // ======================================================
 
-    // ---------- DATA SOAL LENGKAP (20 PG, 10 B/S, 5 MENJODOHKAN) ----------
-    // 1. PILIHAN GANDA (20 soal)
+    // -------------- SOAL BARU (20 PG, 10 B/S, 5 MENJODOHKAN) --------------
     const pgData = [
-        { text: "Dalam perspektif antropologi, kebudayaan sering dipandang sebagai sistem simbol yang bermakna. Jika sebuah kelompok masyarakat mempertahankan ritual adat meskipun secara ekonomi tidak efisien, hal ini menunjukkan bahwa kebudayaan berfungsi sebagai...", options: ["Alat adaptasi teknologi terhadap lingkungan.", "Mekanisme kontrol sosial dan legitimasi kekuasaan.", "Sistem orientasi nilai yang memberikan makna pada eksistensi manusia.", "Sarana untuk mengeksklusi kelompok di luar komunitas."], correct: 2, img: null },
-        { text: "Indonesia dikenal sebagai negara yang memiliki kemajemukan (pluralitas) yang tinggi. Perbedaan mendasar antara konsep 'Masyarakat Plural' (J.S. Furnivall) dengan 'Masyarakat Multikultural' adalah...", options: ["Masyarakat plural menekankan pada integrasi nasional, sedangkan multikultural pada segregasi.", "Masyarakat plural ditandai dengan interaksi yang minim antar kelompok di pasar, sedangkan multikultural menekankan pada kesederajatan dan pengakuan budaya.", "Masyarakat multikultural hanya ada di negara maju, sedangkan plural di negara berkembang.", "Masyarakat plural tidak memiliki batasan etnis yang jelas."], correct: 1, img: null },
-        { text: "Salah satu dimensi Profil Pelajar Pancasila adalah 'Berkebinekaan Global'. Implementasi yang paling tepat dari karakter ini dalam menghadapi tantangan globalisasi adalah...", options: ["Menutup diri dari pengaruh budaya asing untuk menjaga kemurnian budaya lokal.", "Mengadopsi seluruh budaya barat agar dianggap sebagai bangsa yang modern.", "Mempertahankan budaya luhur lokal namun tetap berpikiran terbuka dalam berinteraksi dengan budaya lain.", "Menghilangkan identitas nasional demi tercapainya perdamaian dunia."], correct: 2, img: null },
-        { text: "Konsep 'Wawasan Nusantara' sebagai geopolitik Indonesia memandang wilayah Indonesia sebagai satu kesatuan. Esensi dari aspek sosial-budaya dalam Wawasan Nusantara adalah...", options: ["Penyeragaman seluruh kebudayaan daerah menjadi satu budaya nasional yang tunggal.", "Pengakuan bahwa corak ragam budaya adalah kekayaan yang menjadi modal pembangunan bangsa.", "Prioritas pengembangan budaya hanya pada daerah-daerah perbatasan.", "Dominasi budaya mayoritas sebagai identitas utama negara."], correct: 1, img: null },
-        { text: "Pendidikan karakter dalam sistem pendidikan nasional tidak hanya bertujuan mentransfer ilmu (transfer of knowledge), tetapi juga 'transfer of value'. Hal ini sejalan dengan teori taksonomi Bloom pada ranah...", options: ["Kognitif", "Psikomotorik", "Afektif", "Linguistik"], correct: 2, img: null },
-        { text: "Secara sosiologis, konflik antar-etnis di Indonesia seringkali dipicu oleh 'prasangka' (prejudice). Cara paling efektif untuk mereduksi prasangka dalam masyarakat majemuk menurut teori kontak sosial adalah...", options: ["Memisahkan tempat tinggal antar etnis agar tidak terjadi pergesekan.", "Meningkatkan kompetisi ekonomi antar kelompok etnis.", "Mendorong interaksi antar kelompok dalam kedudukan yang setara dan memiliki tujuan bersama.", "Melarang penggunaan atribut identitas etnis di ruang publik."], correct: 2, img: null },
-        { text: "Semboyan Bhinneka Tunggal Ika yang berasal dari Kitab Sutasoma awalnya merujuk pada...", options: ["Penyatuan wilayah Nusantara oleh Gajah Mada.", "Toleransi antara penganut agama Hindu Siwa dan Buddha.", "Perlawanan terhadap kolonialisme Belanda.", "Kerjasama perdagangan antar pulau."], correct: 1, img: null },
-        { text: "Unsur kebudayaan yang paling sulit untuk berubah (statis) dalam menghadapi arus modernisasi biasanya berkaitan dengan...", options: ["Sistem peralatan hidup dan teknologi.", "Sistem mata pencaharian.", "Sistem religi dan kepercayaan dasar.", "Bahasa prokem atau bahasa gaul."], correct: 2, img: null },
-        { text: "Pelajar yang memiliki kemampuan 'Bernalar Kritis' dalam konsep karakter pelajar masa kini ditunjukkan dengan...", options: ["Kemampuan menghafal seluruh materi pelajaran dengan cepat.", "Sikap skeptis yang berlebihan terhadap semua kebijakan pemerintah.", "Kemampuan mengidentifikasi, mengklarifikasi, dan mengolah informasi secara objektif sebelum mengambil keputusan.", "Kepatuhan mutlak terhadap instruksi pendidik tanpa bertanya."], correct: 2, img: null },
-        { text: "Globalisasi dapat menyebabkan 'Culture Shock' bagi masyarakat tradisional. Fenomena ini terjadi karena...", options: ["Masuknya teknologi yang mempermudah pekerjaan manusia.", "Ketidaksiapan mental masyarakat dalam menerima perubahan nilai-nilai budaya yang sangat cepat.", "Adanya bantuan modal asing yang masuk ke daerah.", "Keinginan masyarakat untuk tetap mempertahankan adat istiadat secara kaku."], correct: 1, img: null },
-        { text: "Kebudayaan nasional Indonesia menurut Ki Hajar Dewantara adalah...", options: ["Puncak-puncak kebudayaan daerah yang memiliki nilai universal bagi bangsa.", "Kebudayaan yang diadopsi sepenuhnya dari nilai-nilai kemanusiaan Barat.", "Kebudayaan Jawa yang diwajibkan untuk seluruh suku bangsa.", "Hasil asimilasi paksa dari berbagai budaya suku bangsa di Indonesia."], correct: 0, img: null },
-        { text: "Identitas nasional Indonesia bersifat 'Buatan' (constructed). Hal ini berarti identitas tersebut...", options: ["Tidak memiliki dasar sejarah yang kuat.", "Dibentuk melalui kesepakatan politik dan perjuangan bersama melampaui identitas primordial.", "Hanya rekayasa penguasa untuk mempertahankan jabatan.", "Mudah digantikan oleh identitas agama atau etnis kapan saja."], correct: 1, img: null },
-        { text: "Integrasi sosial dalam masyarakat yang heterogen dapat tercapai melalui 'Interseksi'. Contoh interseksi dalam masyarakat adalah...", options: ["Pembentukan organisasi berdasarkan kesamaan suku bangsa saja.", "Pertemuan antara dua individu berbeda etnis dalam satu hobi atau organisasi profesi yang sama.", "Larangan pernikahan beda suku dalam suatu daerah.", "Dominasi satu kelompok agama dalam struktur birokrasi."], correct: 1, img: null },
-        { text: "Dalam pembentukan karakter, nilai 'Mandiri' pada pelajar Pancasila ditekankan pada...", options: ["Kemampuan mengerjakan ujian tanpa bantuan teman sama sekali.", "Kesadaran diri atas proses dan hasil belajarnya serta tanggung jawab terhadap tugasnya.", "Sikap egois yang tidak mau mendengarkan pendapat orang lain.", "Kemampuan untuk hidup tanpa bantuan finansial dari orang tua sejak dini."], correct: 1, img: null },
-        { text: "Hegemoni budaya (Antonio Gramsci) dalam masyarakat modern dapat terlihat melalui...", options: ["Penggunaan kekuatan militer untuk memaksakan budaya tertentu.", "Dominasi nilai-nilai kelompok tertentu yang diterima sebagai kewajaran (common sense) oleh masyarakat luas melalui media dan pendidikan.", "Penghapusan seluruh tradisi lokal secara total.", "Adanya hukum adat yang masih berlaku di desa-desa terpencil."], correct: 1, img: null },
-        { text: "Prinsip 'Gotong Royong' sebagai karakter bangsa Indonesia mengalami pergeseran di perkotaan. Pergeseran ini merupakan dampak dari...", options: ["Meningkatnya solidaritas mekanik masyarakat kota.", "Berkembangnya sikap individualisme dan profesionalisme berbasis orientasi ekonomi.", "Terlalu banyaknya festival budaya yang diselenggarakan pemerintah.", "Kurangnya pendidikan seni di sekolah-sekolah perkotaan."], correct: 1, img: null },
-        { text: "Upaya dekolonisasi pemikiran dalam pendidikan karakter bangsa bertujuan untuk...", options: ["Membenci segala hal yang berasal dari negara-negara Barat.", "Menghapus sejarah penjajahan dari kurikulum sekolah.", "Membangun kepercayaan diri bangsa atas potensi dan nilai luhur sendiri tanpa merasa inferior terhadap bangsa lain.", "Mengembalikan sistem pemerintahan ke bentuk kerajaan tradisional."], correct: 2, img: null },
-        { text: "Konflik horisontal di masyarakat seringkali terjadi karena lemahnya literasi budaya. Literasi budaya adalah...", options: ["Kemampuan membaca dan menulis dalam berbagai bahasa daerah.", "Pemahaman mengenai latar belakang, nilai, dan tradisi budaya lain untuk membangun empati dan toleransi.", "Kemampuan untuk mengoleksi benda-benda antik dari berbagai daerah.", "Keahlian dalam mempraktikkan tarian tradisional di depan umum."], correct: 1, img: null },
-        { text: "Dalam kaitan dengan kebangsaan, paham 'Chauvinisme' dianggap berbahaya karena...", options: ["Terlalu menjunjung tinggi nilai-nilai kemanusiaan universal.", "Menganggap bangsanya sendiri paling unggul secara berlebihan dan merendahkan bangsa lain.", "Mengabaikan kepentingan nasional demi kepentingan pribadi.", "Mempromosikan kerjasama ekonomi antar negara tetangga."], correct: 1, img: null },
-        { text: "Revitalisasi budaya lokal sebagai strategi kebudayaan bertujuan untuk...", options: ["Menjadikan budaya lokal sebagai objek wisata komersial semata.", "Menghidupkan kembali nilai-nilai relevan dari budaya lokal untuk menjawab tantangan zaman tanpa kehilangan identitas.", "Melarang penggunaan teknologi modern di lingkungan masyarakat adat.", "Memaksa generasi muda untuk berpakaian adat setiap hari."], correct: 1, img: null }
-    ];
-    // 2. BENAR SALAH (10 soal)
-    const tfData = [
-        { text: "Kebudayaan adalah hasil cipta, rasa, dan karsa manusia yang mencakup segala aspek kehidupan, baik material maupun non-material.", correct: true, img: null },
-        { text: "Proses 'Asimilasi' menghasilkan kebudayaan baru dengan menghilangkan ciri khas budaya asli masing-masing kelompok yang bertemu.", correct: true, img: null },
-        { text: "Pendidikan karakter di sekolah hanya menjadi tanggung jawab guru Bimbingan Konseling (BK) dan Agama saja.", correct: false, img: null },
-        { text: "Etnosentrisme adalah sikap menilai kebudayaan lain berdasarkan standar nilai dan norma kebudayaan sendiri.", correct: true, img: null },
-        { text: "Dalam konsep Pelajar Pancasila, dimensi 'Kreatif' hanya terbatas pada kemampuan siswa dalam bidang seni dan desain.", correct: false, img: null },
-        { text: "Primordialisme dapat menjadi penghambat integrasi nasional jika diwujudkan dalam bentuk loyalitas berlebihan terhadap kelompok etnis atau agama sendiri secara eksklusif.", correct: true, img: null },
-        { text: "Unsur 'Bahasa' dalam tujuh unsur kebudayaan universal menurut Kluckhohn termasuk dalam kategori sistem pengetahuan.", correct: false, img: null },
-        { text: "Salah satu fungsi kearifan lokal (local wisdom) adalah sebagai alat konservasi dan pelestarian sumber daya alam.", correct: true, img: null },
-        { text: "Pendidikan karakter yang efektif dilakukan melalui metode indoktrinasi satu arah dari pengajar ke peserta didik.", correct: false, img: null },
-        { text: "Konsep kebangsaan Indonesia berdasarkan pada kesamaan ras dan pertalian darah (ius sanguinis).", correct: false, img: null }
-    ];
-    // 3. MENJODOHKAN (5 pasangan)
-    const matchingLeft = ["Proses perembesan unsur budaya dari satu masyarakat ke masyarakat lain secara damai.", "Perpaduan dua budaya atau lebih yang menghasilkan budaya baru tanpa menghilangkan unsur asli budaya tersebut.", "Perasaan menjadi bagian dari suatu bangsa yang didasarkan pada kesamaan identitas dan sejarah.", "Disposisi batin yang menetap dalam diri seseorang untuk berperilaku baik sesuai nilai moral.", "Pandangan hidup yang menempatkan kesejahteraan bangsa di atas kepentingan pribadi/golongan."];
-    const matchingRightRaw = [
-        { text: "Akulturasi", matchTo: "Perpaduan dua budaya atau lebih yang menghasilkan budaya baru tanpa menghilangkan unsur asli budaya tersebut." },
-        { text: "Difusi", matchTo: "Proses perembesan unsur budaya dari satu masyarakat ke masyarakat lain secara damai." },
-        { text: "Nasionalisme", matchTo: "Perasaan menjadi bagian dari suatu bangsa yang didasarkan pada kesamaan identitas dan sejarah." },
-        { text: "Karakter", matchTo: "Disposisi batin yang menetap dalam diri seseorang untuk berperilaku baik sesuai nilai moral." },
-        { text: "Patriotisme", matchTo: "Pandangan hidup yang menempatkan kesejahteraan bangsa di atas kepentingan pribadi/golongan." }
+        { text: "Dalam konsep sosiologi-antropologi, kebudayaan sering disebut sebagai 'desain untuk hidup'. Manakah pernyataan yang paling tepat menggambarkan sifat dinamis kebudayaan Nusantara?", options: ["Kebudayaan adalah warisan statis yang tidak boleh diubah sedikit pun.", "Kebudayaan Nusantara merupakan hasil isolasi geografis yang tertutup dari pengaruh luar.", "Kebudayaan merupakan hasil adaptasi manusia terhadap lingkungan dan interaksi sosial yang terus berevolusi.", "Kebudayaan hanya terbatas pada benda seni seperti tari dan rumah adat."], correct: 2, img: null },
+        { text: "Upacara Sekaten di Yogyakarta dan Surakarta merupakan akulturasi antara budaya lokal dan Islam. Unsur utama yang menunjukkan integrasi tersebut adalah...", options: ["Penggunaan sesaji untuk dewa-dewa kuno.", "Penggunaan perangkat gamelan untuk menyebarkan ajaran agama (Syahadatain).", "Pembatasan akses bagi masyarakat umum di lingkungan keraton.", "Dominasi unsur kebudayaan Barat dalam prosesi perayaan."], correct: 1, img: null },
+        { text: "Rumah adat suku Toraja, Tongkonan, dibangun menghadap ke utara. Secara filosofis, hal ini melambangkan...", options: ["Arah datangnya angin yang membawa kesejukan.", "Penghormatan terhadap nenek moyang yang berasal dari laut.", "Hubungan dengan Sang Pencipta (Puang Matua) dan arah asal kehidupan.", "Strategi pertahanan dari serangan suku luar."], correct: 2, img: null },
+        { text: "Dalam dimensi Profil Pelajar Pancasila, 'Bernalar Kritis' tidak hanya berarti mampu menjawab soal, tetapi juga...", options: ["Mampu menghafal seluruh isi buku teks dengan cepat.", "Mampu secara objektif memproses informasi, menganalisis, mengevaluasi, dan menyimpulkan.", "Selalu mempertanyakan kebijakan sekolah tanpa dasar data.", "Memiliki argumen yang paling keras dalam sebuah debat."], correct: 1, img: null },
+        { text: "Salah satu tantangan integrasi sosial di Indonesia adalah Primordialisme. Pengertian primordialisme yang dapat menghambat persatuan adalah...", options: ["Sikap terbuka terhadap budaya asing yang masuk ke desa.", "Loyalitas berlebihan terhadap ikatan kelompok kecil (suku/agama) sehingga meremehkan kelompok lain.", "Keinginan untuk melestarikan bahasa daerah agar tidak punah.", "Proses asimilasi antar ras yang terjadi secara alami."], correct: 1, img: null },
+        { text: "Konsep 'Tri Kon' yang diajarkan Ki Hadjar Dewantara terdiri dari Kontinuitas, Konvergensitas, dan Konsentrisitas. Maksud dari 'Konsentrisitas' adalah...", options: ["Pendidikan harus memutus hubungan dengan masa lalu.", "Pendidikan harus meniru secara mutlak sistem pendidikan Barat.", "Pendidikan harus terbuka pada dunia luar namun tetap berpijak pada kepribadian bangsa sendiri.", "Pendidikan hanya diperuntukkan bagi kalangan bangsawan saja."], correct: 2, img: null },
+        { text: "Senjata tradisional Keris memiliki lekukan (luk) yang berjumlah ganjil. Hal ini mengandung makna...", options: ["Agar senjata lebih mudah melukai lawan saat pertempuran.", "Simbol keseimbangan dan harapan agar pemiliknya tidak pernah merasa 'genap' atau berhenti belajar.", "Keterbatasan teknologi penempaan besi pada zaman dahulu.", "Tanda bahwa keris tersebut hanya boleh dimiliki oleh raja."], correct: 1, img: null },
+        { text: "Wawasan Nusantara berfungsi sebagai pedoman pembangunan nasional. Dalam aspek sosial budaya, Wawasan Nusantara menekankan pada...", options: ["Penyeragaman seluruh budaya daerah menjadi satu budaya nasional tunggal.", "Pengutamaan budaya Jawa sebagai pusat kebudayaan nasional.", "Corak ragam budaya bangsa menjadi kekayaan yang menjadi modal pembangunan.", "Penolakan terhadap modernitas demi menjaga kemurnian adat."], correct: 2, img: null },
+        { text: "Nilai 'Gotong Royong' dalam masyarakat Indonesia mulai tergerus oleh Individualisme. Tindakan pelajar yang paling mencerminkan upaya revitalisasi nilai ini adalah...", options: ["Mengerjakan tugas kelompok sendirian agar mendapatkan nilai tertinggi.", "Membayar orang lain untuk membersihkan ruang kelas.", "Berkolaborasi dalam proyek sosial sekolah tanpa membedakan latar belakang teman.", "Menunggu perintah guru sebelum membantu teman yang kesulitan."], correct: 2, img: null },
+        { text: "Bhinneka Tunggal Ika tertuang dalam Kitab Sutasoma. Pesan utama yang ingin disampaikan Mpu Tantular pada masa itu terkait toleransi adalah...", options: ["Agama harus dipisahkan sepenuhnya dari urusan negara.", "Setiap warga negara wajib memiliki keyakinan yang sama.", "Walaupun terdapat perbedaan keyakinan (Siwa dan Buddha), hakikat kebenaran adalah satu.", "Perbedaan adalah sumber kelemahan yang harus dihilangkan."], correct: 2, img: null },
+        { text: "Secara sosiologis, apa yang dimaksud dengan 'Kebudayaan Non-Material'?", options: ["Candi, keris, dan pakaian adat.", "Norma, nilai, ideologi, dan kepercayaan masyarakat.", "Alat musik tradisional dan perlengkapan upacara.", "Wilayah geografis tempat suku bangsa tinggal."], correct: 1, img: null },
+        { text: "Konsep Pendidikan Karakter 'Ing Ngarsa Sung Tuladha' berarti seorang pendidik atau pemimpin harus...", options: ["Memberikan teladan atau contoh yang baik saat berada di depan.", "Memotivasi dari belakang agar siswa maju secara mandiri.", "Berada di tengah-tengah untuk menciptakan keseimbangan.", "Memberikan hukuman yang tegas bagi mereka yang melanggar."], correct: 0, img: null },
+        { text: "Keanekaragaman suku di Indonesia disebabkan oleh faktor geografis berupa...", options: ["Letak Indonesia di antara dua samudera besar.", "Kesuburan tanah yang berbeda-beda di setiap pulau.", "Bentuk wilayah kepulauan yang menghambat komunikasi antarwilayah di masa lalu.", "Iklim tropis yang memicu pertumbuhan penduduk yang pesat."], correct: 2, img: null },
+        { text: "Pelaksanaan 'Etnosentrisme' dalam kehidupan bermasyarakat dapat memicu konflik karena...", options: ["Mendorong rasa cinta tanah air yang sangat tinggi.", "Mempercepat proses modernisasi di daerah terpencil.", "Menilai budaya lain hanya berdasarkan standar dan perspektif budayanya sendiri.", "Mengabaikan nilai-nilai keagamaan dalam bernegara."], correct: 2, img: null },
+        { text: "Dalam sistem kekerabatan Matrilineal (seperti pada suku Minangkabau), garis keturunan ditarik berdasarkan...", options: ["Garis keturunan Ayah.", "Garis keturunan Ibu.", "Garis keturunan kedua orang tua secara seimbang.", "Urutan kelahiran dalam keluarga besar."], correct: 1, img: null },
+        { text: "Ciri khas pendidikan karakter berbasis kearifan lokal adalah...", options: ["Menggunakan kurikulum internasional secara penuh.", "Mengintegrasikan nilai-nilai luhur masyarakat setempat ke dalam pembelajaran.", "Menghilangkan mata pelajaran umum dan fokus pada kesenian saja.", "Mewajibkan siswa menggunakan bahasa daerah setiap hari tanpa kecuali."], correct: 1, img: null },
+        { text: "Apa peran utama 'Bahasa Indonesia' sebagai unsur kebudayaan nasional dalam kerangka kebangsaan?", options: ["Menghapus eksistensi bahasa daerah agar efisien.", "Sebagai syarat mutlak untuk mendapatkan pekerjaan.", "Sebagai alat pemersatu yang melampaui sekat-sekat perbedaan suku bangsa.", "Sebagai bahasa yang paling sulit dipelajari di Asia Tenggara."], correct: 2, img: null },
+        { text: "Sikap 'Mandiri' dalam karakter pelajar Pancasila ditunjukkan dengan...", options: ["Tidak mau mendengarkan saran dari orang tua atau guru.", "Mampu hidup sendiri di hutan tanpa bantuan teknologi.", "Bertanggung jawab atas proses dan hasil belajarnya sendiri.", "Menolak bekerja sama dalam tim karena merasa paling pintar."], correct: 2, img: null },
+        { text: "Tari Kecak dari Bali tidak menggunakan alat musik eksternal melainkan suara para penarinya. Hal ini menunjukkan bahwa kebudayaan mampu memanfaatkan...", options: ["Teknologi digital untuk manipulasi suara.", "Potensi tubuh manusia sebagai instrumen seni dan spiritual.", "Keheningan alam untuk menciptakan suasana mistis.", "Bantuan dari roh halus untuk menghasilkan nada."], correct: 1, img: null },
+        { text: "Mengapa pemahaman 'Wawasan Kebangsaan' sangat penting di era globalisasi?", options: ["Agar Indonesia bisa menutup diri dari pengaruh budaya asing.", "Untuk memastikan produk dalam negeri lebih murah dari produk impor.", "Menjaga jati diri bangsa agar tidak tergerus oleh arus budaya global yang seragam.", "Sebagai syarat untuk bepergian ke luar negeri."], correct: 2, img: null }
     ];
 
-    // Helper acak pilihan jawaban (per soal)
+    const tfData = [
+        { text: "Kebudayaan adalah sesuatu yang statis dan tidak akan pernah berubah sepanjang masa.", correct: false, img: null },
+        { text: "Kearifan lokal hanya relevan untuk masyarakat perdesaan dan tidak berlaku di masyarakat perkotaan.", correct: false, img: null },
+        { text: "Profil Pelajar Pancasila memiliki 6 dimensi utama yang saling berkaitan satu sama lain.", correct: true, img: null },
+        { text: "Akulturasi adalah proses bercampurnya dua budaya yang menghasilkan budaya baru tanpa menghilangkan ciri asli masing-masing.", correct: true, img: null },
+        { text: "Suku bangsa di Indonesia berjumlah kurang dari 100 suku yang tersebar di lima pulau besar.", correct: false, img: null },
+        { text: "Pendidikan karakter hanya menjadi tanggung jawab guru mata pelajaran Pendidikan Pancasila di sekolah.", correct: false, img: null },
+        { text: "'Bhinneka Tunggal Ika' pertama kali ditemukan dalam kitab Negarakertagama.", correct: false, img: null },
+        { text: "Globalisasi dapat menjadi ancaman bagi kebudayaan lokal jika masyarakat tidak memiliki filter atau wawasan kebangsaan yang kuat.", correct: true, img: null },
+        { text: "Secara geografis, Indonesia terletak di antara Benua Asia dan Benua Australia yang memengaruhi keragaman flora dan fauna.", correct: true, img: null },
+        { text: "Karakter 'Kreatif' dalam pelajar Pancasila hanya terbatas pada kemampuan menggambar dan bermusik.", correct: false, img: null }
+    ];
+
+    const matchingLeft = ["Asimilasi", "Etnosentrisme", "Relativisme Budaya", "Multikulturalisme", "Patriotisme"];
+    const matchingRightRaw = [
+        { text: "Penilaian terhadap budaya lain menggunakan standar budaya sendiri.", matchTo: "Etnosentrisme" },
+        { text: "Peleburan dua kebudayaan menjadi satu kebudayaan baru yang menghilangkan ciri asli.", matchTo: "Asimilasi" },
+        { text: "Prinsip bahwa budaya seseorang harus dipahami berdasarkan konteks budaya itu sendiri.", matchTo: "Relativisme Budaya" },
+        { text: "Ideologi yang mengakui dan menghormati perbedaan dalam kesederajatan.", matchTo: "Multikulturalisme" },
+        { text: "Perasaan cinta yang mendalam dan kesetiaan terhadap tanah air.", matchTo: "Patriotisme" }
+    ];
+
     function shuffleArray(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -342,22 +389,18 @@
             return { ...q, options: shuffled, correct: newCorrect };
         });
     }
-    function prepareMatchingShuffle() {
+    function prepareMatchingData() {
         return {
             leftItems: [...matchingLeft],
             rightOptions: shuffleArray([...matchingRightRaw]),
             correctMap: Object.fromEntries(matchingRightRaw.map(r => [r.matchTo, r.text]))
         };
     }
-
-    function buildFixedQuestions() {
-        const shuffledPg = preparePGShuffle(pgData);
-        const shuffledTf = tfData.map(t => ({ ...t }));
-        const matchingGroup = { type: "matching", data: prepareMatchingShuffle() };
+    function buildQuestions() {
         return [
-            ...shuffledPg.map(p => ({ type: "pg", data: p })),
-            ...shuffledTf.map(t => ({ type: "tf", data: t })),
-            matchingGroup
+            ...preparePGShuffle(pgData).map(p => ({ type: "pg", data: p })),
+            ...tfData.map(t => ({ type: "tf", data: t })),
+            { type: "matching", data: prepareMatchingData() }
         ];
     }
 
@@ -372,11 +415,9 @@
     let quizActive = false;
     let readTimerInterval = null;
     let finalScoreData = null;
-    let kritikSaran = "";
 
     const root = document.getElementById("appRoot");
-
-    function getGreetingTime() { const h=new Date().getHours(); return (h>=5 && h<12)?"Pagi":(h>=12 && h<16)?"Siang":(h>=16 && h<19)?"Sore":"Malam"; }
+    const getGreeting = () => { const h = new Date().getHours(); return (h>=5 && h<12) ? "Pagi" : (h>=12 && h<16) ? "Siang" : (h>=16 && h<19) ? "Sore" : "Malam"; };
 
     function render() {
         if (currentPage === "home") renderHome();
@@ -387,18 +428,16 @@
 
     function renderHome() {
         root.innerHTML = `
-            <div class="header"><h1><i class="fas fa-crown gold-icon"></i> DPBI 2026</h1></div>
-            <div class="main-content">
-                <div class="card" style="text-align:center;">
-                    <div class="greeting"><i class="fas fa-globe-asia"></i> Seleksi Duta Pelajar Berbudaya Indonesia</div>
-                    <p style="margin:1rem 0;">Isi biodata Anda untuk bergabung dalam seleksi generasi emas bangsa.</p>
-                    <div class="form-group"><label><i class="fas fa-sort-numeric-up"></i> Nomor Urut</label><input id="nomorUrut" placeholder="Contoh: 123-123"></div>
-                    <div class="form-group"><label><i class="fas fa-user"></i> Nama Lengkap</label><input id="namaLengkap" placeholder="Nama sesuai Kartu Pelajar"></div>
-                    <div class="form-group"><label><i class="fas fa-school"></i> Asal Sekolah</label><input id="asalSekolah" placeholder="Nama Sekolah"></div>
-                    <button id="btnSiap" class="btn"><i class="fas fa-feather-alt"></i> Siap Mengikuti Seleksi</button>
-                </div>
+            <div class="header">
+                <div class="logo-area"><img src="logo.png" alt="Logo DPBI" class="logo-img" onerror="this.style.display='none'"><h1><i class="fas fa-crown gold-icon"></i> DPBI 2026</h1></div>
+                <div class="badge"><i class="fas fa-globe-asia"></i> Duta Pelajar Berbudaya</div>
             </div>
-            <footer>© 2026 Seleksi Duta Pelajar Berbudaya | <i class="fab fa-whatsapp"></i> <a href="#">+62 812-3456-7890</a></footer>
+            <div class="main-content"><div class="card" style="text-align:center;"><div class="greeting"><i class="fas fa-feather-alt"></i> Seleksi Duta Pelajar Berbudaya Indonesia</div><p style="margin:1rem 0;">Isi biodata untuk memulai perjalananmu menjadi Duta Pelajar Berbudaya.</p>
+            <div class="form-group"><label><i class="fas fa-sort-numeric-up"></i> Nomor Urut</label><input id="nomorUrut" placeholder="Contoh: DPBI001"></div>
+            <div class="form-group"><label><i class="fas fa-user"></i> Nama Lengkap</label><input id="namaLengkap" placeholder="Nama sesuai Kartu Pelajar"></div>
+            <div class="form-group"><label><i class="fas fa-school"></i> Asal Sekolah</label><input id="asalSekolah" placeholder="Nama Sekolah"></div>
+            <button id="btnSiap" class="btn"><i class="fas fa-check-circle"></i> Siap Mengikuti Seleksi</button></div></div>
+            <footer><div class="footer-content"><div class="footer-links"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank">Bantuan Admin (Error/Kendala) +62 838-2475-5644</a> | <i class="fab fa-instagram"></i> <a href="https://instagram.com/${INSTAGRAM_ACCOUNT}" target="_blank">@${INSTAGRAM_ACCOUNT}</a></div><div class="copyright">© 2026 Seleksi Duta Pelajar Berbudaya Indonesia</div></div></footer>
         `;
         const btn = document.getElementById("btnSiap");
         const inpNo = document.getElementById("nomorUrut"), inpNama = document.getElementById("namaLengkap"), inpSek = document.getElementById("asalSekolah");
@@ -413,31 +452,14 @@
     }
 
     function renderConfirmReg() {
-        const greeting = getGreetingTime();
+        const greeting = getGreeting();
         root.innerHTML = `
-            <div class="header"><h1><i class="fas fa-hand-sparkles"></i> Konfirmasi Seleksi</h1></div>
-            <div class="main-content">
-                <div class="card">
-                    <div class="greeting">Selamat ${greeting}, ${bioData.nama} ✨</div>
-                    <p>Hallo <strong>${bioData.nama}</strong>, selamat datang di Website Seleksi Duta Pelajar Berbudaya Indonesia.</p>
-                    <div class="rules-box">
-                        <strong><i class="fas fa-gavel"></i> 📜 Peraturan Seleksi:</strong>
-                        <ol style="margin-top:8px;">
-                            <li>Total 35 butir: 20 PG, 10 Benar/Salah, 1 sesi Menjodohkan (5 pasang).</li>
-                            <li>Waktu: PG 20 detik, B/S 15 detik, Menjodohkan 50 detik per kelompok.</li>
-                            <li>Setiap memilih jawaban akan tersimpan, lalu tunggu waktu habis untuk lanjut otomatis.</li>
-                            <li>Tidak bisa kembali ke soal sebelumnya.</li>
-                            <li>Layar penuh wajib, dilarang berpindah tab.</li>
-                            <li>Jawaban tidak dipilih saat waktu habis = salah.</li>
-                            <li>Jujur dan mandiri adalah kunci sukses.</li>
-                            <li>Pastikan Biodata kamu sesuai dengan apa yang kamu daftarkan saat Pendaftaran!</li>
-                        </ol>
-                    </div>
-                    <div class="timer-read" id="timerReadArea"><i class="fas fa-hourglass-half"></i> Baca peraturan: <span id="countdownRead">20</span> detik</div>
-                    <button id="ikutQuizBtn" class="btn" disabled><i class="fas fa-play"></i> Ikut Kuis</button>
-                </div>
-            </div>
-            <footer>© DPBI | Integritas Budaya</footer>
+            <div class="header"><div class="logo-area"><img src="logo.png" class="logo-img" onerror="this.style.display='none'"><h1><i class="fas fa-hand-sparkles"></i> Konfirmasi</h1></div></div>
+            <div class="main-content"><div class="card"><div class="greeting">Selamat ${greeting}, ${bioData.nama} ✨</div><p>Hallo <strong>${bioData.nama}</strong>, selamat datang di Website Seleksi Duta Pelajar Berbudaya Indonesia.</p>
+            <div class="rules-box"><strong><i class="fas fa-gavel"></i> 📜 Peraturan Seleksi:</strong><ol style="margin-top:8px;"><li>Total 35 butir: 20 PG, 10 Benar/Salah, 1 sesi Menjodohkan (5 pasang).</li><li>Waktu: PG 20 detik, B/S 15 detik, Menjodohkan 50 detik.</li><li>Kamu bisa langsung klik tombol "Berikutnya" setelah memilih jawaban.</li><li>Tidak bisa kembali ke soal sebelumnya.</li><li>Layar penuh wajib, dilarang berpindah tab.</li><li>Jujur dan mandiri adalah kunci sukses.</li></ol></div>
+            <div class="timer-read" id="timerReadArea"><i class="fas fa-hourglass-half"></i> Baca peraturan: <span id="countdownRead">20</span> detik</div>
+            <button id="ikutQuizBtn" class="btn" disabled><i class="fas fa-play"></i> Ikut Kuis</button></div></div>
+            <footer><div class="footer-content"><div class="footer-links"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank">Bantuan Admin +62 838-2475-5644</a> | <i class="fab fa-instagram"></i> <a href="https://instagram.com/${INSTAGRAM_ACCOUNT}" target="_blank">@${INSTAGRAM_ACCOUNT}</a></div><div class="copyright">© 2026 Seleksi Duta Pelajar Berbudaya Indonesia</div></div></footer>
         `;
         let readSec = 20;
         const countSpan = document.getElementById("countdownRead");
@@ -458,16 +480,13 @@
         btnIkut.addEventListener("click", () => {
             if (btnIkut.disabled) return;
             clearInterval(readTimerInterval);
-            questionsSeq = buildFixedQuestions();
+            questionsSeq = buildQuestions();
             userAnswers = new Array(questionsSeq.length).fill(null);
-            for (let i=0; i<questionsSeq.length; i++) {
-                if (questionsSeq[i].type === "matching") userAnswers[i] = { matches: {} };
-                else userAnswers[i] = null;
-            }
+            for (let i = 0; i < questionsSeq.length; i++) if (questionsSeq[i].type === "matching") userAnswers[i] = { matches: {} };
             currentIndex = 0;
             quizActive = true;
             currentPage = "quiz";
-            document.documentElement.requestFullscreen().catch(e=>console.warn);
+            document.documentElement.requestFullscreen().catch(e => console.warn);
             attachAntiCheat();
             render();
             startTimerForCurrent();
@@ -476,16 +495,16 @@
 
     let fullHandler, visHandler;
     function attachAntiCheat() {
-        const handleFull = () => { if (!document.fullscreenElement && currentPage==="quiz" && quizActive) alert("⚠️ Layar penuh diperlukan!"); };
-        const handleVis = () => { if (document.hidden && currentPage==="quiz" && quizActive) alert("⚠️ Dilarang pindah tab!"); };
+        const handleFull = () => { if (!document.fullscreenElement && currentPage === "quiz" && quizActive) alert("⚠️ Layar penuh diperlukan!"); };
+        const handleVis = () => { if (document.hidden && currentPage === "quiz" && quizActive) alert("⚠️ Dilarang pindah tab!"); };
         document.addEventListener("fullscreenchange", handleFull);
         document.addEventListener("visibilitychange", handleVis);
-        fullHandler=handleFull; visHandler=handleVis;
+        fullHandler = handleFull; visHandler = handleVis;
     }
     function detachAntiCheat() {
-        if(fullHandler) document.removeEventListener("fullscreenchange", fullHandler);
-        if(visHandler) document.removeEventListener("visibilitychange", visHandler);
-        if(document.fullscreenElement) document.exitFullscreen();
+        if (fullHandler) document.removeEventListener("fullscreenchange", fullHandler);
+        if (visHandler) document.removeEventListener("visibilitychange", visHandler);
+        if (document.fullscreenElement) document.exitFullscreen();
     }
 
     function startTimerForCurrent() {
@@ -503,11 +522,14 @@
                 stopTimer();
                 autoSaveAnswer();
                 goToNext();
-            } else { timeLeft--; updateTimerDisplay(); }
+            } else {
+                timeLeft--;
+                updateTimerDisplay();
+            }
         }, 1000);
     }
-    function stopTimer() { if(timerInterval) clearInterval(timerInterval); timerInterval=null; }
-    function updateTimerDisplay() { const span=document.getElementById("liveTimer"); if(span) span.innerText=`${timeLeft} detik`; }
+    function stopTimer() { if (timerInterval) clearInterval(timerInterval); timerInterval = null; }
+    function updateTimerDisplay() { const span = document.getElementById("liveTimer"); if (span) span.innerText = `${timeLeft} detik`; }
     function autoSaveAnswer() {
         const q = questionsSeq[currentIndex];
         if (q.type === "pg") {
@@ -521,7 +543,7 @@
             if (selects.length && userAnswers[currentIndex]) {
                 const lefts = q.data.leftItems;
                 const curr = { ...userAnswers[currentIndex].matches };
-                selects.forEach((sel,i) => { if(lefts[i]) curr[lefts[i]] = sel.value; });
+                selects.forEach((sel, i) => { if (lefts[i]) curr[lefts[i]] = sel.value; });
                 userAnswers[currentIndex] = { matches: curr };
             }
         }
@@ -545,22 +567,32 @@
         modal.innerHTML = `
             <div class="modal-card">
                 <i class="fas fa-clipboard-list" style="font-size:2rem;color:#d4af37;"></i>
-                <h3 style="margin:0.7rem 0;">Konfirmasi Seleksi</h3>
+                <h3 style="margin:0.5rem 0;">Konfirmasi Seleksi</h3>
                 <div class="checkbox-confirm">
                     <input type="checkbox" id="confirmChk">
-                    <label for="confirmChk">Saya menyakini bahwa seleksi ini telah selesai, dan saya siap menerima nilai yang sesuai dengan kemampuan saya.</label>
+                    <label>Saya menyakini bahwa seleksi ini telah selesai, dan saya siap menerima nilai yang sesuai dengan kemampuan saya.</label>
                 </div>
-                <button id="finalConfirmBtn" class="btn" disabled>Konfirmasi Seleksi</button>
+                <div class="form-group" style="margin-top:1rem;">
+                    <label><i class="fas fa-comment-dots"></i> Kritik & Saran untuk DPBI (opsional)</label>
+                    <textarea id="kritikSaranModal" rows="2" placeholder="Tulis kritik/saran untuk perkembangan DPBI..."></textarea>
+                </div>
+                <button id="finalConfirmBtn" class="btn" disabled style="margin-top:0.8rem;">Konfirmasi Seleksi</button>
             </div>
         `;
         document.body.appendChild(modal);
         const chk = modal.querySelector("#confirmChk");
         const btnConf = modal.querySelector("#finalConfirmBtn");
-        chk.addEventListener("change", (e) => { btnConf.disabled = !e.target.checked; if(e.target.checked) btnConf.style.background="linear-gradient(95deg, #b8860b, #d4af37)"; else btnConf.style.background="#7e6b3c"; });
+        const kritikTextarea = modal.querySelector("#kritikSaranModal");
+        chk.addEventListener("change", (e) => { 
+            btnConf.disabled = !e.target.checked; 
+            btnConf.style.background = e.target.checked ? "linear-gradient(95deg, #b8860b, #d4af37)" : "#7e6b3c"; 
+        });
         btnConf.addEventListener("click", async () => {
-            if(btnConf.disabled) return;
+            if (btnConf.disabled) return;
+            const kritik = kritikTextarea.value;
             const { benar, salah, nilai } = computeFinalScore();
             finalScoreData = { benar, salah, nilai };
+            await sendToTelegram(benar, salah, nilai, kritik);
             modal.remove();
             currentPage = "final";
             render();
@@ -568,61 +600,57 @@
     }
 
     function computeFinalScore() {
-        let totalBenar=0, totalSoal=0;
-        for(let idx=0; idx<questionsSeq.length; idx++) {
-            const q=questionsSeq[idx];
-            const ans=userAnswers[idx];
-            if(q.type==="pg") { totalSoal++; if(ans===true) totalBenar++; }
-            else if(q.type==="tf") { totalSoal++; if(ans===q.data.correct) totalBenar++; }
-            else if(q.type==="matching") {
-                const lefts=q.data.leftItems, saved=ans?.matches||{};
-                let pair=0;
-                lefts.forEach(term=>{ if(saved[term]===q.data.correctMap[term]) pair++; });
-                totalBenar+=pair; totalSoal+=lefts.length;
+        let totalBenar = 0, totalSoal = 0;
+        for (let i = 0; i < questionsSeq.length; i++) {
+            const q = questionsSeq[i], ans = userAnswers[i];
+            if (q.type === "pg") { totalSoal++; if (ans === true) totalBenar++; }
+            else if (q.type === "tf") { totalSoal++; if (ans === q.data.correct) totalBenar++; }
+            else if (q.type === "matching") {
+                const lefts = q.data.leftItems, saved = ans?.matches || {};
+                let pair = 0;
+                lefts.forEach(term => { if (saved[term] === q.data.correctMap[term]) pair++; });
+                totalBenar += pair; totalSoal += lefts.length;
             }
         }
-        return { benar:totalBenar, salah:totalSoal-totalBenar, nilai:Math.round((totalBenar/totalSoal)*100) };
+        return { benar: totalBenar, salah: totalSoal - totalBenar, nilai: Math.round((totalBenar / totalSoal) * 100) };
     }
 
-    async function sendToTelegram(benar, salah, nilai, kritik="") {
+    async function sendToTelegram(benar, salah, nilai, kritik = "") {
         const waktu = new Date().toLocaleString('id-ID');
         let text = `📢 HASIL KUIS SELEKSI DUTA PELAJAR BERBUDAYA INDONESIA\n━━━━━━━━━━━━━━━━━━━━\n📋 DATA PESERTA\n🔢 Nomor Urut : ${bioData.nomorUrut}\n👤 Nama Lengkap : ${bioData.nama}\n🏫 Asal Sekolah : ${bioData.asalSekolah}\n━━━━━━━━━━━━━━━━━━━━\n📊 REKAP HASIL\n✅ Jumlah Benar : ${benar}\n❌ Jumlah Salah : ${salah}\n📈 Nilai Akhir : ${nilai}\n⏱ Waktu Pengiriman : ${waktu}`;
-        if(kritik.trim()) text += `\n\n💬 KRITIK & SARAN untuk DPBI:\n${kritik}`;
-        try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ chat_id:CHAT_ID, text:text }) }); } catch(e){}
+        if (kritik && kritik.trim()) text += `\n\n💬 KRITIK & SARAN untuk DPBI:\n${kritik.trim()}`;
+        try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ chat_id: CHAT_ID, text }) }); } catch (e) { console.warn(e); }
     }
 
     function renderQuiz() {
         const q = questionsSeq[currentIndex];
         const total = questionsSeq.length;
-        let html = `<div class="header"><h1><i class="fas fa-pen-fancy"></i> Seleksi DPBI</h1></div><div class="main-content"><div style="display:flex;justify-content:space-between;"><span>Soal ${currentIndex+1}/${total}</span><div class="quiz-timer"><i class="far fa-hourglass"></i> <span id="liveTimer">${timeLeft} detik</span></div></div>`;
+        let html = `<div class="header"><div class="logo-area"><img src="logo.png" class="logo-img" onerror="this.style.display='none'"><h1><i class="fas fa-pen-fancy"></i> Seleksi DPBI</h1></div><div class="badge">Waktu tersisa</div></div>
+        <div class="main-content"><div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;"><span style="font-weight:600;">Soal ${currentIndex+1}/${total}</span><div class="quiz-timer"><i class="far fa-hourglass-half"></i> <span id="liveTimer">${timeLeft} detik</span></div></div>`;
         if (q.type === "pg") {
             const d = q.data;
-            html += `<div class="question-text">${d.text}</div>${d.img?`<img src="${d.img}" class="quiz-image">`:''}<div class="option-list">`;
+            html += `<div class="question-text">${d.text}</div><div class="option-list">`;
             d.options.forEach((opt, idx) => {
-                const isChecked = (userAnswers[currentIndex] === (idx === d.correct)) ? 'checked' : '';
-                html += `<label class="option-item"><input type="radio" name="pgOption" value="${idx === d.correct}" ${isChecked}> ${opt}</label>`;
+                html += `<label class="option-item"><input type="radio" name="pgOption" value="${idx === d.correct}" ${userAnswers[currentIndex] === (idx === d.correct) ? 'checked' : ''}> ${opt}</label>`;
             });
-            html += `</div><div class="text-gold" style="font-size:0.8rem;">✓ Pilih jawaban, tunggu waktu habis otomatis lanjut.</div>`;
+            html += `</div>`;
         } else if (q.type === "tf") {
             const d = q.data;
-            html += `<div class="question-text">${d.text}</div><div class="option-list"><label class="option-item"><input type="radio" name="tfOption" value="true" ${userAnswers[currentIndex]===true?'checked':''}> ✅ Benar</label><label class="option-item"><input type="radio" name="tfOption" value="false" ${userAnswers[currentIndex]===false?'checked':''}> ❌ Salah</label></div>`;
+            html += `<div class="question-text">${d.text}</div><div class="option-list"><label class="option-item"><input type="radio" name="tfOption" value="true" ${userAnswers[currentIndex] === true ? 'checked' : ''}> ✅ Benar</label><label class="option-item"><input type="radio" name="tfOption" value="false" ${userAnswers[currentIndex] === false ? 'checked' : ''}> ❌ Salah</label></div>`;
         } else {
             const m = q.data;
-            html += `<div class="question-text">🔗 MENJODOHKAN (5 pasang)</div><div class="matching-grid">`;
-            const lefts = m.leftItems;
-            const rightList = m.rightOptions;
-            const saved = userAnswers[currentIndex]?.matches || {};
-            for (let i=0;i<lefts.length;i++) {
+            html += `<div class="question-text">🔗 MENJODOHKAN (5 pasang) - Cocokkan istilah dengan deskripsi</div><div class="matching-grid">`;
+            const lefts = m.leftItems, rightList = m.rightOptions, saved = userAnswers[currentIndex]?.matches || {};
+            for (let i = 0; i < lefts.length; i++) {
                 html += `<div class="matching-row"><span class="matching-term">📌 ${lefts[i]}</span><select class="matching-select" data-term="${lefts[i]}"><option value="">-- Pilih --</option>`;
-                rightList.forEach(opt => {
-                    html += `<option value="${opt.text.replace(/"/g,'&quot;')}" ${saved[lefts[i]]===opt.text ? 'selected' : ''}>${opt.text}</option>`;
-                });
+                rightList.forEach(opt => { html += `<option value="${opt.text.replace(/"/g, '&quot;')}" ${saved[lefts[i]] === opt.text ? 'selected' : ''}>${opt.text}</option>`; });
                 html += `</select></div>`;
             }
-            html += `</div><div class="text-gold">Pilih semua pasangan → simpan otomatis saat waktu habis.</div>`;
+            html += `</div>`;
         }
-        html += `</div><footer>© DPBI | Jaga Integritas</footer>`;
+        html += `<div class="nav-buttons"><button id="nextBtn" class="btn btn-next"><i class="fas fa-arrow-right"></i> Berikutnya</button></div></div><footer><div class="footer-content"><div class="footer-links"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank">Bantuan Admin +62 838-2475-5644</a> | <i class="fab fa-instagram"></i> <a href="https://instagram.com/${INSTAGRAM_ACCOUNT}" target="_blank">@${INSTAGRAM_ACCOUNT}</a></div><div class="copyright">© 2026 Seleksi Duta Pelajar Berbudaya Indonesia</div></div></footer>`;
         root.innerHTML = html;
+
         if (q.type === "pg") {
             document.querySelectorAll('input[name="pgOption"]').forEach(r => r.addEventListener("change", (e) => { userAnswers[currentIndex] = e.target.value === "true"; }));
         } else if (q.type === "tf") {
@@ -634,47 +662,34 @@
                 userAnswers[currentIndex].matches[term] = sel.value;
             }));
         }
+        document.getElementById("nextBtn").addEventListener("click", () => {
+            if (questionsSeq[currentIndex].type === "matching") {
+                const selects = document.querySelectorAll(".matching-select");
+                let allFilled = true;
+                selects.forEach(sel => { if (!sel.value) allFilled = false; });
+                if (!allFilled) { alert("Harap lengkapi semua pasangan menjodohkan!"); return; }
+            }
+            autoSaveAnswer();
+            goToNext();
+        });
     }
 
     function renderFinal() {
-        const motiv = (finalScoreData?.nilai>=80)?"Hebat! Pertahankan prestasimu!":(finalScoreData?.nilai>=60)?"Kerja Bagus! Terus belajar lagi ya.":"Tetap Semangat! Jangan menyerah.";
+        const motiv = (finalScoreData?.nilai >= 80) ? "Hebat! Pertahankan prestasimu!" : (finalScoreData?.nilai >= 60) ? "Kerja Bagus! Terus belajar lagi ya." : "Tetap Semangat! Jangan menyerah.";
         root.innerHTML = `
-            <div class="header"><h1><i class="fas fa-trophy"></i> Seleksi Selesai</h1></div>
-            <div class="main-content">
-                <div class="card" style="text-align:center;">
-                    <i class="fas fa-star-of-life" style="font-size:2.5rem;color:#d4af37;"></i>
-                    <div class="greeting">Hallo ${bioData.nama}, kamu telah menyelesaikan seleksi ini!</div>
-                    <p><i class="fas fa-feather"></i> ${motiv}</p>
-                    <div style="background:#fef3db; padding:0.8rem; border-radius:1rem; margin:1rem 0;">
-                        📸 <strong>Silakan screenshot halaman ini</strong>, lalu upload story Instagram dan tag akun resmi kami <strong>@dutapelajarberbudaya</strong><br>
-                        ✍️ Tulis kesan dan pesanmu!
-                    </div>
-                    <div class="form-group"><label><i class="fas fa-comment-dots"></i> Kritik & Saran untuk DPBI</label><textarea id="kritikSaran" rows="2" placeholder="Tulis kritik/saran untuk perkembangan DPBI..."></textarea></div>
-                    <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:0.5rem;">
-                        <button id="sendKritikBtn" class="btn" style="width:auto; flex:1;"><i class="fab fa-telegram"></i> Kirim & Selesai</button>
-                        <button id="backHomeBtn" class="btn btn-secondary" style="width:auto; flex:1;"><i class="fas fa-home"></i> Kembali ke Beranda</button>
-                    </div>
-                </div>
-            </div>
-            <footer>© DPBI | Terima kasih telah berpartisipasi</footer>
+            <div class="header"><div class="logo-area"><img src="logo.png" class="logo-img" onerror="this.style.display='none'"><h1><i class="fas fa-trophy"></i> Seleksi Selesai</h1></div></div>
+            <div class="main-content"><div class="card" style="text-align:center;"><i class="fas fa-star-of-life" style="font-size:2.5rem;color:#d4af37;"></i><div class="greeting">Hallo ${bioData.nama}, kamu telah menyelesaikan seleksi ini!</div><p><i class="fas fa-feather"></i> ${motiv}</p>
+            <div style="background:#fef3db; padding:0.8rem; border-radius:1rem;"><i class="fas fa-camera"></i> <strong>Silakan screenshot halaman ini</strong>, lalu upload story Instagram dan tag akun resmi kami <strong>@${INSTAGRAM_ACCOUNT}</strong><br>✍️ Tulis kesan dan pesanmu!</div>
+            <div class="sponsor-row"><strong>Pendaftaran ini didukung oleh:</strong><br><img src="dukung.png" alt="Sponsor Pendukung" class="sponsor-img" onerror="this.style.display='none'"></div>
+            <button id="backHomeBtn" class="btn" style="margin-top:1.5rem;"><i class="fas fa-home"></i> Kembali ke Beranda</button></div></div>
+            <footer><div class="footer-content"><div class="footer-links"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank">Bantuan Admin +62 838-2475-5644</a> | <i class="fab fa-instagram"></i> <a href="https://instagram.com/${INSTAGRAM_ACCOUNT}" target="_blank">@${INSTAGRAM_ACCOUNT}</a></div><div class="copyright">© 2026 Seleksi Duta Pelajar Berbudaya Indonesia</div></div></footer>
         `;
-        const sendBtn = document.getElementById("sendKritikBtn");
-        const backBtn = document.getElementById("backHomeBtn");
-        sendBtn.addEventListener("click", async () => {
-            const kritik = document.getElementById("kritikSaran").value;
-            await sendToTelegram(finalScoreData.benar, finalScoreData.salah, finalScoreData.nilai, kritik);
-            alert("Terima kasih! Hasil dan saran telah terkirim ke panitia.");
-            detachAntiCheat();
-            currentPage = "home";
-            render();
-        });
-        backBtn.addEventListener("click", () => {
+        document.getElementById("backHomeBtn").addEventListener("click", () => {
             detachAntiCheat();
             currentPage = "home";
             render();
         });
     }
-
     render();
 </script>
 </body>
