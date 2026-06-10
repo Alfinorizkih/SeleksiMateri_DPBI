@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "jenis": "Pilihan Ganda",
+    "pertanyaan": "Apa ibu kota Indonesia?",
+    "gambar": "",
+    "pilihan": {
+      "A": "Jakarta",
+      "B": "Bandung",
+      "C": "Surabaya",
+      "D": "Medan"
+    },
+    "jawaban": "A",
+    "bobot": 5
+  },
+  {
+    "id": 2,
+    "jenis": "Pilihan Ganda",
+    "pertanyaan": "Tarian tradisional yang berasal dari Aceh dan terkenal dengan gerakan syairnya adalah...",
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Tari_Saman_Aceh.jpg/320px-Tari_Saman_Aceh.jpg",
+    "pilihan": {
+      "A": "Kecak",
+      "B": "Saman",
+      "C": "Pendet",
+      "D": "Jaipong"
+    },
+    "jawaban": "B",
+    "bobot": 5
+  },
+  {
+    "id": 3,
+    "jenis": "Benar Salah",
+    "pertanyaan": "Candi Borobudur terletak di Jawa Timur.",
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Borobudur_North_Side.jpg/320px-Borobudur_North_Side.jpg",
+    "pilihan": {
+      "A": "Benar",
+      "B": "Salah"
+    },
+    "jawaban": "Salah",
+    "bobot": 3
+  },
+  {
+    "id": 4,
+    "jenis": "Pilihan Ganda",
+    "pertanyaan": "Siapakah pahlawan nasional yang dikenal sebagai 'Singa dari Singaparna'?",
+    "gambar": "",
+    "pilihan": {
+      "A": "Soekarno",
+      "B": "Mohammad Hatta",
+      "C": "KH. Zainal Mustafa",
+      "D": "Cut Nyak Dien"
+    },
+    "jawaban": "C",
+    "bobot": 5
+  }
+]
