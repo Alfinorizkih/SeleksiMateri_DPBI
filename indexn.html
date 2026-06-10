@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>DPBI 2026 · Seleksi Nasional Duta Pelajar Berbudaya</title>
-  <!-- Fonts Premium -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -17,321 +17,292 @@
     }
     body {
       font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-      background: #FBF9F2;
+      background: #FBF9F4;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
-    /* Glow Orbs Premium */
-    .gold-orb {
+    /* Luxury Gold Orbs */
+    .orb-gold-1, .orb-gold-2, .orb-gold-3 {
       position: fixed;
-      width: 70vw;
-      height: 70vw;
       border-radius: 50%;
+      filter: blur(100px);
       pointer-events: none;
       z-index: 0;
-      filter: blur(80px);
     }
-    .orb-left {
-      top: -30%;
-      left: -20%;
-      background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(255,245,200,0) 70%);
-    }
-    .orb-right {
-      bottom: -30%;
-      right: -20%;
-      background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, rgba(255,255,245,0) 70%);
-    }
-    .orb-center {
-      top: 40%;
-      left: 30%;
-      width: 50vw;
-      height: 50vw;
-      background: radial-gradient(circle, rgba(244,211,94,0.08) 0%, rgba(255,255,240,0) 80%);
-    }
-    .app-wrapper {
-      position: relative;
-      z-index: 20;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 28px 32px;
-    }
-    /* Glassmorphism Ultimate */
-    .glass-premium {
-      background: rgba(255, 255, 250, 0.86);
+    .orb-gold-1 { width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(244,211,94,0) 80%); top: -25vh; left: -20vw; }
+    .orb-gold-2 { width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(201,162,39,0.12) 0%, rgba(255,245,200,0) 80%); bottom: -30vh; right: -25vw; }
+    .orb-gold-3 { width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(255,250,210,0) 70%); top: 40%; left: 30%; }
+    /* Glassmorphism Premium */
+    .glass-card {
+      background: rgba(255, 255, 248, 0.92);
       backdrop-filter: blur(24px);
-      border-radius: 48px;
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      box-shadow: 0 28px 50px -12px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(255, 248, 205, 0.6);
+      border-radius: 52px;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      box-shadow: 0 35px 60px -25px rgba(0, 0, 0, 0.12), 0 0 0 0.8px rgba(255,245,200,0.6);
       transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
     .btn-gold {
       background: linear-gradient(115deg, #C9A227 0%, #D4AF37 45%, #F4D35E 100%);
       border: none;
-      padding: 14px 36px;
+      padding: 14px 38px;
       font-weight: 700;
       border-radius: 60px;
-      color: #1F2937;
-      box-shadow: 0 12px 24px -8px rgba(201, 162, 39, 0.45);
+      color: #1E292F;
+      box-shadow: 0 18px 28px -12px rgba(201,162,39,0.5);
       cursor: pointer;
+      transition: 0.2s;
       font-size: 1rem;
-      transition: all 0.25s;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.3px;
     }
-    .btn-gold:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 22px 32px -10px rgba(212, 175, 55, 0.6);
-      background: linear-gradient(115deg, #B48C1A, #D4AF37, #F0CF5A);
-    }
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 26px 35px -14px rgba(201,162,39,0.7); filter: brightness(1.02); }
     .btn-outline {
       background: transparent;
       border: 1.8px solid #D4AF37;
-      padding: 10px 28px;
-      border-radius: 60px;
       color: #A67C1E;
+      padding: 10px 26px;
+      border-radius: 50px;
       font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
     }
-    .btn-outline:hover {
-      background: rgba(212, 175, 55, 0.12);
-      transform: translateY(-2px);
-      border-color: #C9A227;
-    }
+    .btn-outline:hover { background: rgba(212,175,55,0.15); border-color: #C9A227; transform: translateY(-2px); }
     .input-premium {
-      border: 1.5px solid rgba(212, 175, 55, 0.4);
+      border: 1.5px solid rgba(212,175,55,0.4);
       border-radius: 60px;
-      padding: 15px 26px;
+      padding: 14px 26px;
       width: 100%;
-      background: rgba(255, 255, 248, 0.98);
+      background: rgba(255,255,250,0.98);
       font-family: 'Plus Jakarta Sans', monospace;
-      transition: all 0.2s;
-      font-size: 1rem;
+      transition: 0.2s;
+      font-size: 0.95rem;
     }
-    .input-premium:focus {
-      outline: none;
-      border-color: #D4AF37;
-      box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.2);
-    }
-    /* Timer Nasional */
-    .timer-nasional {
+    .input-premium:focus { outline: none; border-color: #D4AF37; box-shadow: 0 0 0 5px rgba(212,175,55,0.2); }
+    .timer-float {
       position: fixed;
       top: 28px;
       right: 36px;
-      background: rgba(10, 20, 12, 0.85);
+      background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(20px);
       padding: 10px 28px;
-      border-radius: 50px;
+      border-radius: 60px;
       color: #FFE7A3;
       font-weight: 800;
-      font-size: 1.3rem;
-      font-family: 'Monaco', monospace;
+      font-family: monospace;
+      font-size: 1.35rem;
       z-index: 300;
       border: 1px solid #D4AF37;
       letter-spacing: 2px;
       box-shadow: 0 12px 24px rgba(0,0,0,0.2);
     }
-    .pill-nav {
-      background: #F1EFE4;
-      border-radius: 60px;
-      padding: 8px 0;
-      font-weight: 700;
-      text-align: center;
-      min-width: 52px;
-      transition: 0.15s;
-      cursor: pointer;
-    }
-    .pill-nav.answered { background: #D4AF37; color: white; box-shadow: 0 6px 12px rgba(212,175,55,0.4); }
-    .pill-nav.active { border: 2px solid #A67C1E; background: #FFF2DD; transform: scale(1.02); color: #6E4E13; }
     .option-card {
-      background: #FEFCF5;
-      border-radius: 28px;
-      padding: 18px 26px;
-      margin: 16px 0;
-      border: 1px solid #F0E8D6;
+      background: #FEFAF2;
+      border-radius: 32px;
+      padding: 18px 28px;
+      margin: 14px 0;
+      border: 1px solid #EFE5CE;
       transition: all 0.2s;
       font-weight: 500;
       cursor: pointer;
     }
     .option-card.selected {
       border: 2px solid #D4AF37;
-      background: linear-gradient(120deg, #FFF7E8, #FFF3DF);
-      box-shadow: 0 12px 22px rgba(172, 136, 45, 0.12);
+      background: linear-gradient(120deg, #FFF7E2, #FFF2D8);
+      box-shadow: 0 12px 24px rgba(172, 136, 45, 0.2);
+      transform: scale(1.01);
     }
-    .toast-custom {
+    .pill-nav {
+      background: #F0EDE2;
+      border-radius: 60px;
+      padding: 10px 0;
+      font-weight: 700;
+      text-align: center;
+      min-width: 52px;
+      transition: 0.12s;
+      cursor: pointer;
+    }
+    .pill-nav.answered { background: #D4AF37; color: white; box-shadow: 0 6px 14px rgba(212,175,55,0.4); }
+    .pill-nav.active { border: 2px solid #A67C1E; background: #FFF3DD; transform: scale(1.02); color: #6E4E13; }
+    .toast-global {
       position: fixed;
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%) scale(0.9);
-      background: #1F2937;
-      backdrop-filter: blur(16px);
+      background: #1E293B;
+      backdrop-filter: blur(20px);
       color: white;
       padding: 14px 32px;
       border-radius: 80px;
       font-weight: 600;
-      z-index: 8000;
+      z-index: 9999;
       opacity: 0;
       transition: 0.2s;
       pointer-events: none;
+      font-size: 0.9rem;
     }
-    .toast-custom.show { opacity: 1; transform: translateX(-50%) scale(1); }
+    .toast-global.show { opacity: 1; transform: translateX(-50%) scale(1); }
     footer {
       text-align: center;
-      margin-top: 60px;
-      padding: 24px 0 16px;
+      margin-top: 50px;
+      padding: 24px 0 18px;
       font-size: 0.7rem;
-      color: #7C6A44;
-      border-top: 1px solid rgba(212,175,55,0.25);
+      color: #8B7A55;
+      border-top: 1px solid rgba(212,175,55,0.3);
     }
-    @media (max-width: 780px) {
-      .app-wrapper { padding: 18px; }
-      .timer-nasional { top: 12px; right: 16px; padding: 5px 18px; font-size: 0.9rem; }
+    @media (max-width: 760px) {
+      .timer-float { top: 12px; right: 16px; padding: 5px 20px; font-size: 1rem; }
+      .glass-card { border-radius: 36px; }
     }
   </style>
 </head>
 <body>
-<div class="gold-orb orb-left"></div><div class="gold-orb orb-right"></div><div class="gold-orb orb-center"></div>
+<div class="orb-gold-1"></div><div class="orb-gold-2"></div><div class="orb-gold-3"></div>
 
-<div id="loadingScreen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(253,251,240,0.97); backdrop-filter:blur(28px); z-index:6000; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+<div id="loadingScreen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(250,248,235,0.98); backdrop-filter:blur(30px); z-index:9000; display:flex; align-items:center; justify-content:center; flex-direction:column;">
   <div style="text-align:center;">
-    <img src="https://cdn.phototourl.com/free/2026-06-10-14462ae8-b80e-4052-8c31-c65b843c63e6.png" alt="Logo DPBI" style="width: 110px; margin-bottom: 24px; filter: drop-shadow(0 12px 14px rgba(0,0,0,0.08));">
-    <h2 style="font-weight:800; letter-spacing:-0.3px;">SELEKSI NASIONAL</h2>
-    <p style="color:#7A6742; margin-top: 6px;">Duta Pelajar Berbudaya Indonesia 2026</p>
-    <p id="loadStatus" style="margin-top: 32px; font-weight:500;">Memverifikasi pusat data ...</p>
-    <div style="width: 300px; margin-top: 24px; background:#E9E2D0; border-radius: 30px; overflow:hidden;"><div id="loadProgressFill" style="height: 6px; width:0%; background: linear-gradient(90deg,#C9A227,#F4D35E); transition: width 0.2s;"></div></div>
-    <p id="loadPercent" style="margin-top: 12px; font-weight:600;">0%</p>
-    <button id="retryLoadBtn" style="display:none; margin-top: 28px;" class="btn-gold"><i class="fas fa-sync-alt"></i> Muat Ulang Portal</button>
+    <img src="https://cdn.phototourl.com/free/2026-06-10-14462ae8-b80e-4052-8c31-c65b843c63e6.png" alt="Logo DPBI" style="width: 110px; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1));">
+    <h2 style="margin-top: 28px; font-weight:800; background: linear-gradient(135deg, #C9A227, #F4D35E); -webkit-background-clip: text; background-clip: text; color: transparent;">SELEKSI NASIONAL</h2>
+    <p style="color:#7A6540; margin-top: 8px;">Duta Pelajar Berbudaya Indonesia 2026</p>
+    <p id="loadStatus" style="margin-top: 32px; font-weight:500;">Menginisialisasi sistem nasional ...</p>
+    <div style="width: 300px; background:#E3DAC6; border-radius: 40px; margin-top: 20px; overflow:hidden;"><div id="loadBarFill" style="height: 6px; width:0%; background: linear-gradient(90deg,#C9A227,#F4D35E); transition: width 0.25s;"></div></div>
+    <p id="loadPercentText" style="margin-top: 12px; font-weight:600;">0%</p>
+    <button id="retryLoadBtn" style="display:none; margin-top: 32px;" class="btn-gold"><i class="fas fa-sync-alt"></i> Muat Ulang Portal</button>
   </div>
 </div>
 
-<div id="mainApp" class="app-wrapper" style="display:none;">
+<div id="mainApp" style="display:none; position:relative; z-index:20; max-width:1440px; margin:0 auto; padding:28px 32px;">
   <div id="pageRenderer"></div>
-  <footer>© 2026 Duta Pelajar Berbudaya Indonesia · Kementerian Kebudayaan · Sistem Seleksi Resmi</footer>
+  <footer>© 2026 Duta Pelajar Berbudaya Indonesia · Kementerian Kebudayaan & Pendidikan · Seleksi Resmi</footer>
 </div>
-<div id="toastMsg" class="toast-custom"></div>
-<div id="imageModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.94); display:flex; align-items:center; justify-content:center; z-index:9000; visibility:hidden; opacity:0; transition:0.2s;"><img id="modalImg" style="max-width:90%; max-height:90%; border-radius:32px; border:2px solid #D4AF37;"><span style="position:absolute; top:30px; right:40px; color:#D4AF37; font-size:52px; cursor:pointer;" id="closeModalBtn">&times;</span></div>
+<div id="globalToast" class="toast-global"></div>
+<div id="imageModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); display:flex; align-items:center; justify-content:center; z-index:10000; visibility:hidden; opacity:0; transition:0.2s;"><img id="modalImage" style="max-width:90%; max-height:90%; border-radius:36px; border:3px solid #D4AF37; box-shadow:0 0 40px rgba(212,175,55,0.5);"><span style="position:absolute; top:30px; right:40px; color:#D4AF37; font-size:52px; cursor:pointer; filter:drop-shadow(0 0 6px black);" id="closeModalImage">&times;</span></div>
 
 <script>
-  // -------------------------- KONFIGURASI GLOBAL --------------------------
-  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/17BdQHCiwmRnfnhhITQ7MDTQjeMhi0y9P46qLVfqZg3A/export?format=csv&gid=0";
-  const SOAL_JSON_URL = "https://raw.githubusercontent.com/Alfinorizkih/SeleksiMateri_DPBI/refs/heads/main/soal.json";
+  // ---- ENKRIPSI SEDERHANA (obfuscation) untuk URL ----
+  const encryptedSheet = "aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vc3ByZWFkc2hlZXRzL2QvMTdCZFFIQ2l3bVJuZm5oaElUUTdNRFRRamVNaGkweTlQNDZxTFZmcVpnM0EvZXhwb3J0P2Zvcm1hdD1jc3YmZ2lkPTA=";
+  const SHEET_URL = atob(encryptedSheet);
+  const encryptedSoal = "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FsZmlub3JpemtpaC9TZWxla3NpTWF0ZXJpX0RQQkkvcmVmcy9oZWFkcy9tYWluL3NvYWwuanNvbg==";
+  const SOAL_URL = atob(encryptedSoal);
+  
   const BOT_TOKEN = "8611068552:AAHCleWMDayr9Udwer2KmVVABR_X8pzgadw";
   const CHAT_ID = "7509429091";
+  
+  // Proxy chain dengan fallback kuat
+  const PROXY_LIST = [
+    (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    (url) => `https://cors-anywhere.herokuapp.com/${url}`,
+    (url) => `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(url)}`,
+    (url) => `https://proxy.cors.sh/${url}`
+  ];
 
-  let pesertaDatabase = [];
+  let globalPeserta = [];
   let bankSoal = [];
   let currentUser = null;
   let examState = null;
   let timerInterval = null, autoSaveInterval = null;
   let isSubmitting = false, examClosed = false;
-  let currentQuestionIdx = 0;
-  let deviceSessionId = null; // fitur link unik sesi perangkat
+  let currentQuestionIndex = 0;
 
   // Helper
-  function showToast(msg, isErr = false) { let t = document.getElementById('toastMsg'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3200); }
-  function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
-  function parseCSV(csvText) {
-    const lines = csvText.split(/\r?\n/).filter(l=>l.trim());
+  function showToast(msg, isError = false) { let t = document.getElementById('globalToast'); t.innerText = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3500); }
+  function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+  function parseCSV(csv){
+    const lines = csv.split(/\r?\n/).filter(l=>l.trim());
     if(lines.length<2) return [];
     const headers = lines[0].split(',').map(h=>h.trim().replace(/^\uFEFF/,''));
     return lines.slice(1).map(line=>{
       const vals = line.split(',');
-      let obj = {};
-      headers.forEach((h,i)=> obj[h] = vals[i] ? vals[i].trim() : "");
+      let obj={};
+      headers.forEach((h,i)=>obj[h]=vals[i]?vals[i].trim():"");
       return obj;
     });
   }
-  async function fetchWithProxy(url, isJson=false) {
-    try { let r = await fetch(url); if(r.ok) return isJson ? await r.json() : await r.text(); } catch(e) {}
-    const proxies = [(u)=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,(u)=>`https://corsproxy.io/?${encodeURIComponent(u)}`];
-    for(let proxy of proxies){
-      try{ let resp = await fetch(proxy(url)); if(resp.ok){ let txt = await resp.text(); if(isJson) return JSON.parse(txt); return txt; } }catch(e){}
+  
+  async function fetchWithFallback(url, isJson=false){
+    // langsung coba fetch normal
+    try{
+      let r = await fetch(url);
+      if(r.ok){
+        if(isJson) return await r.json();
+        return await r.text();
+      }
+    }catch(e){}
+    for(let proxyFn of PROXY_LIST){
+      try{
+        let proxyUrl = proxyFn(url);
+        let resp = await fetch(proxyUrl);
+        if(resp.ok){
+          let text = await resp.text();
+          if(isJson) return JSON.parse(text);
+          return text;
+        }
+      }catch(e){}
     }
-    throw new Error("Gagal mengakses database nasional. Periksa koneksi.");
+    throw new Error("Gagal mengakses data nasional. Cek koneksi atau hubungi panitia.");
   }
-  async function loadPesertaSheet(){
-    let csv = await fetchWithProxy(SHEET_CSV_URL);
+
+  async function loadPeserta(){
+    let csv = await fetchWithFallback(SHEET_URL, false);
     let raw = parseCSV(csv);
     if(!raw.length) throw new Error("Data peserta kosong dari server.");
-    pesertaDatabase = raw.map(p=>({ ...p, "Nama Lengkap": p["Nama Lengkap"]||"", "Asal Sekolah": p["Asal Sekolah"]||"", Token: p.Token||"", "Waktu Mulai Token": p["Waktu Mulai Token"]||"", "Waktu Selesai Token": p["Waktu Selesai Token"]||"" }));
+    globalPeserta = raw.map(p=>({
+      ...p,
+      "Nama Lengkap": p["Nama Lengkap"]||"",
+      "Asal Sekolah": p["Asal Sekolah"]||"",
+      Token: p.Token||"",
+      "Waktu Mulai Token": p["Waktu Mulai Token"]||"",
+      "Waktu Selesai Token": p["Waktu Selesai Token"]||""
+    }));
   }
-  async function loadSoalExternal(){
-    let data = await fetchWithProxy(SOAL_JSON_URL, true);
-    if(!data || !data.length) throw new Error("Bank soal gagal dimuat.");
-    bankSoal = data.map(s=>({ ...s, bobot: parseInt(s.bobot)||1 }));
+  
+  async function loadSoal(){
+    bankSoal = await fetchWithFallback(SOAL_URL, true);
+    if(!bankSoal || !bankSoal.length) throw new Error("Bank soal gagal dimuat.");
+    bankSoal = bankSoal.map(s=>({ ...s, bobot: parseInt(s.bobot)||1 }));
   }
-  function getCompletedTokens(){ return JSON.parse(localStorage.getItem('dpbi_completed_tokens') || '[]'); }
-  function addCompletedToken(token){ let arr=getCompletedTokens(); if(!arr.includes(token)) arr.push(token); localStorage.setItem('dpbi_completed_tokens', JSON.stringify(arr)); }
-  function isTokenCompleted(token){ return getCompletedTokens().includes(token); }
 
-  // Validasi login + token time
+  function getCompletedTokens(){ return JSON.parse(localStorage.getItem('dpbi_completed_tokens')||'[]'); }
+  function addCompletedToken(token){ let arr=getCompletedTokens(); if(!arr.includes(token)) arr.push(token); localStorage.setItem('dpbi_completed_tokens',JSON.stringify(arr)); }
+  
   function validateLogin(nama, sekolah, token){
-    let p = pesertaDatabase.find(p=> p["Nama Lengkap"]?.toLowerCase().trim() === nama.toLowerCase().trim() && p["Asal Sekolah"]?.toLowerCase().trim() === sekolah.toLowerCase().trim() && p.Token === token);
-    if(!p) return { ok:false, msg:"Data peserta tidak ditemukan. Silakan periksa kembali." };
-    if(isTokenCompleted(token)) return { ok:false, msg:"Token sudah digunakan. Seleksi telah selesai." };
-    const now = new Date();
-    const startDate = new Date(p["Waktu Mulai Token"]), endDate = new Date(p["Waktu Selesai Token"]);
-    if(isNaN(startDate)||isNaN(endDate)) return { ok:false, msg:"Format waktu token invalid." };
-    if(now < startDate) return { ok:false, msg:"⏳ Sesi seleksi belum dimulai. Periode token belum aktif." };
-    if(now > endDate) return { ok:false, msg:"⌛ Sesi seleksi telah berakhir. Token kadaluarsa." };
-    return { ok:true, pesertaData:p };
+    let p = globalPeserta.find(p=>p["Nama Lengkap"]?.toLowerCase().trim()===nama.toLowerCase().trim() && p["Asal Sekolah"]?.toLowerCase().trim()===sekolah.toLowerCase().trim() && p.Token===token);
+    if(!p) return {ok:false, msg:"Data tidak cocok dengan database nasional."};
+    if(getCompletedTokens().includes(token)) return {ok:false, msg:"Token sudah digunakan. Seleksi selesai."};
+    let now = new Date(), start = new Date(p["Waktu Mulai Token"]), end = new Date(p["Waktu Selesai Token"]);
+    if(isNaN(start)||isNaN(end)) return {ok:false, msg:"Format waktu token invalid."};
+    if(now < start) return {ok:false, msg:"⏳ Sesi seleksi belum dimulai."};
+    if(now > end) return {ok:false, msg:"⌛ Sesi seleksi telah berakhir."};
+    return {ok:true, pesertaData:p};
   }
 
-  // Session unik device (link perangkat)
-  function initDeviceSession(){
-    let urlParams = new URLSearchParams(window.location.search);
-    let sid = urlParams.get('sid');
-    let storedSid = localStorage.getItem('dpbi_device_sid');
-    if(!sid && !storedSid){
-      let newSid = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36)+Date.now();
-      localStorage.setItem('dpbi_device_sid', newSid);
-      let newUrl = window.location.origin + window.location.pathname + '?sid=' + newSid;
-      window.history.replaceState({}, '', newUrl);
-      deviceSessionId = newSid;
-    } else if(sid && !storedSid){
-      localStorage.setItem('dpbi_device_sid', sid);
-      deviceSessionId = sid;
-    } else if(sid && storedSid && sid !== storedSid){
-      showToast("❌ Sesi tidak valid: link ini hanya untuk perangkat yang digunakan saat login. Silakan login ulang.", true);
-      localStorage.removeItem('dpbi_device_sid');
-      window.location.href = window.location.pathname;
-      return false;
-    } else if(!sid && storedSid){
-      let newUrl = window.location.origin + window.location.pathname + '?sid=' + storedSid;
-      window.history.replaceState({}, '', newUrl);
-      deviceSessionId = storedSid;
-    } else {
-      deviceSessionId = storedSid || sid;
-    }
-    return true;
-  }
-
-  // Shuffle
   function shuffleArray(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
-  function buildShuffledQuestions(soalList){
+  
+  function prepareShuffledQuestions(soalList){
     let shuffledSoal = shuffleArray([...soalList]);
-    return shuffledSoal.map(soal => {
-      let shuffledOpts = [], correctKey = "";
+    return shuffledSoal.map(soal=>{
+      let shuffledOpts=[], correctKey="";
       if(soal.jenis === "PG"){
         let choices = [];
-        if(soal.pilihanA) choices.push({letter:"A", text:soal.pilihanA});
-        if(soal.pilihanB) choices.push({letter:"B", text:soal.pilihanB});
-        if(soal.pilihanC) choices.push({letter:"C", text:soal.pilihanC});
-        if(soal.pilihanD) choices.push({letter:"D", text:soal.pilihanD});
+        if(soal.pilihanA) choices.push({letter:"A",text:soal.pilihanA});
+        if(soal.pilihanB) choices.push({letter:"B",text:soal.pilihanB});
+        if(soal.pilihanC) choices.push({letter:"C",text:soal.pilihanC});
+        if(soal.pilihanD) choices.push({letter:"D",text:soal.pilihanD});
         let shuffled = shuffleArray([...choices]);
         let correctText = soal[`pilihan${soal.jawaban}`];
         let newCorrect = shuffled.find(opt=>opt.text===correctText)?.letter || "A";
         shuffledOpts = shuffled; correctKey = newCorrect;
       } else if(soal.jenis === "BENAR_SALAH"){
-        let bs = [{letter:"Benar", text:"Benar"},{letter:"Salah", text:"Salah"}];
+        let bs = [{letter:"Benar",text:"Benar"},{letter:"Salah",text:"Salah"}];
         let shuffled = shuffleArray([...bs]);
         correctKey = (soal.jawaban === "Benar") ? "Benar" : "Salah";
         shuffledOpts = shuffled;
       }
-      return { original: soal, shuffledOptions: shuffledOpts, correctAnswerKey: correctKey, userAnswer: null };
+      return { original:soal, shuffledOptions:shuffledOpts, correctAnswerKey:correctKey, userAnswer:null };
     });
   }
-  function initExamState(participant, soalConfig){
+
+  function initExamState(participant, soalConfig, nomorPeserta){
     return {
       token: participant.Token,
       nama: participant["Nama Lengkap"],
@@ -341,54 +312,79 @@
       remainingSeconds: 60*60,
       violations: 0,
       startTime: Date.now(),
-      pesertaNomor: "DPBI/2026/" + Math.floor(Math.random() * 90000 + 10000)
+      pesertaNomor: nomorPeserta,
+      uniqueSessionId: Math.random().toString(36).substring(2,15)
     };
   }
-  function saveExamToLocal(){ if(examState) localStorage.setItem('dpbi_exam_state', JSON.stringify(examState)); }
-  function restoreExamFromLocal(){
+  function saveExamLocal(){ if(examState) localStorage.setItem('dpbi_exam_state', JSON.stringify(examState)); }
+  function restoreExamLocal(){
     let saved = localStorage.getItem('dpbi_exam_state');
     if(!saved) return false;
     try{
       let parsed = JSON.parse(saved);
-      if(parsed && !isTokenCompleted(parsed.token) && parsed.deviceSid === deviceSessionId){
+      if(parsed && !getCompletedTokens().includes(parsed.token)){
         examState = parsed;
-        currentUser = pesertaDatabase.find(p=>p.Token===parsed.token) || { "Nama Lengkap": parsed.nama, "Asal Sekolah": parsed.sekolah, Token: parsed.token };
+        currentUser = globalPeserta.find(p=>p.Token===parsed.token) || { "Nama Lengkap": parsed.nama, "Asal Sekolah": parsed.sekolah, Token: parsed.token };
         return true;
-      } else if(parsed && parsed.deviceSid !== deviceSessionId){
-        localStorage.removeItem('dpbi_exam_state');
       }
     }catch(e){}
     return false;
   }
-  function updateTimerDisplay(){ if(examState && document.getElementById('floatingTimer')){ let s=examState.remainingSeconds,h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60; document.getElementById('floatingTimer').innerText=`${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`; } }
-  function startTimer(){ if(timerInterval) clearInterval(timerInterval); timerInterval = setInterval(()=>{ if(!examState || examState.remainingSeconds<=0){ if(examState && examState.remainingSeconds<=0 && !isSubmitting) forceSubmit("⏰ Waktu seleksi habis!"); clearInterval(timerInterval); return; } examState.remainingSeconds--; updateTimerDisplay(); saveExamToLocal(); if(examState.remainingSeconds===0) forceSubmit("Waktu habis! Ujian berakhir."); },1000); }
-  function startAutoSave(){ if(autoSaveInterval) clearInterval(autoSaveInterval); autoSaveInterval = setInterval(()=>{ if(examState && !isSubmitting) saveExamToLocal(); }, 1000); }
 
-  async function sendTelegramFinal(nama, pesertaNomor, sekolah, token, benar, salah, nilai, pelanggaran, durasiMenit){
-    let msg = `🏅 *SELEKSI NASIONAL DPBI 2026* 🏅\n👤 *Nama:* ${nama}\n🆔 *Nomor:* ${pesertaNomor}\n🏫 *Sekolah:* ${sekolah}\n🔑 *Token:* ${token}\n✅ *Benar:* ${benar}\n❌ *Salah:* ${salah}\n⭐ *Nilai Akhir:* ${nilai.toFixed(2)}%\n⚠️ *Pelanggaran:* ${pelanggaran}\n⏱️ *Durasi:* ${durasiMenit} menit\n🕒 *Waktu Submit:* ${new Date().toLocaleString()}\n📌 *Status:* SELESAI`;
-    try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{ method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode:'Markdown' }) }); } catch(e){}
+  function updateTimerDisplay(){ if(examState && document.getElementById('floatingTimer')){ let s=examState.remainingSeconds, h=Math.floor(s/3600), m=Math.floor((s%3600)/60), sec=s%60; document.getElementById('floatingTimer').innerText=`${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`; } }
+  function startTimer(){ if(timerInterval) clearInterval(timerInterval); timerInterval = setInterval(()=>{ if(!examState || examState.remainingSeconds<=0){ if(examState && examState.remainingSeconds<=0 && !isSubmitting) forceSubmit("⏰ Waktu seleksi habis!"); clearInterval(timerInterval); return; } examState.remainingSeconds--; updateTimerDisplay(); saveExamLocal(); if(examState.remainingSeconds===0) forceSubmit("Waktu habis!"); },1000); }
+  function startAutoSave(){ if(autoSaveInterval) clearInterval(autoSaveInterval); autoSaveInterval = setInterval(()=>{ if(examState && !isSubmitting) saveExamLocal(); }, 1000); }
+  
+  // ANTI CHEAT SUPER
+  function activateStrictAntiCheat(){
+    if(!examState) return;
+    const recordViolation = () => {
+      if(examState && !isSubmitting && !examClosed){
+        examState.violations++;
+        saveExamLocal();
+        if(document.getElementById('pelanggaranCounter')) document.getElementById('pelanggaranCounter').innerText = examState.violations;
+        showToast(`⚠️ Pelanggaran ke-${examState.violations} / 3`);
+        if(examState.violations >= 3) forceSubmit("Batas pelanggaran (3) tercapai. Ujian dihentikan.");
+      }
+    };
+    document.addEventListener('visibilitychange', ()=>{ if(document.hidden && examState && !isSubmitting && !examClosed) forceSubmit("PELANGGARAN: Meninggalkan halaman ujian."); });
+    window.addEventListener('blur', ()=>{ if(examState && !isSubmitting && !examClosed) forceSubmit("PELANGGARAN: Berpindah aplikasi."); });
+    document.addEventListener('fullscreenchange', ()=>{ if(!document.fullscreenElement && examState && !isSubmitting && !examClosed) forceSubmit("Keluar fullscreen, ujian berakhir."); });
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key==='I'||e.key==='i')) || (e.ctrlKey && e.key==='u') || (e.ctrlKey && e.key==='c') || (e.ctrlKey && e.key==='v') || (e.ctrlKey && e.key==='p')){
+        e.preventDefault(); recordViolation();
+      }
+    });
+    document.addEventListener('contextmenu', e=>e.preventDefault());
+    document.addEventListener('copy', e=>e.preventDefault());
+    document.addEventListener('cut', e=>e.preventDefault());
+    document.addEventListener('paste', e=>e.preventDefault());
+    setInterval(()=>{ if(examState && !isSubmitting && !examClosed && (window.outerHeight-window.innerHeight>200 || window.outerWidth-window.innerWidth>200)) recordViolation(); }, 1800);
   }
+
   async function forceSubmit(reason){
     if(isSubmitting || examClosed) return;
-    examClosed = true;
+    examClosed = true; isSubmitting = true;
     if(timerInterval) clearInterval(timerInterval);
     if(autoSaveInterval) clearInterval(autoSaveInterval);
-    isSubmitting = true;
     showToast(reason);
     await computeAndSendResult(true);
   }
+
   async function computeAndSendResult(isForced=false){
     if(!examState) return;
     let totalBobot=0, totalBenar=0;
     for(let qc of examState.soalConfig){ let bobot = parseInt(qc.original.bobot)||1; totalBobot+=bobot; if(qc.userAnswer === qc.correctAnswerKey) totalBenar+=bobot; }
     let nilaiPersen = totalBobot===0?0:(totalBenar/totalBobot)*100;
     let jumlahBenar = totalBenar, jumlahSalah = totalBobot-totalBenar;
-    let durasiMenit = Math.floor((Date.now() - examState.startTime)/60000);
-    await sendTelegramFinal(examState.nama, examState.pesertaNomor, examState.sekolah, examState.token, jumlahBenar, jumlahSalah, nilaiPersen, examState.violations, durasiMenit);
+    let durasiMenit = Math.floor((Date.now()-examState.startTime)/60000);
+    let msg = `🏅 *SELEKSI NASIONAL DPBI 2026* 🏅\n👤 *Nama:* ${examState.nama}\n🆔 *Nomor:* ${examState.pesertaNomor}\n🏫 *Sekolah:* ${examState.sekolah}\n🔑 *Token:* ${examState.token}\n✅ *Benar:* ${jumlahBenar}\n❌ *Salah:* ${jumlahSalah}\n⭐ *Nilai Akhir:* ${nilaiPersen.toFixed(2)}%\n⏱️ *Durasi:* ${durasiMenit} menit\n⚠️ *Pelanggaran:* ${examState.violations}\n🕒 *Submit:* ${new Date().toLocaleString()}`;
+    try{ await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode:'Markdown' }) }); }catch(e){}
     addCompletedToken(examState.token);
     localStorage.removeItem('dpbi_exam_state');
-    renderPage('selesai', { forced: isForced, nama: examState.nama, nomor: examState.pesertaNomor, sekolah: examState.sekolah, token: examState.token });
+    renderPage('selesai', { nama: examState.nama, nomor: examState.pesertaNomor, sekolah: examState.sekolah, token: examState.token });
   }
+
   async function finalSubmitUser(){
     if(isSubmitting) return;
     isSubmitting = true;
@@ -396,134 +392,158 @@
     if(autoSaveInterval) clearInterval(autoSaveInterval);
     await computeAndSendResult(false);
   }
-  // Anti Cheat Premium
-  function activateStrictSecurity(){
-    if(!examState) return;
-    const violationHandler = () => { if(examState && !isSubmitting && !examClosed){ examState.violations++; saveExamToLocal(); if(document.getElementById('pelanggaranCounter')) document.getElementById('pelanggaranCounter').innerText = examState.violations; showToast(`⚠️ Pelanggaran ke-${examState.violations} / 3`); if(examState.violations >= 3) forceSubmit("Batas pelanggaran (3) tercapai. Ujian berakhir."); } };
-    document.addEventListener('visibilitychange', ()=>{ if(document.hidden && examState && !isSubmitting && !examClosed) forceSubmit("PELANGGARAN: Meninggalkan halaman ujian."); });
-    window.addEventListener('blur', ()=>{ if(examState && !isSubmitting && !examClosed) forceSubmit("PELANGGARAN: Beralih ke aplikasi lain."); });
-    document.addEventListener('fullscreenchange', ()=>{ if(!document.fullscreenElement && examState && !isSubmitting && !examClosed) forceSubmit("Keluar dari mode layar penuh! Ujian berakhir."); });
-    window.addEventListener('keydown', (e)=>{ if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key==='I'||e.key==='i')) || (e.ctrlKey && e.key==='u') || (e.ctrlKey && e.key==='p') || (e.ctrlKey && e.key==='c') || (e.ctrlKey && e.key==='v')){ e.preventDefault(); violationHandler(); } });
-    document.addEventListener('contextmenu', e=>e.preventDefault());
-    document.addEventListener('copy', e=>e.preventDefault()); document.addEventListener('cut', e=>e.preventDefault()); document.addEventListener('paste', e=>e.preventDefault());
-    setInterval(()=>{ if(examState && !isSubmitting && !examClosed && (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200)) violationHandler(); }, 1500);
+
+  // LINK UNIK (restore lintas perangkat)
+  function generateUniqueRestoreLink(){
+    if(!examState) return null;
+    const stateCopy = JSON.parse(JSON.stringify(examState));
+    const compressed = LZString.compressToEncodedURIComponent(JSON.stringify(stateCopy));
+    const url = new URL(window.location.href);
+    url.searchParams.set('restore', compressed);
+    return url.toString();
+  }
+  async function tryRestoreFromUrl(){
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('restore');
+    if(code && code.length>5){
+      try{
+        const decompressed = LZString.decompressFromEncodedURIComponent(code);
+        if(decompressed){
+          const parsed = JSON.parse(decompressed);
+          if(parsed && parsed.token && !getCompletedTokens().includes(parsed.token)){
+            examState = parsed;
+            currentUser = globalPeserta.find(p=>p.Token===parsed.token) || { "Nama Lengkap":parsed.nama, "Asal Sekolah":parsed.sekolah, Token:parsed.token };
+            saveExamLocal();
+            showToast("✅ Sesi berhasil dipulihkan dari link unik!", false);
+            renderPage('exam');
+            startTimer(); startAutoSave(); activateStrictAntiCheat();
+            document.documentElement.requestFullscreen().catch(e=>null);
+            return true;
+          } else showToast("Link tidak valid atau token sudah selesai.", true);
+        }
+      }catch(e){ showToast("Link restore rusak.", true); }
+    }
+    return false;
   }
 
-  // RENDER ENGINE (PREMIUM OVERHAUL)
+  // ============= RENDER SEMUA HALAMAN (PREMIUM) =============
   function renderPage(page, params={}){
     const container = document.getElementById('pageRenderer');
     if(!container) return;
     if(page === 'login'){
-      container.innerHTML = `<div class="glass-premium" style="max-width:620px; margin:30px auto; padding:48px 42px;"><div style="text-align:center;"><img src="https://cdn.phototourl.com/free/2026-06-10-14462ae8-b80e-4052-8c31-c65b843c63e6.png" style="width:80px;"><h2 style="font-weight:800; margin-top:12px;">Portal Seleksi DPBI</h2><p style="color:#7A6843;">Masukkan kredensial resmi</p></div><form id="loginForm"><br><input type="text" id="namaLogin" class="input-premium" placeholder="Nama Lengkap" autocomplete="off"><br><br><input type="text" id="sekolahLogin" class="input-premium" placeholder="Asal Sekolah" autocomplete="off"><br><br><input type="text" id="tokenLogin" class="input-premium" placeholder="Token Seleksi Nasional" autocomplete="off"><br><br><button type="submit" class="btn-gold" style="width:100%;"><i class="fas fa-arrow-right-to-bracket"></i> MASUK SELEKSI</button></form></div>`;
-      document.getElementById('loginForm')?.addEventListener('submit', (e)=>{
+      container.innerHTML = `<div class="glass-card" style="max-width: 620px; margin: 40px auto; padding: 48px 42px;"><div style="text-align:center;"><img src="https://cdn.phototourl.com/free/2026-06-10-14462ae8-b80e-4052-8c31-c65b843c63e6.png" style="width: 85px;"><h2 style="margin: 20px 0 8px; font-weight:800;">Portal Seleksi DPBI</h2><p style="color:#7A6843;">Masukkan kredensial resmi</p></div><form id="loginForm"><br><input type="text" id="namaLogin" class="input-premium" placeholder="Nama Lengkap"><br><br><input type="text" id="sekolahLogin" class="input-premium" placeholder="Asal Sekolah"><br><br><input type="text" id="tokenLogin" class="input-premium" placeholder="Token Seleksi Nasional"><br><br><button type="submit" class="btn-gold" style="width:100%;"><i class="fas fa-arrow-right-to-bracket"></i> MASUK SELEKSI</button></form><div style="text-align:center; margin-top: 28px;"><button id="restoreBtnFromLogin" class="btn-outline" style="font-size:0.8rem;"><i class="fas fa-link"></i> Pulihkan dari Link Unik</button></div></div>`;
+      document.getElementById('loginForm')?.addEventListener('submit', async(e)=>{
         e.preventDefault();
-        let nama = document.getElementById('namaLogin').value.trim(), sekolah = document.getElementById('sekolahLogin').value.trim(), token = document.getElementById('tokenLogin').value.trim();
+        let nama = document.getElementById('namaLogin').value.trim();
+        let sekolah = document.getElementById('sekolahLogin').value.trim();
+        let token = document.getElementById('tokenLogin').value.trim();
         let valid = validateLogin(nama, sekolah, token);
         if(!valid.ok){ showToast(valid.msg, true); return; }
         currentUser = valid.pesertaData;
         renderPage('dashboard');
       });
-    } else if(page === 'dashboard'){
-      let nomorPeserta = "DPBI/2026/" + Math.floor(Math.random()*90000+1000);
-      let currentUrlWithSid = window.location.href;
-      container.innerHTML = `<div class="glass-premium" style="max-width:960px; margin:20px auto; padding:42px;"><div style="display:flex; justify-content:space-between; align-items:center;"><h2><i class="fas fa-id-card"></i> Dashboard Peserta</h2><i class="fas fa-crown" style="color:#D4AF37; font-size:32px;"></i></div><div style="background:linear-gradient(125deg,#FFFBF0,#FFF9E8); border-radius:40px; padding:28px; margin:28px 0; border:1px solid rgba(212,175,55,0.4);"><div><i class="fas fa-user-graduate"></i> <strong>${escapeHtml(currentUser["Nama Lengkap"])}</strong></div><div><i class="fas fa-school"></i> ${escapeHtml(currentUser["Asal Sekolah"])}</div><div><i class="fas fa-key"></i> Token: ${currentUser.Token}</div><div><i class="fas fa-hashtag"></i> Nomor Peserta: ${nomorPeserta}</div><div><i class="fas fa-clock"></i> Periode Token: ${currentUser["Waktu Mulai Token"]} s/d ${currentUser["Waktu Selesai Token"]}</div><div><i class="fas fa-flag-checkered"></i> Status: BELUM</div></div><div class="glass-premium" style="padding:18px; margin:16px 0;"><i class="fas fa-link"></i> <strong>🔗 Link Sesi Unik (Perangkat ini):</strong><br><code id="uniqueLinkDisplay" style="word-break:break-all; font-size:0.8rem;">${currentUrlWithSid}</code><button id="copyLinkBtn" class="btn-outline" style="margin-top:10px;"><i class="fas fa-copy"></i> Salin Link</button><p style="font-size:0.7rem; margin-top:8px;">⚠️ Link ini hanya berlaku untuk perangkat ini. Gunakan di browser yang sama untuk melanjutkan sesi.</p></div><p><i class="fas fa-info-circle"></i> Seleksi terdiri dari ${bankSoal.length} soal kebudayaan, durasi 60 menit. Fitur anti-kecurangan aktif.</p><button id="toConfirmDash" class="btn-gold" style="margin-top:28px;"><i class="fas fa-forward-step"></i> LANJUT KE KONFIRMASI</button></div>`;
-      document.getElementById('copyLinkBtn')?.addEventListener('click',()=>{ navigator.clipboard.writeText(document.getElementById('uniqueLinkDisplay').innerText); showToast("Link sesi unik disalin!"); });
-      document.getElementById('toConfirmDash')?.addEventListener('click',()=>renderPage('confirm'));
-    } else if(page === 'confirm'){
-      let nomor = "DPBI/2026/" + Math.floor(Math.random()*90000+1000);
-      container.innerHTML = `<div class="glass-premium" style="max-width:800px; margin:auto; padding:44px;"><h2><i class="fas fa-clipboard-list"></i> Konfirmasi Seleksi</h2><div style="background:#FDF9EE; border-radius:32px; padding:24px; margin:24px 0;"><p><strong>${escapeHtml(currentUser["Nama Lengkap"])}</strong><br>${escapeHtml(currentUser["Asal Sekolah"])}<br>Token: ${currentUser.Token}<br>Nomor: ${nomor}</p><hr style="margin:16px 0;"><p>Jumlah Soal: ${bankSoal.length} | Durasi: 60 menit | Fullscreen wajib + Anti Cheat</p></div><label style="display:flex; gap:12px;"><input type="checkbox" id="confirmChk"> Saya memastikan data benar dan siap mengikuti seleksi.</label><button id="nextConfirmBtn" class="btn-gold" style="margin-top:28px;" disabled>SETUJU & LANJUTKAN</button></div>`;
-      let chk = document.getElementById('confirmChk'), btn = document.getElementById('nextConfirmBtn');
-      chk.onchange = ()=> btn.disabled = !chk.checked;
-      btn.onclick = ()=> renderPage('rules');
-    } else if(page === 'rules'){
-      container.innerHTML = `<div class="glass-premium" style="max-width:920px; margin:auto; padding:46px;"><h2><i class="fas fa-gavel"></i> Peraturan Resmi DPBI 2026</h2><div style="max-height:400px; overflow-y:auto; margin:28px 0; padding-right:12px;"><ul style="list-style:none;"><li><i class="fas fa-expand"></i> 1. Wajib FULLSCREEN selama ujian (keluar fullscreen = submit otomatis).</li><li><i class="fas fa-ban"></i> 2. Dilarang membuka tab baru, aplikasi lain, screenshot, copy-paste.</li><li><i class="fas fa-shield-alt"></i> 3. Maksimal 3 pelanggaran, jika tercapai ujian dihentikan.</li><li><i class="fas fa-database"></i> 4. Auto-save dan session recovery aktif.</li><li><i class="fas fa-hourglass-half"></i> 5. Durasi 60 menit, timer berjalan mundur.</li><li><i class="fas fa-link"></i> 6. Sesi unik perangkat: link tidak dapat digunakan di perangkat lain.</li></ul></div><label><input type="checkbox" id="agreeRulesBox"> Saya membaca dan menyetujui seluruh peraturan.</label><div id="countdownRulesDiv" style="background:#EBE5D4; border-radius:60px; text-align:center; padding:14px; margin:24px 0; font-weight:bold;">⏳ Harap tunggu 10 detik</div><button id="startExamButton" class="btn-gold" disabled>MULAI SELEKSI NASIONAL</button></div>`;
-      let countdown=10, btnStart = document.getElementById('startExamButton'), cdDiv = document.getElementById('countdownRulesDiv'), agree = document.getElementById('agreeRulesBox');
-      let interval = setInterval(()=>{ countdown--; cdDiv.innerText = `⏳ Tunggu ${countdown} detik...`; if(countdown<=0){ clearInterval(interval); cdDiv.innerHTML = '✅ Siap mengikuti seleksi'; if(agree.checked) btnStart.disabled=false; } },1000);
-      agree.onchange = ()=>{ if(agree.checked && countdown<=0) btnStart.disabled=false; else btnStart.disabled=true; };
-      btnStart.onclick = async ()=>{
-        let shuffledConfig = buildShuffledQuestions(bankSoal);
-        examState = initExamState(currentUser, shuffledConfig);
-        examState.deviceSid = deviceSessionId;
-        saveExamToLocal();
+      document.getElementById('restoreBtnFromLogin')?.addEventListener('click', async()=>{ if(await tryRestoreFromUrl()) return; else showToast("Tidak ada sesi restore aktif di URL.", true); });
+    }
+    else if(page === 'dashboard'){
+      let nomorPeserta = "DPBI"+Math.floor(Math.random()*90000+10000);
+      let periode = `${currentUser["Waktu Mulai Token"]} s/d ${currentUser["Waktu Selesai Token"]}`;
+      container.innerHTML = `<div class="glass-card" style="max-width: 960px; margin: 20px auto; padding: 44px;"><h2><i class="fas fa-id-card"></i> Dashboard Peserta</h2><div style="background: #FFFCF0; border-radius: 44px; padding: 32px; margin: 28px 0; border:1px solid rgba(212,175,55,0.3);"><div><i class="fas fa-user-tie"></i> <strong>${escapeHtml(currentUser["Nama Lengkap"])}</strong></div><div><i class="fas fa-school"></i> ${escapeHtml(currentUser["Asal Sekolah"])}</div><div><i class="fas fa-key"></i> Token: ${currentUser.Token}</div><div><i class="fas fa-hashtag"></i> Nomor Peserta: ${nomorPeserta}</div><div><i class="fas fa-calendar-alt"></i> Periode: ${periode}</div><div><i class="fas fa-flag-checkered"></i> Status: Aktif</div></div><p><i class="fas fa-database"></i> Jumlah Soal: ${bankSoal.length} (PG + Benar Salah) | Durasi: 60 menit | Anti-Cheat penuh</p><button id="toConfirmDashboard" class="btn-gold" style="margin-top: 32px;"><i class="fas fa-forward"></i> LANJUT KE KONFIRMASI</button></div>`;
+      document.getElementById('toConfirmDashboard').onclick = ()=>renderPage('confirm', {nomor: nomorPeserta});
+    }
+    else if(page === 'confirm'){
+      let nomor = params.nomor || "DPBI"+Math.floor(Math.random()*90000);
+      container.innerHTML = `<div class="glass-card" style="max-width: 780px; margin: auto; padding: 44px;"><h2><i class="fas fa-clipboard-list"></i> Konfirmasi Seleksi</h2><div style="background: #FCF9F0; border-radius: 36px; padding: 28px; margin: 24px 0;"><p><strong>${escapeHtml(currentUser["Nama Lengkap"])}</strong><br>${escapeHtml(currentUser["Asal Sekolah"])}<br>Nomor: ${nomor}<br>Token: ${currentUser.Token}</p><hr style="margin:20px 0;"><p>Jumlah Soal: ${bankSoal.length} | Durasi 60 menit<br>Sistem Fullscreen + Deteksi tab + Pelanggaran otomatis</p></div><label style="display:flex; gap:12px;"><input type="checkbox" id="confirmChk"> Saya menyatakan data benar dan siap mengikuti seleksi nasional.</label><button id="confirmNextBtn" class="btn-gold" style="margin-top: 32px;" disabled>SETUJU & LANJUT</button></div>`;
+      let chk = document.getElementById('confirmChk'), nextBtn = document.getElementById('confirmNextBtn');
+      chk.onchange = ()=> nextBtn.disabled = !chk.checked;
+      nextBtn.onclick = ()=> renderPage('rules', {nomorPeserta: nomor});
+    }
+    else if(page === 'rules'){
+      let nomor = params.nomorPeserta;
+      container.innerHTML = `<div class="glass-card" style="max-width: 920px; margin: auto; padding: 48px;"><h2><i class="fas fa-gavel"></i> Peraturan Resmi DPBI 2026</h2><div style="max-height: 400px; overflow-y: auto; margin: 28px 0; padding-right: 12px;"><ul style="list-style: none;"><li><i class="fas fa-expand"></i> 1. Wajib FULLSCREEN, keluar fullscreen = otomatis kumpul.</li><li><i class="fas fa-ban"></i> 2. Dilarang membuka tab baru / aplikasi lain / screenshot / copy-paste.</li><li><i class="fas fa-shield"></i> 3. Maksimal 3 pelanggaran, jika tercapai ujian dihentikan.</li><li><i class="fas fa-save"></i> 4. Auto-save tiap detik dan session recovery via local storage atau link unik.</li><li><i class="fas fa-clock"></i> 5. Durasi 60 menit, timer berjalan.</li><li><i class="fas fa-link"></i> 6. Fitur Link Unik: dapatkan link pemulihan lintas perangkat pada halaman ujian.</li></ul></div><label><input type="checkbox" id="agreeRulesBox"> Saya membaca dan menyetujui seluruh peraturan.</label><div id="countdownRuleDiv" style="background: #EBE5D4; border-radius: 48px; text-align: center; padding: 14px; margin: 28px 0; font-weight: bold;">⏳ Harap tunggu 10 detik</div><button id="startExamFinalBtn" class="btn-gold" disabled>MULAI SELEKSI NASIONAL</button></div>`;
+      let countdown = 10, startBtn = document.getElementById('startExamFinalBtn'), cdDiv = document.getElementById('countdownRuleDiv'), agree = document.getElementById('agreeRulesBox');
+      let interval = setInterval(()=>{ countdown--; cdDiv.innerText = `⏳ Tunggu ${countdown} detik...`; if(countdown<=0){ clearInterval(interval); cdDiv.innerHTML = '✅ Siap mengikuti seleksi'; if(agree.checked) startBtn.disabled=false; } },1000);
+      agree.onchange = ()=>{ if(agree.checked && countdown<=0) startBtn.disabled=false; else startBtn.disabled=true; };
+      startBtn.onclick = async()=>{
+        let soalConfig = prepareShuffledQuestions(bankSoal);
+        let pesertaNomorFinal = nomor || ("DPBI"+Math.floor(Math.random()*90000));
+        examState = initExamState(currentUser, soalConfig, pesertaNomorFinal);
+        saveExamLocal();
         renderPage('exam');
-        startTimer(); startAutoSave(); activateStrictSecurity();
-        try{ await document.documentElement.requestFullscreen(); }catch(e){ showToast("Aktifkan fullscreen dari browser"); }
+        startTimer(); startAutoSave(); activateStrictAntiCheat();
+        try{ await document.documentElement.requestFullscreen(); }catch(e){ showToast("Aktifkan fullscreen manual dari browser."); }
       };
-    } else if(page === 'exam'){
+    }
+    else if(page === 'exam'){
       if(!examState){ renderPage('login'); return; }
-      container.innerHTML = `<div class="timer-nasional" id="floatingTimer">01:00:00</div><div class="glass-premium" style="padding:32px;"><div style="display:flex; justify-content:space-between;"><h3><i class="fas fa-landmark"></i> Ujian Kebudayaan</h3><span><i class="fas fa-shield-alt"></i> Pelanggaran: <span id="pelanggaranCounter">${examState.violations}</span>/3</span></div><div style="margin:24px 0;">Soal ke-<span id="currentSoalNum">1</span> / <span id="totalSoalNum">${examState.soalConfig.length}</span></div><div id="soalContainer"></div><div style="display:flex; gap:16px; margin:20px 0;"><button id="prevSoalBtn" class="btn-outline"><i class="fas fa-chevron-left"></i> Sebelumnya</button><button id="nextSoalBtn" class="btn-outline">Selanjutnya <i class="fas fa-chevron-right"></i></button></div><div id="navigasiGrid" style="display:flex; flex-wrap:wrap; gap:12px; margin:20px 0;"></div><div style="text-align:center;"><button id="finalSubmitReviewBtn" class="btn-gold" style="background:#2D3A3F;">SELESAIKAN & REVIEW</button></div></div>`;
+      container.innerHTML = `<div class="timer-float" id="floatingTimer">01:00:00</div><div class="glass-card" style="padding: 32px;"><div style="display:flex; justify-content:space-between;"><h3><i class="fas fa-landmark"></i> Ujian Kebudayaan DPBI</h3><span><i class="fas fa-shield-alt"></i> Pelanggaran: <span id="pelanggaranCounter">${examState.violations}</span>/3</span></div><div style="margin:20px 0;">Soal ke-<span id="currentSoalNum">1</span> / <span id="totalSoalNum">${examState.soalConfig.length}</span></div><div id="soalContainer"></div><div style="display:flex; gap:20px; margin:20px 0;"><button id="prevSoalBtn" class="btn-outline"><i class="fas fa-chevron-left"></i> Sebelumnya</button><button id="nextSoalBtn" class="btn-outline">Selanjutnya <i class="fas fa-chevron-right"></i></button></div><div id="navigasiSoal" style="display:flex; flex-wrap:wrap; gap:12px; margin:20px 0;"></div><div style="display:flex; justify-content:space-between;"><button id="copyUniqueLinkBtn" class="btn-outline"><i class="fas fa-link"></i> Buat Link Unik Sesi</button><button id="reviewFinalBtn" class="btn-gold">SELESAIKAN & REVIEW</button></div></div>`;
       updateTimerDisplay();
       function renderCurrent(){
-        let qc = examState.soalConfig[currentQuestionIdx], soal = qc.original;
-        document.getElementById('currentSoalNum').innerText = currentQuestionIdx+1;
-        let html = `<div style="background:white; border-radius:36px; padding:28px; border-left:6px solid #D4AF37;"><h4>${escapeHtml(soal.pertanyaan)}</h4>`;
-        if(soal.gambar && soal.gambar.trim()) html += `<div style="margin:16px 0;"><img src="${soal.gambar}" style="max-width:100%; max-height:220px; border-radius:28px; cursor:pointer;" class="zoom-img" data-src="${soal.gambar}"></div>`;
-        html += `<div class="options-list">`;
-        qc.shuffledOptions.forEach(opt=>{ html += `<div class="option-card ${qc.userAnswer===opt.letter?'selected':''}" data-letter="${opt.letter}">${opt.letter.toUpperCase()}. ${escapeHtml(opt.text)}</div>`; });
-        html += `</div></div>`;
+        let qc = examState.soalConfig[currentQuestionIndex], soal = qc.original;
+        document.getElementById('currentSoalNum').innerText = currentQuestionIndex+1;
+        let html = `<div style="background: white; border-radius: 40px; padding: 28px; border-left: 8px solid #D4AF37;"><h4>${escapeHtml(soal.pertanyaan)}</h4>`;
+        if(soal.gambar && soal.gambar.trim()) html+=`<div style="margin:16px 0;"><img src="${soal.gambar}" style="max-width:100%; max-height:200px; border-radius:32px; cursor:pointer;" class="zoomable-img" data-src="${soal.gambar}"></div>`;
+        html+=`<div>`;
+        qc.shuffledOptions.forEach(opt=>{ html+=`<div class="option-card ${qc.userAnswer===opt.letter?'selected':''}" data-letter="${opt.letter}">${opt.letter}. ${escapeHtml(opt.text)}</div>`; });
+        html+=`</div></div>`;
         document.getElementById('soalContainer').innerHTML = html;
-        document.querySelectorAll('.option-card').forEach(el=>{ el.addEventListener('click',()=>{ let letter = el.dataset.letter; examState.soalConfig[currentQuestionIdx].userAnswer = letter; examState.answers[currentQuestionIdx] = letter; saveExamToLocal(); renderCurrent(); buildNavigasi(); if(document.getElementById('pelanggaranCounter')) document.getElementById('pelanggaranCounter').innerText=examState.violations; }); });
-        document.querySelectorAll('.zoom-img').forEach(img=>{ img.addEventListener('click',()=>{ document.getElementById('modalImg').src=img.dataset.src; document.getElementById('imageModal').style.visibility='visible'; document.getElementById('imageModal').style.opacity=1; }); });
+        document.querySelectorAll('.option-card').forEach(el=>{ el.addEventListener('click',()=>{ let letter = el.dataset.letter; examState.soalConfig[currentQuestionIndex].userAnswer = letter; examState.answers[currentQuestionIndex] = letter; saveExamLocal(); renderCurrent(); buildNavigasi(); if(document.getElementById('pelanggaranCounter')) document.getElementById('pelanggaranCounter').innerText = examState.violations; }); });
+        document.querySelectorAll('.zoomable-img').forEach(img=>{ img.addEventListener('click',()=>{ document.getElementById('modalImage').src = img.dataset.src; document.getElementById('imageModal').style.visibility='visible'; document.getElementById('imageModal').style.opacity=1; }); });
       }
       function buildNavigasi(){
-        let nav = document.getElementById('navigasiGrid'); nav.innerHTML='';
-        for(let i=0;i<examState.soalConfig.length;i++){ let pill = document.createElement('div'); pill.className='pill-nav'; if(examState.answers[i]!==null) pill.classList.add('answered'); if(i===currentQuestionIdx) pill.classList.add('active'); pill.innerText=i+1; pill.onclick=()=>{ currentQuestionIdx=i; renderCurrent(); buildNavigasi(); }; nav.appendChild(pill); }
+        let nav = document.getElementById('navigasiSoal'); nav.innerHTML='';
+        for(let i=0;i<examState.soalConfig.length;i++){
+          let pill = document.createElement('div'); pill.className = 'pill-nav'; if(examState.answers[i]!==null) pill.classList.add('answered'); if(i===currentQuestionIndex) pill.classList.add('active'); pill.innerText = i+1; pill.onclick = ()=>{ currentQuestionIndex = i; renderCurrent(); buildNavigasi(); }; nav.appendChild(pill);
+        }
       }
       renderCurrent(); buildNavigasi();
-      document.getElementById('prevSoalBtn').onclick = ()=>{ if(currentQuestionIdx>0){ currentQuestionIdx--; renderCurrent(); buildNavigasi(); } };
-      document.getElementById('nextSoalBtn').onclick = ()=>{ if(currentQuestionIdx<examState.soalConfig.length-1){ currentQuestionIdx++; renderCurrent(); buildNavigasi(); } };
-      document.getElementById('finalSubmitReviewBtn').onclick = ()=>renderPage('review');
-    } else if(page === 'review'){
+      document.getElementById('prevSoalBtn').onclick = ()=>{ if(currentQuestionIndex>0){ currentQuestionIndex--; renderCurrent(); buildNavigasi(); } };
+      document.getElementById('nextSoalBtn').onclick = ()=>{ if(currentQuestionIndex<examState.soalConfig.length-1){ currentQuestionIndex++; renderCurrent(); buildNavigasi(); } };
+      document.getElementById('reviewFinalBtn').onclick = ()=>renderPage('review');
+      document.getElementById('copyUniqueLinkBtn').onclick = ()=>{
+        let link = generateUniqueRestoreLink();
+        if(link){ navigator.clipboard.writeText(link); showToast("✅ Link unik sesi disalin! Buka di perangkat lain untuk melanjutkan ujian.", false); }
+        else showToast("Gagal membuat link.", true);
+      };
+    }
+    else if(page === 'review'){
       let total = examState.soalConfig.length, answered = examState.answers.filter(a=>a!==null).length;
-      let listHtml = '';
-      for(let i=0;i<total;i++) listHtml += `<div style="background:#FDFAF0; border-radius:24px; padding:12px 20px; margin:8px 0; display:flex;"><span style="flex:1;">Soal ${i+1}</span> ${examState.answers[i] ? '<i class="fas fa-check-circle" style="color:#22C55E;"></i> Terjawab' : '<i class="fas fa-times-circle" style="color:#DC2626;"></i> Belum'}</div>`;
-      container.innerHTML = `<div class="glass-premium" style="max-width:800px; margin:auto; padding:44px;"><h2>Review Jawaban</h2><div style="max-height:360px; overflow-y:auto; margin:24px 0;">${listHtml}</div><p>Total: ${total} | Sudah dijawab: ${answered} | Belum: ${total-answered}</p><div style="display:flex; gap:16px; margin-top:28px;"><button id="backToExamBtn" class="btn-outline">Kembali ke Ujian</button><button id="finalConfirmBtn" class="btn-gold">LANJUTKAN KONFIRMASI</button></div></div>`;
-      document.getElementById('backToExamBtn').onclick = ()=>renderPage('exam');
-      document.getElementById('finalConfirmBtn').onclick = ()=>renderPage('finalConfirm');
-    } else if(page === 'finalConfirm'){
+      let rows = '';
+      for(let i=0;i<total;i++) rows += `<div class="glass-card" style="padding: 14px 24px; margin: 12px 0; display:flex; justify-content:space-between;"><span>Soal ${i+1}</span> ${examState.answers[i]?'<i class="fas fa-check-circle" style="color:#22C55E;"></i> Terjawab':'<i class="fas fa-times-circle" style="color:#DC2626;"></i> Belum Terjawab'}</div>`;
+      container.innerHTML = `<div class="glass-card" style="max-width: 800px; margin: auto; padding: 44px;"><h2>Review Jawaban</h2><div style="max-height: 380px; overflow: auto; margin: 28px 0;">${rows}</div><p>Total Soal: ${total} | Sudah Dijawab: ${answered} | Belum: ${total-answered}</p><div style="display:flex; gap:20px; margin-top: 28px;"><button id="backToExamReview" class="btn-outline">Kembali ke Soal</button><button id="toFinalConfirmReview" class="btn-gold">Lanjutkan ke Konfirmasi</button></div></div>`;
+      document.getElementById('backToExamReview').onclick = ()=>renderPage('exam');
+      document.getElementById('toFinalConfirmReview').onclick = ()=>renderPage('finalConfirm');
+    }
+    else if(page === 'finalConfirm'){
       let total = examState.soalConfig.length, answered = examState.answers.filter(a=>a!==null).length;
-      container.innerHTML = `<div class="glass-premium" style="max-width:700px; margin:auto; padding:44px;"><h2>Konfirmasi Akhir</h2><div style="background:#FCF8E8; border-radius:32px; padding:24px;"><p>Nama: ${escapeHtml(examState.nama)}<br>Sekolah: ${escapeHtml(examState.sekolah)}<br>Jumlah Soal: ${total} | Dijawab: ${answered}<br>Pelanggaran: ${examState.violations}</p></div><label style="display:flex; gap:12px; margin:24px 0;"><input type="checkbox" id="finalCheckbox"> Saya yakin ingin mengumpulkan jawaban secara resmi.</label><button id="submitFinalBtn" class="btn-gold" disabled>KUMPULKAN JAWABAN</button></div>`;
-      let chkFin = document.getElementById('finalCheckbox'), subBtn = document.getElementById('submitFinalBtn');
-      chkFin.onchange = ()=> subBtn.disabled = !chkFin.checked;
-      subBtn.onclick = async ()=> await finalSubmitUser();
-    } else if(page === 'selesai'){
-      let namaP = params.nama || examState?.nama || currentUser?.["Nama Lengkap"] || "Peserta";
-      let nomorP = params.nomor || examState?.pesertaNomor || "DPBI2026";
-      container.innerHTML = `<div class="glass-premium" style="text-align:center; padding:68px 32px;"><i class="fas fa-trophy" style="font-size:80px; color:#D4AF37;"></i><h2 style="margin:28px 0;">TERIMA KASIH</h2><p>${escapeHtml(namaP)} <br>Nomor: ${nomorP}<br>Jawaban Anda telah tersimpan dan dikirim ke pusat seleksi DPBI.</p><div style="background:#FDF7E6; border-radius:40px; padding:28px; margin:32px 0;"><i class="fab fa-instagram" style="font-size:42px; color:#C9A227;"></i><p style="font-weight:600;">Bagikan pengalamanmu di Instagram Story 📸<br>Tag <strong>@dutapelajarberbudaya</strong></p><textarea id="feedbackText" class="input-premium" rows="2" placeholder="Tulis harapan & saran untuk DPBI..."></textarea><button id="copyShareBtn" class="btn-outline" style="margin-top:16px;"><i class="fas fa-camera"></i> Screenshot & Bagikan</button><a href="https://instagram.com/dutapelajarberbudaya" target="_blank" class="btn-gold" style="display:inline-block; margin-top:16px;">Buka Instagram</a></div><button id="backHomeFinal" class="btn-outline">Kembali ke Beranda</button></div>`;
-      document.getElementById('backHomeFinal').onclick = ()=>window.location.reload();
-      document.getElementById('copyShareBtn')?.addEventListener('click',()=>{ showToast("Silakan screenshot halaman ini dan unggah ke Story Instagram."); });
-      for(let i=0;i<40;i++){ let p=document.createElement('div'); p.style.cssText=`position:fixed; width:12px; height:12px; background:#F4D35E; left:${Math.random()*100}%; top:-10px; border-radius:50%; pointer-events:none;`; document.body.appendChild(p); p.animate([{transform:'translateY(0)', opacity:0.8},{transform:`translateY(${window.innerHeight+100}px)`, opacity:0}],{duration:2000}); setTimeout(()=>p.remove(),2100); }
+      container.innerHTML = `<div class="glass-card" style="max-width: 720px; margin: auto; padding: 44px;"><h2>Konfirmasi Akhir</h2><div style="background: #FCF8E8; border-radius: 40px; padding: 28px;"><p>Nama: ${escapeHtml(examState.nama)}<br>Sekolah: ${escapeHtml(examState.sekolah)}<br>Jumlah Soal: ${total} | Dijawab: ${answered}<br>Pelanggaran: ${examState.violations}</p></div><label style="display:flex; gap:12px; margin: 28px 0;"><input type="checkbox" id="finalConfirmChk"> Saya yakin ingin mengumpulkan jawaban secara resmi.</label><button id="finalSubmitBtnFinal" class="btn-gold" disabled>KUMPULKAN JAWABAN</button></div>`;
+      let chkFinal = document.getElementById('finalConfirmChk'), subFinal = document.getElementById('finalSubmitBtnFinal');
+      chkFinal.onchange = ()=> subFinal.disabled = !chkFinal.checked;
+      subFinal.onclick = async()=> await finalSubmitUser();
+    }
+    else if(page === 'selesai'){
+      let namaP = params.nama || examState?.nama || "Peserta", nomorP = params.nomor || examState?.pesertaNomor || "DPBI2026";
+      container.innerHTML = `<div class="glass-card" style="text-align:center; padding: 64px 32px;"><i class="fas fa-award" style="font-size: 96px; color: #D4AF37;"></i><h2 style="margin: 32px 0 16px;">TERIMA KASIH</h2><p>${escapeHtml(namaP)} <br>Nomor: ${nomorP}<br>Jawaban telah tersimpan dan dikirim ke panitia DPBI.</p><div style="background: #FCF8E8; border-radius: 48px; padding: 32px; margin: 40px 0;"><i class="fab fa-instagram" style="font-size: 42px; color:#C9A227;"></i><p style="font-weight:600;">Bagikan pengalamanmu di Instagram Story 📸<br>Tag <strong>@dutapelajarberbudaya</strong></p><a href="https://instagram.com/dutapelajarberbudaya" target="_blank" class="btn-gold" style="display:inline-block; margin-top: 20px;">Buka Instagram</a><textarea id="harapanSaranDPBI" rows="2" class="input-premium" style="margin-top: 28px;" placeholder="Harapan & Saran untuk DPBI..."></textarea></div><button id="homeFinalBtn" class="btn-outline">Kembali ke Beranda</button></div>`;
+      document.getElementById('homeFinalBtn').onclick = ()=>window.location.reload();
+      for(let i=0;i<60;i++){ let c=document.createElement('div'); c.style.cssText=`position:fixed; width:10px; height:10px; background:#F4D35E; left:${Math.random()*100}%; top:-10px; border-radius:50%; pointer-events:none; z-index:9999;`; document.body.appendChild(c); c.animate([{transform:'translateY(0)', opacity:0.8},{transform:`translateY(${window.innerHeight+100}px)`, opacity:0}], {duration:1800}); setTimeout(()=>c.remove(),1900); }
     }
   }
 
-  // INIT dengan sesi unik & load data
+  // INIT LOADING
   (async ()=>{
-    const fill = document.getElementById('loadProgressFill'), percentSpan = document.getElementById('loadPercent'), statusSpan = document.getElementById('loadStatus'), retryBtn = document.getElementById('retryLoadBtn');
-    try {
-      fill.style.width = '20%'; percentSpan.innerText='20%'; statusSpan.innerText = 'Memuat database peserta...';
-      await loadPesertaSheet();
-      fill.style.width = '55%'; percentSpan.innerText='55%'; statusSpan.innerText = 'Memuat bank soal nasional...';
-      await loadSoalExternal();
-      fill.style.width = '85%'; percentSpan.innerText='85%'; statusSpan.innerText = 'Membangun sesi aman...';
-      if(!initDeviceSession()) throw new Error("Gagal inisialisasi sesi unik.");
-      fill.style.width = '100%'; percentSpan.innerText='100%'; statusSpan.innerText = 'Sistem seleksi siap.';
-      setTimeout(()=>{
-        document.getElementById('loadingScreen').style.display='none';
-        document.getElementById('mainApp').style.display='block';
-        if(restoreExamFromLocal() && examState && !isTokenCompleted(examState.token)){
-          renderPage('exam'); startTimer(); startAutoSave(); activateStrictSecurity();
-          try{ document.documentElement.requestFullscreen(); }catch(e){}
-        } else renderPage('login');
-      }, 600);
-    } catch(err){
-      fill.style.width = '100%'; percentSpan.innerText = 'Gagal'; statusSpan.innerHTML = `<span style="color:#b91c1c;">⚠️ ${err.message}<br>Refresh atau hubungi panitia.</span>`;
-      retryBtn.style.display = 'inline-block'; retryBtn.onclick = ()=>window.location.reload();
+    const fill = document.getElementById('loadBarFill'), percentSpan = document.getElementById('loadPercentText'), statusSpan = document.getElementById('loadStatus'), retryBtn = document.getElementById('retryLoadBtn');
+    try{
+      fill.style.width='30%'; percentSpan.innerText='30%'; statusSpan.innerText='Memverifikasi database peserta ...';
+      await loadPeserta();
+      fill.style.width='70%'; percentSpan.innerText='70%'; statusSpan.innerText='Memuat bank soal resmi ...';
+      await loadSoal();
+      fill.style.width='100%'; percentSpan.innerText='100%'; statusSpan.innerText='Sistem seleksi siap digunakan.';
+      setTimeout(()=>{ document.getElementById('loadingScreen').style.display='none'; document.getElementById('mainApp').style.display='block'; if(restoreExamLocal() && examState && !getCompletedTokens().includes(examState.token)){ renderPage('exam'); startTimer(); startAutoSave(); activateStrictAntiCheat(); document.documentElement.requestFullscreen(); } else if(window.location.search.includes('restore')) tryRestoreFromUrl().then(res=>{ if(!res) renderPage('login'); }); else renderPage('login'); }, 800);
+    }catch(err){
+      fill.style.width='100%'; percentSpan.innerText='Gagal'; statusSpan.innerHTML = `<span style="color:#b91c1c;">⚠️ ${err.message}<br>Periksa koneksi atau hubungi panitia.</span>`;
+      retryBtn.style.display='inline-block'; retryBtn.onclick = ()=>window.location.reload();
     }
   })();
-  document.getElementById('closeModalBtn')?.addEventListener('click', ()=>{ document.getElementById('imageModal').style.visibility='hidden'; document.getElementById('imageModal').style.opacity=0; });
-  window.addEventListener('load', ()=>{
-    if(document.getElementById('closeModalBtn')) document.getElementById('closeModalBtn').onclick = ()=>{ document.getElementById('imageModal').style.visibility='hidden'; document.getElementById('imageModal').style.opacity=0; };
-  });
+  document.getElementById('closeModalImage')?.addEventListener('click', ()=>{ let m = document.getElementById('imageModal'); m.style.visibility='hidden'; m.style.opacity=0; });
 </script>
 </body>
 </html>
