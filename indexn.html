@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Seleksi DPBI - Duta Pelajar Berbudaya Indonesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: linear-gradient(145deg, #F8FAFC 0%, #EEF2F6 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .app-container { width: 100%; max-width: 1400px; background: rgba(255,255,255,0.75); backdrop-filter: blur(12px); border-radius: 48px; padding: 24px 32px; }
+    .card { background: #FFF; border-radius: 32px; padding: 28px 32px; box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08); border: 1px solid rgba(201,162,39,0.2); }
+    .btn-gold { background: #C9A227; border: none; padding: 12px 28px; font-weight: 700; border-radius: 60px; color: white; cursor: pointer; box-shadow: 0 4px 10px rgba(201,162,39,0.3); }
+    .btn-gold:hover { background: #B38F1F; transform: translateY(-2px); }
+    .btn-outline-gold { background: transparent; border: 2px solid #C9A227; color: #C9A227; padding: 10px 24px; border-radius: 60px; font-weight: 600; cursor: pointer; }
+    input { border: 1px solid #E2E8F0; border-radius: 24px; padding: 12px 20px; width: 100%; font-family: inherit; }
+    input:focus { outline: none; border-color: #C9A227; box-shadow: 0 0 0 3px rgba(201,162,39,0.2); }
+    .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) scale(0.9); background: #1F2937; color: white; padding: 14px 28px; border-radius: 60px; font-weight: 600; z-index: 2000; opacity: 0; transition: 0.2s; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) scale(1); }
+    .loading-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,240,0.98); backdrop-filter: blur(12px); z-index:3000; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+    .progress-bar { width: 300px; height: 10px; background: #E2E8F0; border-radius: 20px; overflow: hidden; margin-top:20px; }
+    .progress-fill { width:0%; height:100%; background:#C9A227; transition: width 0.4s; }
+    .soal-card { background: white; border-radius: 28px; padding: 24px; margin-bottom:24px; border-left:6px solid #C9A227; }
+    .option-item { background:#F8FAFC; border-radius:20px; padding:14px 20px; margin:12px 0; cursor:pointer; border:1px solid #E2E8F0; }
+    .option-item.selected { border:2px solid #C9A227; background:#FFF9E5; }
+    .timer-floating { position:fixed; top:20px; right:20px; background:rgba(0,0,0,0.8); backdrop-filter:blur(8px); padding:10px 20px; border-radius:40px; color:#E5C76B; font-weight:800; font-size:1.2rem; z-index:100; font-family:monospace; }
+    .pill-soal { background:#F1F5F9; border-radius:40px; padding:8px 0; font-weight:600; cursor:pointer; text-align:center; min-width:44px; }
+    .pill-soal.answered { background:#C9A227; color:white; }
+    .pill-soal.active { border:2px solid #C9A227; background:#FFF2CC; color:#B38F1F; }
+    .warning-banner { background: #FEF3C7; border-left: 4px solid #F59E0B; padding: 12px 16px; border-radius: 12px; margin-bottom: 20px; color: #92400E; font-size: 0.9rem; }
+    @media (max-width:768px){ .app-container{ padding:16px; } .card{ padding:20px; } }
+  </style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingScreen">
+  <div style="text-align:center;">
+    <i class="fas fa-graduation-cap" style="font-size:64px; color:#C9A227;"></i>
+    <h2 style="margin-top:16px;">Duta Pelajar Berbudaya Indonesia</h2>
+    <p id="loadStatusMsg">Memuat data dari server...</p>
+    <div class="progress-bar"><div class="progress-fill" id="loadProgress"></div></div>
+    <p id="loadPercent" style="margin-top:12px;">0%</p>
+    <button id="retryLoadBtn" style="display:none; margin-top:20px;" class="btn-gold"><i class="fas fa-sync-alt"></i> Coba Lagi</button>
+    <button id="forceFallbackBtn" style="display:none; margin-top:12px;" class="btn-outline-gold">Gunakan Data Cadangan</button>
+  </div>
+</div>
+
+<div class="app-container" id="mainApp" style="display: none;">
+  <div id="loginPage">
+    <div class="card" style="max-width:600px; margin:0 auto;">
+      <div style="text-align:center;"><i class="fas fa-user-graduate" style="font-size:48px; color:#C9A227;"></i><h2>Login Seleksi DPBI</h2></div>
+      <form id="loginForm">
+        <input type="text" id="namaLogin" placeholder="Nama Lengkap" style="margin-bottom:16px;" autocomplete="off">
+        <input type="text" id="sekolahLogin" placeholder="Asal Sekolah" style="margin-bottom:16px;" autocomplete="off">
+        <input type="text" id="tokenLogin" placeholder="Token Sesi" style="margin-bottom:24px;" autocomplete="off">
+        <button type="submit" class="btn-gold" style="width:100%;">Masuk Ujian</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="konfirmasiPage" style="display: none;">
+    <div class="card" style="max-width:800px; margin:0 auto;">
+      <h2><i class="fas fa-check-circle"></i> Konfirmasi Peserta</h2>
+      <div id="konfirmasiData" style="margin:24px 0; line-height:1.8;"></div>
+      <button id="btnKePetunjuk" class="btn-gold">Lanjut ke Petunjuk →</button>
+    </div>
+  </div>
+
+  <div id="petunjukPage" style="display: none;">
+    <div class="card" style="max-width:800px; margin:0 auto;">
+      <h2><i class="fas fa-clipboard-list"></i> Petunjuk Ujian</h2>
+      <ul style="margin:20px 0 20px 20px; line-height:1.8;">
+        <li>Waktu pengerjaan 60 menit, timer berjalan otomatis.</li>
+        <li>Ujian wajib dalam mode layar penuh (fullscreen).</li>
+        <li>Dilarang membuka tab lain atau keluar dari fullscreen (akan dicatat pelanggaran).</li>
+        <li>Dilarang copy-paste, klik kanan, dan menggunakan devtools (F12).</li>
+        <li>Setiap jawaban otomatis tersimpan, refresh aman.</li>
+        <li>Pelanggaran maksimal 3 kali, jika tercapai ujian otomatis dikumpul.</li>
+      </ul>
+      <label style="display:flex; align-items:center; gap:12px; margin:20px 0;"><input type="checkbox" id="agreeCheckbox"> Saya telah membaca dan menyetujui petunjuk.</label>
+      <div id="countdownText" style="font-weight:bold; margin:12px 0;">Tunggu 10 detik untuk mengaktifkan tombol...</div>
+      <button id="btnMulaiSeleksi" class="btn-gold" disabled>Mulai Seleksi</button>
+    </div>
+  </div>
+
+  <div id="ujianPage" style="display: none;">
+    <div class="timer-floating" id="floatingTimer">01:00:00</div>
+    <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap;"><h3><i class="fas fa-pen-alt"></i> Ujian DPBI</h3><div><span id="pelanggaranCounter">0</span>/3 Pelanggaran</div></div>
+    <div id="progressSoalInfo" style="margin:12px 0;">Soal ke-<span id="currentSoalNum">1</span> / <span id="totalSoalNum">0</span></div>
+    <div id="soalContainer"></div>
+    <div style="display:flex; gap:12px; justify-content:space-between; margin-top:20px;"><button id="prevSoal" class="btn-outline-gold"><i class="fas fa-arrow-left"></i> Sebelumnya</button><button id="nextSoal" class="btn-outline-gold">Selanjutnya <i class="fas fa-arrow-right"></i></button></div>
+    <div id="navigasiSoal" style="display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; max-height:150px; overflow-y:auto;"></div>
+    <div style="text-align:center; margin-top:32px;"><button id="submitUjianBtn" class="btn-gold">Kumpulkan Ujian</button></div>
+  </div>
+
+  <div id="selesaiPage" style="display: none; text-align:center;">
+    <div class="card"><i class="fas fa-check-circle" style="font-size:72px; color:#C9A227;"></i><h2>Ujian Selesai!</h2><p>Terima kasih, jawaban telah dikirim. Pantau Instagram <strong>@dutapelajarberbudaya</strong> untuk pengumuman.</p><button id="backHomeBtn" class="btn-gold">Kembali ke Beranda</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toastMsg"></div>
+<div id="imageModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; z-index:2000; visibility:hidden; opacity:0; transition:0.2s;"><img id="modalImgSrc" style="max-width:90%; max-height:90%; border-radius:20px;"><span style="position:absolute; top:20px; right:40px; color:white; font-size:40px; cursor:pointer;" id="closeModalBtn">&times;</span></div>
+
+<script>
+  // ========== KONFIGURASI GOOGLE SHEETS ==========
+  const SHEET_PESERTA_URL = "https://docs.google.com/spreadsheets/d/17BdQHCiwmRnfnhhITQ7MDTQjeMhi0y9P46qLVfqZg3A/export?format=csv&gid=0";
+  const SHEET_SOAL_URL = "https://docs.google.com/spreadsheets/d/1YD5n7CLfMCLHKrUvCG9cXiOgGsvI1NShue1osDR-y90/export?format=csv&gid=0";
+  
+  // Daftar proxy CORS (urutan prioritas)
+  const CORS_PROXIES = [
+    (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    (url) => `https://cors-anywhere.herokuapp.com/${url}`,
+    (url) => `https://thingproxy.freeboard.io/fetch/${url}`
+  ];
+
+  // Data cadangan (fallback) jika semua akses gagal - ini hanya untuk keadaan darurat
+  const FALLBACK_PESERTA = [
+    { "Nama Lengkap": "PESERTA DEMO", "Asal Sekolah": "SMK DEMO", "Token": "DEMO2026", "Waktu Mulai Token": "2024-01-01T00:00:00", "Waktu Selesai Token": "2030-12-31T23:59:59", "Status": "BELUM" }
+  ];
+  const FALLBACK_SOAL = [
+    { ID: "1", "Jenis Soal": "Pilihan Ganda", Pertanyaan: "Apa ibu kota Indonesia?", "URL Gambar": "", "Pilihan A": "Jakarta", "Pilihan B": "Bandung", "Pilihan C": "Surabaya", "Pilihan D": "Semarang", Jawaban: "A", Bobot: "5" },
+    { ID: "2", "Jenis Soal": "Benar Salah", Pertanyaan: "Indonesia memiliki 38 provinsi.", "URL Gambar": "", "Pilihan A": "Benar", "Pilihan B": "Salah", Jawaban: "Benar", Bobot: "3" }
+  ];
+
+  let globalPeserta = [], globalSoal = [], currentUser = null, examState = null, timerInterval = null, isSubmitting = false, currentQuestionIndex = 0;
+  let usingFallback = false;
+
+  function showToast(msg, isError = true) { const t = document.getElementById('toastMsg'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
+  function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
+  function parseCSV(csvText) {
+    const lines = csvText.split(/\r?\n/).filter(l => l.trim().length > 0);
+    if (lines.length < 2) return [];
+    const headers = lines[0].split(',').map(h => h.trim().replace(/^\uFEFF/, ''));
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+      const values = lines[i].split(',');
+      const obj = {};
+      headers.forEach((h, idx) => { obj[h] = values[idx] ? values[idx].trim() : ""; });
+      rows.push(obj);
+    }
+    return rows;
+  }
+
+  // Mencoba fetch dengan berbagai proxy
+  async function fetchWithFallback(url, proxyList) {
+    // Coba langsung dulu (mungkin sudah CORS friendly)
+    try {
+      const res = await fetch(url);
+      if (res.ok) return await res.text();
+    } catch(e) { /* lanjut ke proxy */ }
+    // Coba proxy satu per satu
+    for (const proxy of proxyList) {
+      try {
+        const proxyUrl = proxy(url);
+        const res = await fetch(proxyUrl);
+        if (res.ok) {
+          const text = await res.text();
+          // Validasi apakah hasilnya benar-benar CSV (bukan error HTML)
+          if (text.includes(',') && (text.includes('Nama Lengkap') || text.includes('Pertanyaan'))) return text;
+        }
+      } catch(e) {}
+    }
+    throw new Error("Gagal mengambil data setelah mencoba semua proxy");
+  }
+
+  async function loadData() {
+    const progressFill = document.getElementById('loadProgress');
+    const percentText = document.getElementById('loadPercent');
+    const statusMsg = document.getElementById('loadStatusMsg');
+    const retryBtn = document.getElementById('retryLoadBtn');
+    const forceFallbackBtn = document.getElementById('forceFallbackBtn');
+    
+    try {
+      progressFill.style.width = "10%"; percentText.innerText = "10%"; statusMsg.innerText = "Mengunduh data peserta (dengan proxy)...";
+      let pesertaCsv = await fetchWithFallback(SHEET_PESERTA_URL, CORS_PROXIES);
+      let pesertaRaw = parseCSV(pesertaCsv);
+      if (!pesertaRaw.length) throw new Error("Data peserta kosong");
+      globalPeserta = pesertaRaw.map(p => {
+        let norm = { ...p };
+        if (norm['Nama Sekolah'] && !norm['Asal Sekolah']) norm['Asal Sekolah'] = norm['Nama Sekolah'];
+        if (!norm['Status']) norm['Status'] = 'BELUM';
+        return norm;
+      });
+      
+      progressFill.style.width = "50%"; percentText.innerText = "50%"; statusMsg.innerText = "Mengunduh bank soal...";
+      let soalCsv = await fetchWithFallback(SHEET_SOAL_URL, CORS_PROXIES);
+      let soalRaw = parseCSV(soalCsv);
+      if (!soalRaw.length) throw new Error("Data soal kosong");
+      globalSoal = soalRaw.filter(s => s.Pertanyaan && s.Pertanyaan.trim() !== "");
+      if (globalSoal.length === 0) throw new Error("Tidak ada pertanyaan valid");
+      
+      usingFallback = false;
+      progressFill.style.width = "100%"; percentText.innerText = "100%"; statusMsg.innerHTML = "✓ Data dari server berhasil dimuat!";
+      setTimeout(() => { document.getElementById('loadingScreen').style.display = 'none'; document.getElementById('mainApp').style.display = 'block'; document.getElementById('loginPage').style.display = 'block'; }, 400);
+      
+    } catch (err) {
+      console.error("Fetch error:", err);
+      progressFill.style.width = "70%";
+      percentText.innerText = "Gagal mengambil data dari server";
+      statusMsg.innerHTML = `<span style="color:#b91c1c;">⚠️ Gagal terhubung ke Google Sheets.<br>${err.message}<br><br>Klik "Gunakan Data Cadangan" untuk mode darurat.</span>`;
+      retryBtn.style.display = "inline-block";
+      forceFallbackBtn.style.display = "inline-block";
+      retryBtn.onclick = () => window.location.reload();
+      forceFallbackBtn.onclick = () => {
+        usingFallback = true;
+        globalPeserta = [...FALLBACK_PESERTA];
+        globalSoal = [...FALLBACK_SOAL];
+        progressFill.style.width = "100%";
+        percentText.innerText = "100% (Data Cadangan)";
+        statusMsg.innerHTML = `<span style="color:#D97706;">⚠️ Menggunakan DATA CADANGAN LOKAL. Beberapa fitur mungkin terbatas. Pastikan sheet sudah dipublikasikan.</span>`;
+        setTimeout(() => {
+          document.getElementById('loadingScreen').style.display = 'none';
+          document.getElementById('mainApp').style.display = 'block';
+          document.getElementById('loginPage').style.display = 'block';
+          showToast("Menggunakan data cadangan. Hubungi panitia jika ini terjadi terus.", false);
+        }, 500);
+      };
+    }
+  }
+
+  function getCompletedTokens() { return JSON.parse(localStorage.getItem('dpbi_completed_tokens') || '[]'); }
+  function addCompletedToken(token) { let a = getCompletedTokens(); if (!a.includes(token)) a.push(token); localStorage.setItem('dpbi_completed_tokens', JSON.stringify(a)); }
+
+  function loginValidate(nama, sekolah, token) {
+    const peserta = globalPeserta.find(p => p["Nama Lengkap"]?.toLowerCase().trim() === nama.toLowerCase().trim() && p["Asal Sekolah"]?.toLowerCase().trim() === sekolah.toLowerCase().trim() && p["Token"] === token);
+    if (!peserta) return { success: false, msg: "Nama, sekolah, atau token tidak cocok." };
+    if (peserta["Status"] !== "BELUM") return { success: false, msg: "Status sudah SELESAI, tidak dapat mengikuti ujian." };
+    if (getCompletedTokens().includes(token)) return { success: false, msg: "Token sudah pernah menyelesaikan ujian." };
+    const now = new Date(), start = new Date(peserta["Waktu Mulai Token"]), end = new Date(peserta["Waktu Selesai Token"]);
+    if (isNaN(start) || isNaN(end)) return { success: false, msg: "Format waktu token tidak valid." };
+    if (now < start || now > end) return { success: false, msg: "Token tidak berlaku pada waktu saat ini." };
+    return { success: true, pesertaData: peserta };
+  }
+
+  function shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+  function shuffleQuestionOptions(soal) {
+    if (soal["Jenis Soal"] === "Pilihan Ganda") {
+      let choices = [{letter:"A",text:soal["Pilihan A"]},{letter:"B",text:soal["Pilihan B"]},{letter:"C",text:soal["Pilihan C"]},{letter:"D",text:soal["Pilihan D"]}].filter(c=>c.text && c.text.trim());
+      if(choices.length===0) choices=[{letter:"A",text:"Opsi tidak tersedia"}];
+      let shuffled = shuffleArray([...choices]);
+      let correctLetter = soal["Jawaban"];
+      let correctText = choices.find(c=>c.letter===correctLetter)?.text;
+      let newCorrect = shuffled.find(c=>c.text===correctText)?.letter || shuffled[0]?.letter;
+      return { shuffledOptions: shuffled, mappedCorrect: newCorrect };
+    } else {
+      let bs = [{letter:"Benar",text:"Benar"},{letter:"Salah",text:"Salah"}];
+      let shuffled = shuffleArray([...bs]);
+      let correctAns = soal["Jawaban"];
+      let newCorrect = shuffled.find(o=>o.text===correctAns)?.letter || "Benar";
+      return { shuffledOptions: shuffled, mappedCorrect: newCorrect };
+    }
+  }
+
+  function initExamState(participant, allQuestions) {
+    let shuffledSoal = shuffleArray([...allQuestions]);
+    let soalConfig = shuffledSoal.map(q => {
+      let { shuffledOptions, mappedCorrect } = shuffleQuestionOptions(q);
+      return { original: q, shuffledOptions, correctAnswerKey: mappedCorrect, userAnswer: null };
+    });
+    return { token: participant.Token, nama: participant["Nama Lengkap"], sekolah: participant["Asal Sekolah"], soalConfig, answers: new Array(soalConfig.length).fill(null), remainingSeconds: 60*60, violations: 0, startTime: Date.now() };
+  }
+
+  function saveExamToLocal(state) { localStorage.setItem('dpbi_exam_state', JSON.stringify(state)); }
+  function restoreExam() {
+    let saved = localStorage.getItem('dpbi_exam_state');
+    if(!saved) return false;
+    try{
+      let parsed = JSON.parse(saved);
+      if(parsed && !getCompletedTokens().includes(parsed.token)){
+        examState = parsed;
+        currentUser = globalPeserta.find(p=>p.Token===parsed.token);
+        if(!currentUser) currentUser = { "Nama Lengkap": parsed.nama, "Asal Sekolah": parsed.sekolah, Token: parsed.token };
+        return true;
+      }
+    }catch(e){}
+    return false;
+  }
+
+  function startTimerFromRemaining() {
+    if(timerInterval) clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      if(!examState || examState.remainingSeconds <= 0){
+        if(examState && examState.remainingSeconds<=0) autoSubmitExam("Waktu habis!");
+        clearInterval(timerInterval); return;
+      }
+      examState.remainingSeconds--;
+      updateTimerDisplay();
+      saveExamToLocal(examState);
+      if(examState.remainingSeconds===0) autoSubmitExam("Waktu habis!");
+    },1000);
+  }
+  function updateTimerDisplay(){ if(!examState) return; let s=examState.remainingSeconds, h=Math.floor(s/3600), m=Math.floor((s%3600)/60), sec=s%60; document.getElementById('floatingTimer').innerText=`${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`; }
+  function addViolation(){ if(examState){ examState.violations++; document.getElementById('pelanggaranCounter').innerText=examState.violations; saveExamToLocal(examState); if(examState.violations>=3) autoSubmitExam("Pelanggaran mencapai batas maksimal (3)!"); else showToast(`⚠️ Pelanggaran ke-${examState.violations}`,false); } }
+  async function autoSubmitExam(reason){ if(isSubmitting) return; isSubmitting=true; if(timerInterval) clearInterval(timerInterval); showToast(reason,false); await submitExam(true); }
+  async function submitExam(isAuto=false){
+    if(isSubmitting) return; isSubmitting=true; if(timerInterval) clearInterval(timerInterval);
+    let totalBobot=0,totalBenar=0;
+    for(let qc of examState.soalConfig){
+      let bobot=parseInt(qc.original.Bobot)||1;
+      totalBobot+=bobot;
+      if(qc.userAnswer===qc.correctAnswerKey) totalBenar+=bobot;
+    }
+    let nilai=(totalBobot===0?0:(totalBenar/totalBobot)*100);
+    let msg = `🎓 HASIL SELEKSI DPBI 🎓\nNama: ${examState.nama}\nSekolah: ${examState.sekolah}\nToken: ${examState.token}\n✅ Bobot Benar: ${totalBenar}/${totalBobot}\n📊 Nilai: ${nilai.toFixed(2)}%\n⚠️ Pelanggaran: ${examState.violations}`;
+    // Kirim ke Telegram jika dikonfigurasi
+    if (typeof BOT_TOKEN !== 'undefined' && BOT_TOKEN !== "YOUR_BOT_TOKEN_HERE" && CHAT_ID !== "YOUR_CHAT_ID_HERE") {
+      try{ await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ chat_id:CHAT_ID, text:msg, parse_mode:'Markdown' }) }); }catch(e){}
+    }
+    addCompletedToken(examState.token);
+    localStorage.removeItem('dpbi_exam_state');
+    document.getElementById('ujianPage').style.display='none';
+    document.getElementById('selesaiPage').style.display='block';
+    for(let i=0;i<80;i++){ let c=document.createElement('div'); c.style.cssText=`position:fixed; width:10px; height:10px; background:hsl(${Math.random()*360},80%,60%); left:${Math.random()*100}%; top:-10px; pointer-events:none; z-index:9999; border-radius:50%;`; document.body.appendChild(c); let anim=c.animate([{transform:'translateY(0) rotate(0deg)', opacity:1},{transform:`translateY(${window.innerHeight+100}px) rotate(720deg)`, opacity:0}],{duration:1500}); anim.onfinish=()=>c.remove(); }
+    isSubmitting=false;
+  }
+
+  function renderUjianPage(){
+    document.getElementById('loginPage').style.display='none';
+    document.getElementById('konfirmasiPage').style.display='none';
+    document.getElementById('petunjukPage').style.display='none';
+    document.getElementById('ujianPage').style.display='block';
+    document.getElementById('totalSoalNum').innerText=examState.soalConfig.length;
+    document.getElementById('pelanggaranCounter').innerText=examState.violations;
+    updateTimerDisplay();
+    buildNavigasi();
+    renderCurrentSoal();
+    document.documentElement.requestFullscreen().catch(e=>showToast("Aktifkan fullscreen manual",false));
+  }
+  function buildNavigasi(){
+    let nav=document.getElementById('navigasiSoal'); nav.innerHTML='';
+    for(let i=0;i<examState.soalConfig.length;i++){
+      let btn=document.createElement('div'); btn.className='pill-soal';
+      if(examState.answers[i]!==null) btn.classList.add('answered');
+      if(i===currentQuestionIndex) btn.classList.add('active');
+      btn.innerText=i+1;
+      btn.onclick=()=>{ currentQuestionIndex=i; renderCurrentSoal(); buildNavigasi(); };
+      nav.appendChild(btn);
+    }
+  }
+  function renderCurrentSoal(){
+    let qc=examState.soalConfig[currentQuestionIndex];
+    let soal=qc.original;
+    document.getElementById('currentSoalNum').innerText=currentQuestionIndex+1;
+    let html=`<div class="soal-card"><h4>${escapeHtml(soal.Pertanyaan)}</h4>`;
+    if(soal["URL Gambar"] && soal["URL Gambar"].trim()!="") html+=`<div style="margin:12px 0"><img src="${soal["URL Gambar"]}" style="max-width:100%; max-height:200px; border-radius:16px; cursor:pointer;" class="zoomable-img" data-src="${soal["URL Gambar"]}"></div>`;
+    html+=`<div class="options-list">`;
+    qc.shuffledOptions.forEach(opt=>{ html+=`<div class="option-item ${qc.userAnswer===opt.letter?'selected':''}" data-letter="${opt.letter}">${opt.letter.toUpperCase()}. ${escapeHtml(opt.text)}</div>`; });
+    html+=`</div></div>`;
+    document.getElementById('soalContainer').innerHTML=html;
+    document.querySelectorAll('.option-item').forEach(el=>{ el.addEventListener('click',()=>{ let letter=el.dataset.letter; examState.soalConfig[currentQuestionIndex].userAnswer=letter; examState.answers[currentQuestionIndex]=letter; saveExamToLocal(examState); renderCurrentSoal(); buildNavigasi(); }); });
+    document.querySelectorAll('.zoomable-img').forEach(img=>{ img.addEventListener('click',()=>{ document.getElementById('modalImgSrc').src=img.dataset.src; document.getElementById('imageModal').style.visibility='visible'; document.getElementById('imageModal').style.opacity=1; }); });
+  }
+  function disableCheats(){
+    document.addEventListener('contextmenu',e=>e.preventDefault());
+    document.addEventListener('copy',e=>e.preventDefault());
+    document.addEventListener('cut',e=>e.preventDefault());
+    document.addEventListener('paste',e=>e.preventDefault());
+    window.addEventListener('keydown',e=>{ if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='i'))||(e.ctrlKey&&e.key==='u')){ e.preventDefault(); if(examState && document.getElementById('ujianPage').style.display==='block') addViolation(); } });
+    document.addEventListener('visibilitychange',()=>{ if(document.hidden && examState && document.getElementById('ujianPage').style.display==='block') addViolation(); });
+    document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement && examState && document.getElementById('ujianPage').style.display==='block') addViolation(); });
+  }
+
+  // Event binding
+  document.getElementById('loginForm').addEventListener('submit',(e)=>{
+    e.preventDefault();
+    let nama=document.getElementById('namaLogin').value.trim(), sekolah=document.getElementById('sekolahLogin').value.trim(), token=document.getElementById('tokenLogin').value.trim();
+    let res=loginValidate(nama,sekolah,token);
+    if(!res.success){ showToast(res.msg); return; }
+    currentUser=res.pesertaData;
+    document.getElementById('loginPage').style.display='none';
+    document.getElementById('konfirmasiPage').style.display='block';
+    let warningHtml = usingFallback ? '<div class="warning-banner"><i class="fas fa-exclamation-triangle"></i> <strong>Mode Cadangan Aktif</strong> - Data peserta dan soal berasal dari penyimpanan lokal, bukan dari server. Hubungi panitia jika ini keliru.</div>' : '';
+    document.getElementById('konfirmasiData').innerHTML = warningHtml + `<div><strong>Nama:</strong> ${escapeHtml(currentUser["Nama Lengkap"])}</div><div><strong>Sekolah:</strong> ${escapeHtml(currentUser["Asal Sekolah"])}</div><div><strong>Token:</strong> ${currentUser.Token}</div><div><strong>Waktu Token:</strong> ${currentUser["Waktu Mulai Token"]} s/d ${currentUser["Waktu Selesai Token"]}</div><div><strong>Status:</strong> ${currentUser.Status}</div><div><strong>Nomor Peserta:</strong> DPBI${Math.floor(Math.random()*9000+1000)}</div>`;
+  });
+  document.getElementById('btnKePetunjuk').onclick=()=>{
+    document.getElementById('konfirmasiPage').style.display='none';
+    document.getElementById('petunjukPage').style.display='block';
+    let countdown=10, btn=document.getElementById('btnMulaiSeleksi'), cbox=document.getElementById('agreeCheckbox'), cdEl=document.getElementById('countdownText');
+    btn.disabled=true; cbox.checked=false;
+    let interval=setInterval(()=>{ countdown--; cdEl.innerText=`Tunggu ${countdown} detik untuk mengaktifkan tombol...`; if(countdown<=0){ clearInterval(interval); cdEl.innerText='Anda dapat memulai ujian.'; if(cbox.checked) btn.disabled=false; } },1000);
+    cbox.onchange=()=>{ if(cbox.checked && countdown<=0) btn.disabled=false; else if(!cbox.checked) btn.disabled=true; };
+    btn.onclick=()=>{
+      let verify=loginValidate(currentUser["Nama Lengkap"],currentUser["Asal Sekolah"],currentUser.Token);
+      if(!verify.success){ showToast(verify.msg); window.location.reload(); return; }
+      examState=initExamState(currentUser,globalSoal);
+      saveExamToLocal(examState);
+      renderUjianPage();
+      startTimerFromRemaining();
+      disableCheats();
+    };
+  };
+  document.getElementById('prevSoal').addEventListener('click',()=>{ if(currentQuestionIndex>0) currentQuestionIndex--; renderCurrentSoal(); buildNavigasi(); });
+  document.getElementById('nextSoal').addEventListener('click',()=>{ if(examState && currentQuestionIndex<examState.soalConfig.length-1) currentQuestionIndex++; renderCurrentSoal(); buildNavigasi(); });
+  document.getElementById('submitUjianBtn').addEventListener('click',()=>{ if(!examState) return; let answered=examState.answers.filter(a=>a!==null).length; if(confirm(`Ringkasan:\nTotal Soal: ${examState.soalConfig.length}\nSudah Dijawab: ${answered}\nBelum: ${examState.soalConfig.length-answered}\nPelanggaran: ${examState.violations}\n\nKumpulkan jawaban?`)) submitExam(); });
+  document.getElementById('backHomeBtn').addEventListener('click',()=>window.location.reload());
+  document.getElementById('closeModalBtn').addEventListener('click',()=>{ let m=document.getElementById('imageModal'); m.style.visibility='hidden'; m.style.opacity=0; });
+  window.addEventListener('load',async()=>{ await loadData(); if(restoreExam()){ document.getElementById('loginPage').style.display='none'; renderUjianPage(); startTimerFromRemaining(); disableCheats(); } });
+</script>
+</body>
+</html>
