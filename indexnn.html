@@ -67,7 +67,6 @@
   function parseCSV(csvText) { const lines = csvText.split(/\r?\n/).filter(l=>l.trim()); if(lines.length<2) return []; const headers = lines[0].split(',').map(h=>h.trim().replace(/^\uFEFF/,'')); return lines.slice(1).map(line=>{ let vals=line.split(','); let obj={}; headers.forEach((h,idx)=>obj[h]=vals[idx]?vals[idx].trim():""); return obj; }); }
   async function fetchWithFallback(url, isJson=false) { try { let r=await fetch(url); if(r.ok) return isJson?await r.json():await r.text(); } catch(e){} for(let proxy of PROXY_LIST){ try{ let resp=await fetch(proxy(url)); if(resp.ok){ let txt=await resp.text(); if(isJson) return JSON.parse(txt); return txt; } } catch(e){} } throw new Error("Gagal mengakses server nasional. Periksa koneksi."); }
   async function loadPeserta() { let csv = await fetchWithFallback(SHEET_CSV_URL, false); let raw = parseCSV(csv); if(!raw.length) throw new Error("Data peserta tidak ditemukan."); globalPeserta = raw.map(p=>({ "Nama Lengkap": p["Nama Lengkap"]||"", "Nama Sekolah": p["Nama Sekolah"]||p["Asal Sekolah"]||"", Token: p.Token||"", "Waktu Mulai Token": p["Waktu Mulai Token"]||"", "Waktu Selesai Token": p["Waktu Selesai Token"]||"" })); }
-  
   async function loadSoal() {
     let rawSoal = await fetchWithFallback(SOAL_JSON_URL, true);
     if(!rawSoal.length) throw new Error("Bank soal resmi kosong.");
